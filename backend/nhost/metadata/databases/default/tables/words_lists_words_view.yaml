@@ -1,3 +1,15 @@
 table:
   name: lists_words_view
   schema: words
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - id
+        - syllables
+        - frequency
+        - category
+        - word
+        - list_id
+      filter: {}
+    comment: ""

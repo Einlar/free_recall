@@ -1,3 +1,14 @@
 table:
   name: words
   schema: words
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - id
+        - syllables
+        - frequency
+        - category
+        - word
+      filter: {}
+    comment: ""

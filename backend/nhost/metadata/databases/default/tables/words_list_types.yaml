@@ -2,3 +2,10 @@ table:
   name: list_types
   schema: words
 is_enum: true
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - type
+      filter: {}
+    comment: ""

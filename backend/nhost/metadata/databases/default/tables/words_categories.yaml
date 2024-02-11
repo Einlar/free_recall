@@ -2,3 +2,10 @@ table:
   name: categories
   schema: words
 is_enum: true
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - category
+      filter: {}
+    comment: ""
