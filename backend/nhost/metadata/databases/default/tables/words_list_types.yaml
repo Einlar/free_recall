@@ -1,0 +1,4 @@
+table:
+  name: list_types
+  schema: words
+is_enum: true

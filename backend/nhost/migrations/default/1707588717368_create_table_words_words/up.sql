@@ -1,0 +1,1 @@
+CREATE TABLE "words"."words" ("word" citext NOT NULL, "category" text NOT NULL, "syllables" integer NOT NULL, "frequency" numeric NOT NULL, PRIMARY KEY ("word") , FOREIGN KEY ("category") REFERENCES "words"."categories"("category") ON UPDATE cascade ON DELETE cascade);

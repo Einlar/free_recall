@@ -32,7 +32,7 @@ version = 18
 version = '0.24.1'
 
 [auth.redirections]
-clientUrl = 'http://localhost:3000'
+clientUrl = 'http://localhost:5173'
 
 [auth.signUp]
 enabled = true
@@ -67,7 +67,7 @@ expiresIn = 43200
 enabled = false
 
 [auth.method.emailPasswordless]
-enabled = false
+enabled = true
 
 [auth.method.emailPassword]
 hibpEnabled = false

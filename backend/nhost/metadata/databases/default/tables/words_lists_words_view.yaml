@@ -1,0 +1,3 @@
+table:
+  name: lists_words_view
+  schema: words

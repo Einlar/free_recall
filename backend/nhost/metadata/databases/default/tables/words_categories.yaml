@@ -1,0 +1,4 @@
+table:
+  name: categories
+  schema: words
+is_enum: true

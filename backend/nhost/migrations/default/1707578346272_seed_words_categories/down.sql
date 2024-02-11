@@ -1,0 +1,4 @@
+-- Could not auto-generate a down migration.
+-- Please write an appropriate down migration for the SQL below:
+-- INSERT INTO "words"."categories" (category)
+-- VALUES ('animals'), ('body_parts'), ('clothes'), ('colors'), ('furniture_furnishing'), ('housing_buildings'), ('plants'), ('stationery'), ('weather'), ('vehicles'), ('foods'), ('hobbies_sport');
