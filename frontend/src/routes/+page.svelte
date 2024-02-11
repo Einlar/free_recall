@@ -1,2 +1,20 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<p>
+	Inserisci qui sotto alcune info di base, che saranno usate solamente per differenziare gli
+	esperimenti.
+</p>
+
+<!-- Query the user data, if they are already present, show them and let them edit via a button -->
+<form>
+	<label>
+		Nome:
+		<input name="name" />
+	</label>
+	<label>
+		Età:
+		<input type="number" />
+	</label>
+	<!-- Add gender -->
+	<button type="submit">Salva</button>
+</form>
+
+<a href="/experiment">Comincia l'esperimento</a>
