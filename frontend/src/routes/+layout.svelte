@@ -1,4 +1,5 @@
 <script>
+	import '../app.pcss';
 	import { createClient } from '$lib/graphql/client';
 	import { setContextClient } from '@urql/svelte';
 
@@ -23,38 +24,19 @@
 	setContextClient(urql);
 </script>
 
-<div class="wrapper">
-	<div class="main">
+<div class="flex min-h-screen items-center justify-center bg-gray-100">
+	<div class="rounded-lg bg-white p-8 shadow-lg">
+		<h1 class="mb-4 text-3xl font-bold">Free Recall</h1>
 		<slot />
 	</div>
 </div>
 
 <style>
-	:global(body) {
-		margin: 0;
-		padding: 0;
-		background: #de6262 linear-gradient(to right, #ffb88c, #de6262);
+	@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+	:global(:root) {
+		--font-family: 'Roboto', sans-serif;
 	}
-
-	.wrapper {
-		margin: 0 auto;
-		height: 100vh;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-	}
-
-	.main {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		padding: 1em;
-		background: #f2f2f2;
-		box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
-		width: 90%;
-		box-sizing: border-box;
-		overflow: hidden;
+	:global(h1, h2, h3, h4, h5, h6, p, label, legend) {
+		font-family: var(--font-family);
 	}
 </style>

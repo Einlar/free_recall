@@ -13,6 +13,8 @@ import type { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
+    "\n\tmutation InsertOrUpdateProfile($age: Int!, $gender: genders_enum!) {\n\t\tinsert_subjects_one(\n\t\t\tobject: { age: $age, gender: $gender }\n\t\t\ton_conflict: { constraint: subjects_pkey, update_columns: [age, gender] }\n\t\t) {\n\t\t\tid\n\t\t\tage\n\t\t\tgender\n\t\t}\n\t}\n": types.InsertOrUpdateProfileDocument,
+    "\n\tquery GetProfile($id: uuid!) {\n\t\tsubjects_by_pk(id: $id) {\n\t\t\tid\n\t\t\tage\n\t\t\tgender\n\t\t}\n\t}\n": types.GetProfileDocument,
     "\n\t\t\tquery WordLists {\n\t\t\t\twords_lists {\n\t\t\t\t\tid\n\t\t\t\t}\n\t\t\t}\n\t\t": types.WordListsDocument,
 };
 
@@ -30,6 +32,14 @@ const documents = {
  */
 export function graphql(source: string): unknown;
 
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n\tmutation InsertOrUpdateProfile($age: Int!, $gender: genders_enum!) {\n\t\tinsert_subjects_one(\n\t\t\tobject: { age: $age, gender: $gender }\n\t\t\ton_conflict: { constraint: subjects_pkey, update_columns: [age, gender] }\n\t\t) {\n\t\t\tid\n\t\t\tage\n\t\t\tgender\n\t\t}\n\t}\n"): (typeof documents)["\n\tmutation InsertOrUpdateProfile($age: Int!, $gender: genders_enum!) {\n\t\tinsert_subjects_one(\n\t\t\tobject: { age: $age, gender: $gender }\n\t\t\ton_conflict: { constraint: subjects_pkey, update_columns: [age, gender] }\n\t\t) {\n\t\t\tid\n\t\t\tage\n\t\t\tgender\n\t\t}\n\t}\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n\tquery GetProfile($id: uuid!) {\n\t\tsubjects_by_pk(id: $id) {\n\t\t\tid\n\t\t\tage\n\t\t\tgender\n\t\t}\n\t}\n"): (typeof documents)["\n\tquery GetProfile($id: uuid!) {\n\t\tsubjects_by_pk(id: $id) {\n\t\t\tid\n\t\t\tage\n\t\t\tgender\n\t\t}\n\t}\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

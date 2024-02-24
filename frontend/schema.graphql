@@ -3245,6 +3245,159 @@ input files_variance_order_by {
   size: order_by
 }
 
+"""Enum for gender values"""
+type genders {
+  gender: String!
+}
+
+"""
+aggregated selection of "genders"
+"""
+type genders_aggregate {
+  aggregate: genders_aggregate_fields
+  nodes: [genders!]!
+}
+
+"""
+aggregate fields of "genders"
+"""
+type genders_aggregate_fields {
+  count(columns: [genders_select_column!], distinct: Boolean): Int!
+  max: genders_max_fields
+  min: genders_min_fields
+}
+
+"""
+Boolean expression to filter rows from the table "genders". All fields are combined with a logical 'AND'.
+"""
+input genders_bool_exp {
+  _and: [genders_bool_exp!]
+  _not: genders_bool_exp
+  _or: [genders_bool_exp!]
+  gender: String_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "genders"
+"""
+enum genders_constraint {
+  """
+  unique or primary key constraint on columns "gender"
+  """
+  genders_pkey
+}
+
+enum genders_enum {
+  female
+  male
+  other
+}
+
+"""
+Boolean expression to compare columns of type "genders_enum". All fields are combined with logical 'AND'.
+"""
+input genders_enum_comparison_exp {
+  _eq: genders_enum
+  _in: [genders_enum!]
+  _is_null: Boolean
+  _neq: genders_enum
+  _nin: [genders_enum!]
+}
+
+"""
+input type for inserting data into table "genders"
+"""
+input genders_insert_input {
+  gender: String
+}
+
+"""aggregate max on columns"""
+type genders_max_fields {
+  gender: String
+}
+
+"""aggregate min on columns"""
+type genders_min_fields {
+  gender: String
+}
+
+"""
+response of any mutation on the table "genders"
+"""
+type genders_mutation_response {
+  """number of rows affected by the mutation"""
+  affected_rows: Int!
+
+  """data from the rows affected by the mutation"""
+  returning: [genders!]!
+}
+
+"""
+on_conflict condition type for table "genders"
+"""
+input genders_on_conflict {
+  constraint: genders_constraint!
+  update_columns: [genders_update_column!]! = []
+  where: genders_bool_exp
+}
+
+"""Ordering options when selecting data from "genders"."""
+input genders_order_by {
+  gender: order_by
+}
+
+"""primary key columns input for table: genders"""
+input genders_pk_columns_input {
+  gender: String!
+}
+
+"""
+select columns of table "genders"
+"""
+enum genders_select_column {
+  """column name"""
+  gender
+}
+
+"""
+input type for updating data in table "genders"
+"""
+input genders_set_input {
+  gender: String
+}
+
+"""
+Streaming cursor of the table "genders"
+"""
+input genders_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: genders_stream_cursor_value_input!
+
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input genders_stream_cursor_value_input {
+  gender: String
+}
+
+"""
+update columns of table "genders"
+"""
+enum genders_update_column {
+  """column name"""
+  gender
+}
+
+input genders_updates {
+  """sets the columns of the filtered rows to the given values"""
+  _set: genders_set_input
+
+  """filter the rows which have to be updated"""
+  where: genders_bool_exp!
+}
+
 scalar jsonb
 
 input jsonb_cast_exp {
@@ -3439,6 +3592,32 @@ type mutation_root {
     """filter the rows which have to be deleted"""
     where: virus_bool_exp!
   ): virus_mutation_response
+
+  """
+  delete data from the table: "genders"
+  """
+  delete_genders(
+    """filter the rows which have to be deleted"""
+    where: genders_bool_exp!
+  ): genders_mutation_response
+
+  """
+  delete single row from the table: "genders"
+  """
+  delete_genders_by_pk(gender: String!): genders
+
+  """
+  delete data from the table: "subjects"
+  """
+  delete_subjects(
+    """filter the rows which have to be deleted"""
+    where: subjects_bool_exp!
+  ): subjects_mutation_response
+
+  """
+  delete single row from the table: "subjects"
+  """
+  delete_subjects_by_pk(id: uuid!): subjects
 
   """
   delete data from the table: "words.categories"
@@ -3768,6 +3947,50 @@ type mutation_root {
     """upsert condition"""
     on_conflict: virus_on_conflict
   ): virus_mutation_response
+
+  """
+  insert data into the table: "genders"
+  """
+  insert_genders(
+    """the rows to be inserted"""
+    objects: [genders_insert_input!]!
+
+    """upsert condition"""
+    on_conflict: genders_on_conflict
+  ): genders_mutation_response
+
+  """
+  insert a single row into the table: "genders"
+  """
+  insert_genders_one(
+    """the row to be inserted"""
+    object: genders_insert_input!
+
+    """upsert condition"""
+    on_conflict: genders_on_conflict
+  ): genders
+
+  """
+  insert data into the table: "subjects"
+  """
+  insert_subjects(
+    """the rows to be inserted"""
+    objects: [subjects_insert_input!]!
+
+    """upsert condition"""
+    on_conflict: subjects_on_conflict
+  ): subjects_mutation_response
+
+  """
+  insert a single row into the table: "subjects"
+  """
+  insert_subjects_one(
+    """the row to be inserted"""
+    object: subjects_insert_input!
+
+    """upsert condition"""
+    on_conflict: subjects_on_conflict
+  ): subjects
 
   """
   insert data into the table: "words.categories"
@@ -4428,6 +4651,68 @@ type mutation_root {
   ): [files_mutation_response]
 
   """
+  update data of the table: "genders"
+  """
+  update_genders(
+    """sets the columns of the filtered rows to the given values"""
+    _set: genders_set_input
+
+    """filter the rows which have to be updated"""
+    where: genders_bool_exp!
+  ): genders_mutation_response
+
+  """
+  update single row of the table: "genders"
+  """
+  update_genders_by_pk(
+    """sets the columns of the filtered rows to the given values"""
+    _set: genders_set_input
+    pk_columns: genders_pk_columns_input!
+  ): genders
+
+  """
+  update multiples rows of table: "genders"
+  """
+  update_genders_many(
+    """updates to execute, in order"""
+    updates: [genders_updates!]!
+  ): [genders_mutation_response]
+
+  """
+  update data of the table: "subjects"
+  """
+  update_subjects(
+    """increments the numeric columns with given value of the filtered values"""
+    _inc: subjects_inc_input
+
+    """sets the columns of the filtered rows to the given values"""
+    _set: subjects_set_input
+
+    """filter the rows which have to be updated"""
+    where: subjects_bool_exp!
+  ): subjects_mutation_response
+
+  """
+  update single row of the table: "subjects"
+  """
+  update_subjects_by_pk(
+    """increments the numeric columns with given value of the filtered values"""
+    _inc: subjects_inc_input
+
+    """sets the columns of the filtered rows to the given values"""
+    _set: subjects_set_input
+    pk_columns: subjects_pk_columns_input!
+  ): subjects
+
+  """
+  update multiples rows of table: "subjects"
+  """
+  update_subjects_many(
+    """updates to execute, in order"""
+    updates: [subjects_updates!]!
+  ): [subjects_mutation_response]
+
+  """
   update multiples rows of table: "auth.users"
   """
   update_users_many(
@@ -5073,6 +5358,92 @@ type query_root {
     where: files_bool_exp
   ): files_aggregate!
 
+  """
+  fetch data from the table: "genders"
+  """
+  genders(
+    """distinct select on columns"""
+    distinct_on: [genders_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [genders_order_by!]
+
+    """filter the rows returned"""
+    where: genders_bool_exp
+  ): [genders!]!
+
+  """
+  fetch aggregated fields from the table: "genders"
+  """
+  genders_aggregate(
+    """distinct select on columns"""
+    distinct_on: [genders_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [genders_order_by!]
+
+    """filter the rows returned"""
+    where: genders_bool_exp
+  ): genders_aggregate!
+
+  """fetch data from the table: "genders" using primary key columns"""
+  genders_by_pk(gender: String!): genders
+
+  """
+  fetch data from the table: "subjects"
+  """
+  subjects(
+    """distinct select on columns"""
+    distinct_on: [subjects_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [subjects_order_by!]
+
+    """filter the rows returned"""
+    where: subjects_bool_exp
+  ): [subjects!]!
+
+  """
+  fetch aggregated fields from the table: "subjects"
+  """
+  subjects_aggregate(
+    """distinct select on columns"""
+    distinct_on: [subjects_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [subjects_order_by!]
+
+    """filter the rows returned"""
+    where: subjects_bool_exp
+  ): subjects_aggregate!
+
+  """fetch data from the table: "subjects" using primary key columns"""
+  subjects_by_pk(id: uuid!): subjects
+
   """fetch data from the table: "auth.users" using primary key columns"""
   user(id: uuid!): users
 
@@ -5419,6 +5790,232 @@ type query_root {
   fetch data from the table: "words.words_lists" using primary key columns
   """
   words_words_lists_by_pk(list_id: uuid!, word_id: Int!): words_words_lists
+}
+
+"""People taking part in the experiment"""
+type subjects {
+  age: Int!
+  gender: genders_enum!
+  id: uuid!
+
+  """An object relationship"""
+  user: users!
+}
+
+"""
+aggregated selection of "subjects"
+"""
+type subjects_aggregate {
+  aggregate: subjects_aggregate_fields
+  nodes: [subjects!]!
+}
+
+"""
+aggregate fields of "subjects"
+"""
+type subjects_aggregate_fields {
+  avg: subjects_avg_fields
+  count(columns: [subjects_select_column!], distinct: Boolean): Int!
+  max: subjects_max_fields
+  min: subjects_min_fields
+  stddev: subjects_stddev_fields
+  stddev_pop: subjects_stddev_pop_fields
+  stddev_samp: subjects_stddev_samp_fields
+  sum: subjects_sum_fields
+  var_pop: subjects_var_pop_fields
+  var_samp: subjects_var_samp_fields
+  variance: subjects_variance_fields
+}
+
+"""aggregate avg on columns"""
+type subjects_avg_fields {
+  age: Float
+}
+
+"""
+Boolean expression to filter rows from the table "subjects". All fields are combined with a logical 'AND'.
+"""
+input subjects_bool_exp {
+  _and: [subjects_bool_exp!]
+  _not: subjects_bool_exp
+  _or: [subjects_bool_exp!]
+  age: Int_comparison_exp
+  gender: genders_enum_comparison_exp
+  id: uuid_comparison_exp
+  user: users_bool_exp
+}
+
+"""
+unique or primary key constraints on table "subjects"
+"""
+enum subjects_constraint {
+  """
+  unique or primary key constraint on columns "id"
+  """
+  subjects_pkey
+}
+
+"""
+input type for incrementing numeric columns in table "subjects"
+"""
+input subjects_inc_input {
+  age: Int
+}
+
+"""
+input type for inserting data into table "subjects"
+"""
+input subjects_insert_input {
+  age: Int
+  gender: genders_enum
+  id: uuid
+  user: users_obj_rel_insert_input
+}
+
+"""aggregate max on columns"""
+type subjects_max_fields {
+  age: Int
+  id: uuid
+}
+
+"""aggregate min on columns"""
+type subjects_min_fields {
+  age: Int
+  id: uuid
+}
+
+"""
+response of any mutation on the table "subjects"
+"""
+type subjects_mutation_response {
+  """number of rows affected by the mutation"""
+  affected_rows: Int!
+
+  """data from the rows affected by the mutation"""
+  returning: [subjects!]!
+}
+
+"""
+on_conflict condition type for table "subjects"
+"""
+input subjects_on_conflict {
+  constraint: subjects_constraint!
+  update_columns: [subjects_update_column!]! = []
+  where: subjects_bool_exp
+}
+
+"""Ordering options when selecting data from "subjects"."""
+input subjects_order_by {
+  age: order_by
+  gender: order_by
+  id: order_by
+  user: users_order_by
+}
+
+"""primary key columns input for table: subjects"""
+input subjects_pk_columns_input {
+  id: uuid!
+}
+
+"""
+select columns of table "subjects"
+"""
+enum subjects_select_column {
+  """column name"""
+  age
+
+  """column name"""
+  gender
+
+  """column name"""
+  id
+}
+
+"""
+input type for updating data in table "subjects"
+"""
+input subjects_set_input {
+  age: Int
+  gender: genders_enum
+  id: uuid
+}
+
+"""aggregate stddev on columns"""
+type subjects_stddev_fields {
+  age: Float
+}
+
+"""aggregate stddev_pop on columns"""
+type subjects_stddev_pop_fields {
+  age: Float
+}
+
+"""aggregate stddev_samp on columns"""
+type subjects_stddev_samp_fields {
+  age: Float
+}
+
+"""
+Streaming cursor of the table "subjects"
+"""
+input subjects_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: subjects_stream_cursor_value_input!
+
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input subjects_stream_cursor_value_input {
+  age: Int
+  gender: genders_enum
+  id: uuid
+}
+
+"""aggregate sum on columns"""
+type subjects_sum_fields {
+  age: Int
+}
+
+"""
+update columns of table "subjects"
+"""
+enum subjects_update_column {
+  """column name"""
+  age
+
+  """column name"""
+  gender
+
+  """column name"""
+  id
+}
+
+input subjects_updates {
+  """increments the numeric columns with given value of the filtered values"""
+  _inc: subjects_inc_input
+
+  """sets the columns of the filtered rows to the given values"""
+  _set: subjects_set_input
+
+  """filter the rows which have to be updated"""
+  where: subjects_bool_exp!
+}
+
+"""aggregate var_pop on columns"""
+type subjects_var_pop_fields {
+  age: Float
+}
+
+"""aggregate var_samp on columns"""
+type subjects_var_samp_fields {
+  age: Float
+}
+
+"""aggregate variance on columns"""
+type subjects_variance_fields {
+  age: Float
 }
 
 type subscription_root {
@@ -5999,6 +6596,120 @@ type subscription_root {
     """filter the rows returned"""
     where: files_bool_exp
   ): [files!]!
+
+  """
+  fetch data from the table: "genders"
+  """
+  genders(
+    """distinct select on columns"""
+    distinct_on: [genders_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [genders_order_by!]
+
+    """filter the rows returned"""
+    where: genders_bool_exp
+  ): [genders!]!
+
+  """
+  fetch aggregated fields from the table: "genders"
+  """
+  genders_aggregate(
+    """distinct select on columns"""
+    distinct_on: [genders_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [genders_order_by!]
+
+    """filter the rows returned"""
+    where: genders_bool_exp
+  ): genders_aggregate!
+
+  """fetch data from the table: "genders" using primary key columns"""
+  genders_by_pk(gender: String!): genders
+
+  """
+  fetch data from the table in a streaming manner: "genders"
+  """
+  genders_stream(
+    """maximum number of rows returned in a single batch"""
+    batch_size: Int!
+
+    """cursor to stream the results returned by the query"""
+    cursor: [genders_stream_cursor_input]!
+
+    """filter the rows returned"""
+    where: genders_bool_exp
+  ): [genders!]!
+
+  """
+  fetch data from the table: "subjects"
+  """
+  subjects(
+    """distinct select on columns"""
+    distinct_on: [subjects_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [subjects_order_by!]
+
+    """filter the rows returned"""
+    where: subjects_bool_exp
+  ): [subjects!]!
+
+  """
+  fetch aggregated fields from the table: "subjects"
+  """
+  subjects_aggregate(
+    """distinct select on columns"""
+    distinct_on: [subjects_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [subjects_order_by!]
+
+    """filter the rows returned"""
+    where: subjects_bool_exp
+  ): subjects_aggregate!
+
+  """fetch data from the table: "subjects" using primary key columns"""
+  subjects_by_pk(id: uuid!): subjects
+
+  """
+  fetch data from the table in a streaming manner: "subjects"
+  """
+  subjects_stream(
+    """maximum number of rows returned in a single batch"""
+    batch_size: Int!
+
+    """cursor to stream the results returned by the query"""
+    cursor: [subjects_stream_cursor_input]!
+
+    """filter the rows returned"""
+    where: subjects_bool_exp
+  ): [subjects!]!
 
   """fetch data from the table: "auth.users" using primary key columns"""
   user(id: uuid!): users

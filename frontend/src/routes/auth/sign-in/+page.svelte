@@ -1,47 +1,42 @@
-<main>
-	<h1>Effettua il Log-In</h1>
-	<p>
-		Per accedere all'esperimento, effettua il log-in inserendo il tuo indirizzo e-mail. Riceverai un
-		link di accesso per l'applicazione.
-	</p>
-	<form action="?/signin" method="post">
-		<label for="email">Email:</label>
-		<input type="email" id="email" name="email" required />
-		<button type="submit">Sign Up</button>
-	</form>
-</main>
+<script>
+	/** @type {import('./$types').ActionData}*/
+	export let form;
 
-<style>
-	main {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		height: 100vh;
-	}
+	form?.success;
+</script>
 
-	form {
-		display: flex;
-		flex-direction: column;
-		gap: 1rem;
-	}
-
-	label {
-		font-weight: bold;
-	}
-
-	input {
-		padding: 0.5rem;
-		border-radius: 4px;
-		border: 1px solid #ccc;
-	}
-
-	button {
-		padding: 0.5rem 1rem;
-		border-radius: 4px;
-		background-color: #007bff;
-		color: #fff;
-		border: none;
-		cursor: pointer;
-	}
-</style>
+{#if form}
+	{#if form.success}
+		<p>Riceverai a breve una mail all'indirizzo {form.email} con il link necessario ad accedere.</p>
+	{:else}
+		<p>Qualcosa è andato storto. Riprova più tardi.</p>
+	{/if}
+{:else}
+	<div class="mx-auto w-full max-w-md">
+		<div class="pb-4">
+			<p>Inserisci il tuo indirizzo e-mail per accedere all'esperimento.</p>
+		</div>
+		<form action="?/signin" method="post" class="mb-4 rounded bg-white px-8 pb-8 pt-6 shadow-md">
+			<div class="mb-4">
+				<label class="mb-2 block text-sm font-bold text-gray-700" for="email">
+					Indirizzo E-mail
+				</label>
+				<input
+					class="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
+					id="email"
+					type="email"
+					name="email"
+					placeholder="example@example.com"
+				/>
+			</div>
+			<div class="flex items-center justify-between">
+				<button
+					class="focus:shadow-outline rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700 focus:outline-none"
+					type="submit"
+				>
+					Sign In
+				</button>
+			</div>
+		</form>
+	</div>
+{/if}

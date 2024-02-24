@@ -2757,6 +2757,143 @@ export type Files_Variance_Order_By = {
   size?: InputMaybe<Order_By>;
 };
 
+/** Enum for gender values */
+export type Genders = {
+  __typename?: 'genders';
+  gender: Scalars['String']['output'];
+};
+
+/** aggregated selection of "genders" */
+export type Genders_Aggregate = {
+  __typename?: 'genders_aggregate';
+  aggregate?: Maybe<Genders_Aggregate_Fields>;
+  nodes: Array<Genders>;
+};
+
+/** aggregate fields of "genders" */
+export type Genders_Aggregate_Fields = {
+  __typename?: 'genders_aggregate_fields';
+  count: Scalars['Int']['output'];
+  max?: Maybe<Genders_Max_Fields>;
+  min?: Maybe<Genders_Min_Fields>;
+};
+
+
+/** aggregate fields of "genders" */
+export type Genders_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Genders_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Boolean expression to filter rows from the table "genders". All fields are combined with a logical 'AND'. */
+export type Genders_Bool_Exp = {
+  _and?: InputMaybe<Array<Genders_Bool_Exp>>;
+  _not?: InputMaybe<Genders_Bool_Exp>;
+  _or?: InputMaybe<Array<Genders_Bool_Exp>>;
+  gender?: InputMaybe<String_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "genders" */
+export enum Genders_Constraint {
+  /** unique or primary key constraint on columns "gender" */
+  GendersPkey = 'genders_pkey'
+}
+
+export enum Genders_Enum {
+  Female = 'female',
+  Male = 'male',
+  Other = 'other'
+}
+
+/** Boolean expression to compare columns of type "genders_enum". All fields are combined with logical 'AND'. */
+export type Genders_Enum_Comparison_Exp = {
+  _eq?: InputMaybe<Genders_Enum>;
+  _in?: InputMaybe<Array<Genders_Enum>>;
+  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
+  _neq?: InputMaybe<Genders_Enum>;
+  _nin?: InputMaybe<Array<Genders_Enum>>;
+};
+
+/** input type for inserting data into table "genders" */
+export type Genders_Insert_Input = {
+  gender?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregate max on columns */
+export type Genders_Max_Fields = {
+  __typename?: 'genders_max_fields';
+  gender?: Maybe<Scalars['String']['output']>;
+};
+
+/** aggregate min on columns */
+export type Genders_Min_Fields = {
+  __typename?: 'genders_min_fields';
+  gender?: Maybe<Scalars['String']['output']>;
+};
+
+/** response of any mutation on the table "genders" */
+export type Genders_Mutation_Response = {
+  __typename?: 'genders_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']['output'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Genders>;
+};
+
+/** on_conflict condition type for table "genders" */
+export type Genders_On_Conflict = {
+  constraint: Genders_Constraint;
+  update_columns?: Array<Genders_Update_Column>;
+  where?: InputMaybe<Genders_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "genders". */
+export type Genders_Order_By = {
+  gender?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: genders */
+export type Genders_Pk_Columns_Input = {
+  gender: Scalars['String']['input'];
+};
+
+/** select columns of table "genders" */
+export enum Genders_Select_Column {
+  /** column name */
+  Gender = 'gender'
+}
+
+/** input type for updating data in table "genders" */
+export type Genders_Set_Input = {
+  gender?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** Streaming cursor of the table "genders" */
+export type Genders_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Genders_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Genders_Stream_Cursor_Value_Input = {
+  gender?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** update columns of table "genders" */
+export enum Genders_Update_Column {
+  /** column name */
+  Gender = 'gender'
+}
+
+export type Genders_Updates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Genders_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Genders_Bool_Exp;
+};
+
 export type Jsonb_Cast_Exp = {
   String?: InputMaybe<String_Comparison_Exp>;
 };
@@ -2836,6 +2973,14 @@ export type Mutation_Root = {
   deleteVirus?: Maybe<Virus>;
   /** delete data from the table: "storage.virus" */
   deleteViruses?: Maybe<Virus_Mutation_Response>;
+  /** delete data from the table: "genders" */
+  delete_genders?: Maybe<Genders_Mutation_Response>;
+  /** delete single row from the table: "genders" */
+  delete_genders_by_pk?: Maybe<Genders>;
+  /** delete data from the table: "subjects" */
+  delete_subjects?: Maybe<Subjects_Mutation_Response>;
+  /** delete single row from the table: "subjects" */
+  delete_subjects_by_pk?: Maybe<Subjects>;
   /** delete data from the table: "words.categories" */
   delete_words_categories?: Maybe<Words_Categories_Mutation_Response>;
   /** delete single row from the table: "words.categories" */
@@ -2904,6 +3049,14 @@ export type Mutation_Root = {
   insertVirus?: Maybe<Virus>;
   /** insert data into the table: "storage.virus" */
   insertViruses?: Maybe<Virus_Mutation_Response>;
+  /** insert data into the table: "genders" */
+  insert_genders?: Maybe<Genders_Mutation_Response>;
+  /** insert a single row into the table: "genders" */
+  insert_genders_one?: Maybe<Genders>;
+  /** insert data into the table: "subjects" */
+  insert_subjects?: Maybe<Subjects_Mutation_Response>;
+  /** insert a single row into the table: "subjects" */
+  insert_subjects_one?: Maybe<Subjects>;
   /** insert data into the table: "words.categories" */
   insert_words_categories?: Maybe<Words_Categories_Mutation_Response>;
   /** insert a single row into the table: "words.categories" */
@@ -2992,6 +3145,18 @@ export type Mutation_Root = {
   update_buckets_many?: Maybe<Array<Maybe<Buckets_Mutation_Response>>>;
   /** update multiples rows of table: "storage.files" */
   update_files_many?: Maybe<Array<Maybe<Files_Mutation_Response>>>;
+  /** update data of the table: "genders" */
+  update_genders?: Maybe<Genders_Mutation_Response>;
+  /** update single row of the table: "genders" */
+  update_genders_by_pk?: Maybe<Genders>;
+  /** update multiples rows of table: "genders" */
+  update_genders_many?: Maybe<Array<Maybe<Genders_Mutation_Response>>>;
+  /** update data of the table: "subjects" */
+  update_subjects?: Maybe<Subjects_Mutation_Response>;
+  /** update single row of the table: "subjects" */
+  update_subjects_by_pk?: Maybe<Subjects>;
+  /** update multiples rows of table: "subjects" */
+  update_subjects_many?: Maybe<Array<Maybe<Subjects_Mutation_Response>>>;
   /** update multiples rows of table: "auth.users" */
   update_users_many?: Maybe<Array<Maybe<Users_Mutation_Response>>>;
   /** update multiples rows of table: "storage.virus" */
@@ -3170,6 +3335,30 @@ export type Mutation_RootDeleteVirusArgs = {
 /** mutation root */
 export type Mutation_RootDeleteVirusesArgs = {
   where: Virus_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_GendersArgs = {
+  where: Genders_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Genders_By_PkArgs = {
+  gender: Scalars['String']['input'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_SubjectsArgs = {
+  where: Subjects_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Subjects_By_PkArgs = {
+  id: Scalars['uuid']['input'];
 };
 
 
@@ -3399,6 +3588,34 @@ export type Mutation_RootInsertVirusArgs = {
 export type Mutation_RootInsertVirusesArgs = {
   objects: Array<Virus_Insert_Input>;
   on_conflict?: InputMaybe<Virus_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_GendersArgs = {
+  objects: Array<Genders_Insert_Input>;
+  on_conflict?: InputMaybe<Genders_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Genders_OneArgs = {
+  object: Genders_Insert_Input;
+  on_conflict?: InputMaybe<Genders_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_SubjectsArgs = {
+  objects: Array<Subjects_Insert_Input>;
+  on_conflict?: InputMaybe<Subjects_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Subjects_OneArgs = {
+  object: Subjects_Insert_Input;
+  on_conflict?: InputMaybe<Subjects_On_Conflict>;
 };
 
 
@@ -3757,6 +3974,48 @@ export type Mutation_RootUpdate_Files_ManyArgs = {
 
 
 /** mutation root */
+export type Mutation_RootUpdate_GendersArgs = {
+  _set?: InputMaybe<Genders_Set_Input>;
+  where: Genders_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Genders_By_PkArgs = {
+  _set?: InputMaybe<Genders_Set_Input>;
+  pk_columns: Genders_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Genders_ManyArgs = {
+  updates: Array<Genders_Updates>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_SubjectsArgs = {
+  _inc?: InputMaybe<Subjects_Inc_Input>;
+  _set?: InputMaybe<Subjects_Set_Input>;
+  where: Subjects_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Subjects_By_PkArgs = {
+  _inc?: InputMaybe<Subjects_Inc_Input>;
+  _set?: InputMaybe<Subjects_Set_Input>;
+  pk_columns: Subjects_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Subjects_ManyArgs = {
+  updates: Array<Subjects_Updates>;
+};
+
+
+/** mutation root */
 export type Mutation_RootUpdate_Users_ManyArgs = {
   updates: Array<Users_Updates>;
 };
@@ -3962,6 +4221,18 @@ export type Query_Root = {
   files: Array<Files>;
   /** fetch aggregated fields from the table: "storage.files" */
   filesAggregate: Files_Aggregate;
+  /** fetch data from the table: "genders" */
+  genders: Array<Genders>;
+  /** fetch aggregated fields from the table: "genders" */
+  genders_aggregate: Genders_Aggregate;
+  /** fetch data from the table: "genders" using primary key columns */
+  genders_by_pk?: Maybe<Genders>;
+  /** fetch data from the table: "subjects" */
+  subjects: Array<Subjects>;
+  /** fetch aggregated fields from the table: "subjects" */
+  subjects_aggregate: Subjects_Aggregate;
+  /** fetch data from the table: "subjects" using primary key columns */
+  subjects_by_pk?: Maybe<Subjects>;
   /** fetch data from the table: "auth.users" using primary key columns */
   user?: Maybe<Users>;
   /** fetch data from the table: "auth.users" */
@@ -4241,6 +4512,52 @@ export type Query_RootFilesAggregateArgs = {
 };
 
 
+export type Query_RootGendersArgs = {
+  distinct_on?: InputMaybe<Array<Genders_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Genders_Order_By>>;
+  where?: InputMaybe<Genders_Bool_Exp>;
+};
+
+
+export type Query_RootGenders_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Genders_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Genders_Order_By>>;
+  where?: InputMaybe<Genders_Bool_Exp>;
+};
+
+
+export type Query_RootGenders_By_PkArgs = {
+  gender: Scalars['String']['input'];
+};
+
+
+export type Query_RootSubjectsArgs = {
+  distinct_on?: InputMaybe<Array<Subjects_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Subjects_Order_By>>;
+  where?: InputMaybe<Subjects_Bool_Exp>;
+};
+
+
+export type Query_RootSubjects_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Subjects_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Subjects_Order_By>>;
+  where?: InputMaybe<Subjects_Bool_Exp>;
+};
+
+
+export type Query_RootSubjects_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
 export type Query_RootUserArgs = {
   id: Scalars['uuid']['input'];
 };
@@ -4420,6 +4737,218 @@ export type Query_RootWords_Words_Lists_By_PkArgs = {
   word_id: Scalars['Int']['input'];
 };
 
+/** People taking part in the experiment */
+export type Subjects = {
+  __typename?: 'subjects';
+  age: Scalars['Int']['output'];
+  gender: Genders_Enum;
+  id: Scalars['uuid']['output'];
+  /** An object relationship */
+  user: Users;
+};
+
+/** aggregated selection of "subjects" */
+export type Subjects_Aggregate = {
+  __typename?: 'subjects_aggregate';
+  aggregate?: Maybe<Subjects_Aggregate_Fields>;
+  nodes: Array<Subjects>;
+};
+
+/** aggregate fields of "subjects" */
+export type Subjects_Aggregate_Fields = {
+  __typename?: 'subjects_aggregate_fields';
+  avg?: Maybe<Subjects_Avg_Fields>;
+  count: Scalars['Int']['output'];
+  max?: Maybe<Subjects_Max_Fields>;
+  min?: Maybe<Subjects_Min_Fields>;
+  stddev?: Maybe<Subjects_Stddev_Fields>;
+  stddev_pop?: Maybe<Subjects_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Subjects_Stddev_Samp_Fields>;
+  sum?: Maybe<Subjects_Sum_Fields>;
+  var_pop?: Maybe<Subjects_Var_Pop_Fields>;
+  var_samp?: Maybe<Subjects_Var_Samp_Fields>;
+  variance?: Maybe<Subjects_Variance_Fields>;
+};
+
+
+/** aggregate fields of "subjects" */
+export type Subjects_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Subjects_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** aggregate avg on columns */
+export type Subjects_Avg_Fields = {
+  __typename?: 'subjects_avg_fields';
+  age?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Boolean expression to filter rows from the table "subjects". All fields are combined with a logical 'AND'. */
+export type Subjects_Bool_Exp = {
+  _and?: InputMaybe<Array<Subjects_Bool_Exp>>;
+  _not?: InputMaybe<Subjects_Bool_Exp>;
+  _or?: InputMaybe<Array<Subjects_Bool_Exp>>;
+  age?: InputMaybe<Int_Comparison_Exp>;
+  gender?: InputMaybe<Genders_Enum_Comparison_Exp>;
+  id?: InputMaybe<Uuid_Comparison_Exp>;
+  user?: InputMaybe<Users_Bool_Exp>;
+};
+
+/** unique or primary key constraints on table "subjects" */
+export enum Subjects_Constraint {
+  /** unique or primary key constraint on columns "id" */
+  SubjectsPkey = 'subjects_pkey'
+}
+
+/** input type for incrementing numeric columns in table "subjects" */
+export type Subjects_Inc_Input = {
+  age?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** input type for inserting data into table "subjects" */
+export type Subjects_Insert_Input = {
+  age?: InputMaybe<Scalars['Int']['input']>;
+  gender?: InputMaybe<Genders_Enum>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  user?: InputMaybe<Users_Obj_Rel_Insert_Input>;
+};
+
+/** aggregate max on columns */
+export type Subjects_Max_Fields = {
+  __typename?: 'subjects_max_fields';
+  age?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['uuid']['output']>;
+};
+
+/** aggregate min on columns */
+export type Subjects_Min_Fields = {
+  __typename?: 'subjects_min_fields';
+  age?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['uuid']['output']>;
+};
+
+/** response of any mutation on the table "subjects" */
+export type Subjects_Mutation_Response = {
+  __typename?: 'subjects_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']['output'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Subjects>;
+};
+
+/** on_conflict condition type for table "subjects" */
+export type Subjects_On_Conflict = {
+  constraint: Subjects_Constraint;
+  update_columns?: Array<Subjects_Update_Column>;
+  where?: InputMaybe<Subjects_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "subjects". */
+export type Subjects_Order_By = {
+  age?: InputMaybe<Order_By>;
+  gender?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  user?: InputMaybe<Users_Order_By>;
+};
+
+/** primary key columns input for table: subjects */
+export type Subjects_Pk_Columns_Input = {
+  id: Scalars['uuid']['input'];
+};
+
+/** select columns of table "subjects" */
+export enum Subjects_Select_Column {
+  /** column name */
+  Age = 'age',
+  /** column name */
+  Gender = 'gender',
+  /** column name */
+  Id = 'id'
+}
+
+/** input type for updating data in table "subjects" */
+export type Subjects_Set_Input = {
+  age?: InputMaybe<Scalars['Int']['input']>;
+  gender?: InputMaybe<Genders_Enum>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+};
+
+/** aggregate stddev on columns */
+export type Subjects_Stddev_Fields = {
+  __typename?: 'subjects_stddev_fields';
+  age?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Subjects_Stddev_Pop_Fields = {
+  __typename?: 'subjects_stddev_pop_fields';
+  age?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Subjects_Stddev_Samp_Fields = {
+  __typename?: 'subjects_stddev_samp_fields';
+  age?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Streaming cursor of the table "subjects" */
+export type Subjects_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Subjects_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Subjects_Stream_Cursor_Value_Input = {
+  age?: InputMaybe<Scalars['Int']['input']>;
+  gender?: InputMaybe<Genders_Enum>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+};
+
+/** aggregate sum on columns */
+export type Subjects_Sum_Fields = {
+  __typename?: 'subjects_sum_fields';
+  age?: Maybe<Scalars['Int']['output']>;
+};
+
+/** update columns of table "subjects" */
+export enum Subjects_Update_Column {
+  /** column name */
+  Age = 'age',
+  /** column name */
+  Gender = 'gender',
+  /** column name */
+  Id = 'id'
+}
+
+export type Subjects_Updates = {
+  /** increments the numeric columns with given value of the filtered values */
+  _inc?: InputMaybe<Subjects_Inc_Input>;
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Subjects_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Subjects_Bool_Exp;
+};
+
+/** aggregate var_pop on columns */
+export type Subjects_Var_Pop_Fields = {
+  __typename?: 'subjects_var_pop_fields';
+  age?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate var_samp on columns */
+export type Subjects_Var_Samp_Fields = {
+  __typename?: 'subjects_var_samp_fields';
+  age?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate variance on columns */
+export type Subjects_Variance_Fields = {
+  __typename?: 'subjects_variance_fields';
+  age?: Maybe<Scalars['Float']['output']>;
+};
+
 export type Subscription_Root = {
   __typename?: 'subscription_root';
   /** fetch data from the table: "auth.providers" using primary key columns */
@@ -4502,6 +5031,22 @@ export type Subscription_Root = {
   filesAggregate: Files_Aggregate;
   /** fetch data from the table in a streaming manner: "storage.files" */
   files_stream: Array<Files>;
+  /** fetch data from the table: "genders" */
+  genders: Array<Genders>;
+  /** fetch aggregated fields from the table: "genders" */
+  genders_aggregate: Genders_Aggregate;
+  /** fetch data from the table: "genders" using primary key columns */
+  genders_by_pk?: Maybe<Genders>;
+  /** fetch data from the table in a streaming manner: "genders" */
+  genders_stream: Array<Genders>;
+  /** fetch data from the table: "subjects" */
+  subjects: Array<Subjects>;
+  /** fetch aggregated fields from the table: "subjects" */
+  subjects_aggregate: Subjects_Aggregate;
+  /** fetch data from the table: "subjects" using primary key columns */
+  subjects_by_pk?: Maybe<Subjects>;
+  /** fetch data from the table in a streaming manner: "subjects" */
+  subjects_stream: Array<Subjects>;
   /** fetch data from the table: "auth.users" using primary key columns */
   user?: Maybe<Users>;
   /** fetch data from the table: "auth.users" */
@@ -4864,6 +5409,66 @@ export type Subscription_RootFiles_StreamArgs = {
   batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<Files_Stream_Cursor_Input>>;
   where?: InputMaybe<Files_Bool_Exp>;
+};
+
+
+export type Subscription_RootGendersArgs = {
+  distinct_on?: InputMaybe<Array<Genders_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Genders_Order_By>>;
+  where?: InputMaybe<Genders_Bool_Exp>;
+};
+
+
+export type Subscription_RootGenders_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Genders_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Genders_Order_By>>;
+  where?: InputMaybe<Genders_Bool_Exp>;
+};
+
+
+export type Subscription_RootGenders_By_PkArgs = {
+  gender: Scalars['String']['input'];
+};
+
+
+export type Subscription_RootGenders_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Genders_Stream_Cursor_Input>>;
+  where?: InputMaybe<Genders_Bool_Exp>;
+};
+
+
+export type Subscription_RootSubjectsArgs = {
+  distinct_on?: InputMaybe<Array<Subjects_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Subjects_Order_By>>;
+  where?: InputMaybe<Subjects_Bool_Exp>;
+};
+
+
+export type Subscription_RootSubjects_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Subjects_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Subjects_Order_By>>;
+  where?: InputMaybe<Subjects_Bool_Exp>;
+};
+
+
+export type Subscription_RootSubjects_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
+export type Subscription_RootSubjects_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Subjects_Stream_Cursor_Input>>;
+  where?: InputMaybe<Subjects_Bool_Exp>;
 };
 
 
@@ -7375,10 +7980,27 @@ export type Words_Words_Variance_Fields = {
   syllables?: Maybe<Scalars['Float']['output']>;
 };
 
+export type InsertOrUpdateProfileMutationVariables = Exact<{
+  age: Scalars['Int']['input'];
+  gender: Genders_Enum;
+}>;
+
+
+export type InsertOrUpdateProfileMutation = { __typename?: 'mutation_root', insert_subjects_one?: { __typename?: 'subjects', id: any, age: number, gender: Genders_Enum } | null };
+
+export type GetProfileQueryVariables = Exact<{
+  id: Scalars['uuid']['input'];
+}>;
+
+
+export type GetProfileQuery = { __typename?: 'query_root', subjects_by_pk?: { __typename?: 'subjects', id: any, age: number, gender: Genders_Enum } | null };
+
 export type WordListsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type WordListsQuery = { __typename?: 'query_root', words_lists: Array<{ __typename?: 'words_lists', id: any }> };
 
 
+export const InsertOrUpdateProfileDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"InsertOrUpdateProfile"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"age"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"gender"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"genders_enum"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"insert_subjects_one"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"object"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"age"},"value":{"kind":"Variable","name":{"kind":"Name","value":"age"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"gender"},"value":{"kind":"Variable","name":{"kind":"Name","value":"gender"}}}]}},{"kind":"Argument","name":{"kind":"Name","value":"on_conflict"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"constraint"},"value":{"kind":"EnumValue","value":"subjects_pkey"}},{"kind":"ObjectField","name":{"kind":"Name","value":"update_columns"},"value":{"kind":"ListValue","values":[{"kind":"EnumValue","value":"age"},{"kind":"EnumValue","value":"gender"}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"age"}},{"kind":"Field","name":{"kind":"Name","value":"gender"}}]}}]}}]} as unknown as DocumentNode<InsertOrUpdateProfileMutation, InsertOrUpdateProfileMutationVariables>;
+export const GetProfileDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetProfile"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"subjects_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"age"}},{"kind":"Field","name":{"kind":"Name","value":"gender"}}]}}]}}]} as unknown as DocumentNode<GetProfileQuery, GetProfileQueryVariables>;
 export const WordListsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"WordLists"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"words_lists"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<WordListsQuery, WordListsQueryVariables>;
