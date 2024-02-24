@@ -1,0 +1,4 @@
+table:
+  name: run_list_types
+  schema: experiments
+is_enum: true

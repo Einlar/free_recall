@@ -1,0 +1,41 @@
+table:
+  name: subjects
+  schema: public
+object_relationships:
+  - name: user
+    using:
+      foreign_key_constraint_on: id
+insert_permissions:
+  - role: user
+    permission:
+      check:
+        id:
+          _eq: X-Hasura-User-Id
+      set:
+        id: x-hasura-User-Id
+      columns:
+        - age
+        - gender
+    comment: ""
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - age
+        - gender
+        - id
+      filter:
+        id:
+          _eq: X-Hasura-User-Id
+    comment: ""
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - age
+        - gender
+      filter:
+        id:
+          _eq: X-Hasura-User-Id
+      check: null
+    comment: ""
