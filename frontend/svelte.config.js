@@ -14,7 +14,9 @@ const config = {
 		adapter: adapter(),
 		alias: {
 			$gql: 'src/lib/graphql/gql',
-			$gqlTypes: 'src/lib/graphql/gql/graphql.ts'
+			$gqlTypes: 'src/lib/graphql/gql/graphql.ts',
+			$queries: 'src/lib/graphql/queries',
+			$mutations: 'src/lib/graphql/mutations'
 		}
 	}
 };

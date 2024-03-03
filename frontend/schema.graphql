@@ -31,6 +31,26 @@ input Boolean_comparison_exp {
 """
 Boolean expression to compare columns of type "Int". All fields are combined with logical 'AND'.
 """
+input Int_array_comparison_exp {
+  """is the array contained in the given array value"""
+  _contained_in: [Int!]
+
+  """does the array contain the given value"""
+  _contains: [Int!]
+  _eq: [Int!]
+  _gt: [Int!]
+  _gte: [Int!]
+  _in: [[Int!]!]
+  _is_null: Boolean
+  _lt: [Int!]
+  _lte: [Int!]
+  _neq: [Int!]
+  _nin: [[Int!]!]
+}
+
+"""
+Boolean expression to compare columns of type "Int". All fields are combined with logical 'AND'.
+"""
 input Int_comparison_exp {
   _eq: Int
   _gt: Int
@@ -41,6 +61,26 @@ input Int_comparison_exp {
   _lte: Int
   _neq: Int
   _nin: [Int!]
+}
+
+"""
+Boolean expression to compare columns of type "String". All fields are combined with logical 'AND'.
+"""
+input String_array_comparison_exp {
+  """is the array contained in the given array value"""
+  _contained_in: [String!]
+
+  """does the array contain the given value"""
+  _contains: [String!]
+  _eq: [String!]
+  _gt: [String!]
+  _gte: [String!]
+  _in: [[String!]!]
+  _is_null: Boolean
+  _lt: [String!]
+  _lte: [String!]
+  _neq: [String!]
+  _nin: [[String!]!]
 }
 
 """
@@ -2687,6 +2727,1317 @@ enum cursor_ordering {
   DESC
 }
 
+"""A full experiment performed by a subject"""
+type experiments_experiments {
+  created_at: timestamptz!
+  id: uuid!
+  list_type: words_list_types_enum!
+
+  """An object relationship"""
+  recall: experiments_recall
+  recall_id: uuid
+
+  """An object relationship"""
+  recognition: experiments_recognition
+  recognition_id: uuid
+
+  """An object relationship"""
+  run: experiments_run!
+  run_id: uuid!
+
+  """An object relationship"""
+  subject: subjects!
+  subject_id: uuid!
+}
+
+"""
+aggregated selection of "experiments.experiments"
+"""
+type experiments_experiments_aggregate {
+  aggregate: experiments_experiments_aggregate_fields
+  nodes: [experiments_experiments!]!
+}
+
+input experiments_experiments_aggregate_bool_exp {
+  count: experiments_experiments_aggregate_bool_exp_count
+}
+
+input experiments_experiments_aggregate_bool_exp_count {
+  arguments: [experiments_experiments_select_column!]
+  distinct: Boolean
+  filter: experiments_experiments_bool_exp
+  predicate: Int_comparison_exp!
+}
+
+"""
+aggregate fields of "experiments.experiments"
+"""
+type experiments_experiments_aggregate_fields {
+  count(columns: [experiments_experiments_select_column!], distinct: Boolean): Int!
+  max: experiments_experiments_max_fields
+  min: experiments_experiments_min_fields
+}
+
+"""
+order by aggregate values of table "experiments.experiments"
+"""
+input experiments_experiments_aggregate_order_by {
+  count: order_by
+  max: experiments_experiments_max_order_by
+  min: experiments_experiments_min_order_by
+}
+
+"""
+input type for inserting array relation for remote table "experiments.experiments"
+"""
+input experiments_experiments_arr_rel_insert_input {
+  data: [experiments_experiments_insert_input!]!
+
+  """upsert condition"""
+  on_conflict: experiments_experiments_on_conflict
+}
+
+"""
+Boolean expression to filter rows from the table "experiments.experiments". All fields are combined with a logical 'AND'.
+"""
+input experiments_experiments_bool_exp {
+  _and: [experiments_experiments_bool_exp!]
+  _not: experiments_experiments_bool_exp
+  _or: [experiments_experiments_bool_exp!]
+  created_at: timestamptz_comparison_exp
+  id: uuid_comparison_exp
+  list_type: words_list_types_enum_comparison_exp
+  recall: experiments_recall_bool_exp
+  recall_id: uuid_comparison_exp
+  recognition: experiments_recognition_bool_exp
+  recognition_id: uuid_comparison_exp
+  run: experiments_run_bool_exp
+  run_id: uuid_comparison_exp
+  subject: subjects_bool_exp
+  subject_id: uuid_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "experiments.experiments"
+"""
+enum experiments_experiments_constraint {
+  """
+  unique or primary key constraint on columns "id"
+  """
+  experiments_pkey
+
+  """
+  unique or primary key constraint on columns "recall_id"
+  """
+  experiments_recall_id_key
+
+  """
+  unique or primary key constraint on columns "recognition_id"
+  """
+  experiments_recognition_id_key
+}
+
+"""
+input type for inserting data into table "experiments.experiments"
+"""
+input experiments_experiments_insert_input {
+  created_at: timestamptz
+  id: uuid
+  list_type: words_list_types_enum
+  recall: experiments_recall_obj_rel_insert_input
+  recall_id: uuid
+  recognition: experiments_recognition_obj_rel_insert_input
+  recognition_id: uuid
+  run: experiments_run_obj_rel_insert_input
+  run_id: uuid
+  subject: subjects_obj_rel_insert_input
+  subject_id: uuid
+}
+
+"""aggregate max on columns"""
+type experiments_experiments_max_fields {
+  created_at: timestamptz
+  id: uuid
+  recall_id: uuid
+  recognition_id: uuid
+  run_id: uuid
+  subject_id: uuid
+}
+
+"""
+order by max() on columns of table "experiments.experiments"
+"""
+input experiments_experiments_max_order_by {
+  created_at: order_by
+  id: order_by
+  recall_id: order_by
+  recognition_id: order_by
+  run_id: order_by
+  subject_id: order_by
+}
+
+"""aggregate min on columns"""
+type experiments_experiments_min_fields {
+  created_at: timestamptz
+  id: uuid
+  recall_id: uuid
+  recognition_id: uuid
+  run_id: uuid
+  subject_id: uuid
+}
+
+"""
+order by min() on columns of table "experiments.experiments"
+"""
+input experiments_experiments_min_order_by {
+  created_at: order_by
+  id: order_by
+  recall_id: order_by
+  recognition_id: order_by
+  run_id: order_by
+  subject_id: order_by
+}
+
+"""
+response of any mutation on the table "experiments.experiments"
+"""
+type experiments_experiments_mutation_response {
+  """number of rows affected by the mutation"""
+  affected_rows: Int!
+
+  """data from the rows affected by the mutation"""
+  returning: [experiments_experiments!]!
+}
+
+"""
+input type for inserting object relation for remote table "experiments.experiments"
+"""
+input experiments_experiments_obj_rel_insert_input {
+  data: experiments_experiments_insert_input!
+
+  """upsert condition"""
+  on_conflict: experiments_experiments_on_conflict
+}
+
+"""
+on_conflict condition type for table "experiments.experiments"
+"""
+input experiments_experiments_on_conflict {
+  constraint: experiments_experiments_constraint!
+  update_columns: [experiments_experiments_update_column!]! = []
+  where: experiments_experiments_bool_exp
+}
+
+"""Ordering options when selecting data from "experiments.experiments"."""
+input experiments_experiments_order_by {
+  created_at: order_by
+  id: order_by
+  list_type: order_by
+  recall: experiments_recall_order_by
+  recall_id: order_by
+  recognition: experiments_recognition_order_by
+  recognition_id: order_by
+  run: experiments_run_order_by
+  run_id: order_by
+  subject: subjects_order_by
+  subject_id: order_by
+}
+
+"""primary key columns input for table: experiments.experiments"""
+input experiments_experiments_pk_columns_input {
+  id: uuid!
+}
+
+"""
+select columns of table "experiments.experiments"
+"""
+enum experiments_experiments_select_column {
+  """column name"""
+  created_at
+
+  """column name"""
+  id
+
+  """column name"""
+  list_type
+
+  """column name"""
+  recall_id
+
+  """column name"""
+  recognition_id
+
+  """column name"""
+  run_id
+
+  """column name"""
+  subject_id
+}
+
+"""
+input type for updating data in table "experiments.experiments"
+"""
+input experiments_experiments_set_input {
+  created_at: timestamptz
+  id: uuid
+  list_type: words_list_types_enum
+  recall_id: uuid
+  recognition_id: uuid
+  run_id: uuid
+  subject_id: uuid
+}
+
+"""
+Streaming cursor of the table "experiments_experiments"
+"""
+input experiments_experiments_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: experiments_experiments_stream_cursor_value_input!
+
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input experiments_experiments_stream_cursor_value_input {
+  created_at: timestamptz
+  id: uuid
+  list_type: words_list_types_enum
+  recall_id: uuid
+  recognition_id: uuid
+  run_id: uuid
+  subject_id: uuid
+}
+
+"""
+update columns of table "experiments.experiments"
+"""
+enum experiments_experiments_update_column {
+  """column name"""
+  created_at
+
+  """column name"""
+  id
+
+  """column name"""
+  list_type
+
+  """column name"""
+  recall_id
+
+  """column name"""
+  recognition_id
+
+  """column name"""
+  run_id
+
+  """column name"""
+  subject_id
+}
+
+input experiments_experiments_updates {
+  """sets the columns of the filtered rows to the given values"""
+  _set: experiments_experiments_set_input
+
+  """filter the rows which have to be updated"""
+  where: experiments_experiments_bool_exp!
+}
+
+"""The recall phase of an experiment"""
+type experiments_recall {
+  answers(
+    """JSON select path"""
+    path: String
+  ): jsonb
+  completed_at: timestamptz
+  created_at: timestamptz!
+
+  """An object relationship"""
+  experiment: experiments_experiments
+  id: uuid!
+
+  """An object relationship"""
+  list: words_lists!
+  source_list_id: uuid!
+  words: [String!]!
+}
+
+"""
+aggregated selection of "experiments.recall"
+"""
+type experiments_recall_aggregate {
+  aggregate: experiments_recall_aggregate_fields
+  nodes: [experiments_recall!]!
+}
+
+"""
+aggregate fields of "experiments.recall"
+"""
+type experiments_recall_aggregate_fields {
+  count(columns: [experiments_recall_select_column!], distinct: Boolean): Int!
+  max: experiments_recall_max_fields
+  min: experiments_recall_min_fields
+}
+
+"""append existing jsonb value of filtered columns with new jsonb value"""
+input experiments_recall_append_input {
+  answers: jsonb
+}
+
+"""
+Boolean expression to filter rows from the table "experiments.recall". All fields are combined with a logical 'AND'.
+"""
+input experiments_recall_bool_exp {
+  _and: [experiments_recall_bool_exp!]
+  _not: experiments_recall_bool_exp
+  _or: [experiments_recall_bool_exp!]
+  answers: jsonb_comparison_exp
+  completed_at: timestamptz_comparison_exp
+  created_at: timestamptz_comparison_exp
+  experiment: experiments_experiments_bool_exp
+  id: uuid_comparison_exp
+  list: words_lists_bool_exp
+  source_list_id: uuid_comparison_exp
+  words: String_array_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "experiments.recall"
+"""
+enum experiments_recall_constraint {
+  """
+  unique or primary key constraint on columns "id"
+  """
+  recall_pkey
+}
+
+"""
+delete the field or element with specified path (for JSON arrays, negative integers count from the end)
+"""
+input experiments_recall_delete_at_path_input {
+  answers: [String!]
+}
+
+"""
+delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array
+"""
+input experiments_recall_delete_elem_input {
+  answers: Int
+}
+
+"""
+delete key/value pair or string element. key/value pairs are matched based on their key value
+"""
+input experiments_recall_delete_key_input {
+  answers: String
+}
+
+"""
+input type for inserting data into table "experiments.recall"
+"""
+input experiments_recall_insert_input {
+  answers: jsonb
+  completed_at: timestamptz
+  created_at: timestamptz
+  experiment: experiments_experiments_obj_rel_insert_input
+  id: uuid
+  list: words_lists_obj_rel_insert_input
+  source_list_id: uuid
+  words: [String!]
+}
+
+"""aggregate max on columns"""
+type experiments_recall_max_fields {
+  completed_at: timestamptz
+  created_at: timestamptz
+  id: uuid
+  source_list_id: uuid
+  words: [String!]
+}
+
+"""aggregate min on columns"""
+type experiments_recall_min_fields {
+  completed_at: timestamptz
+  created_at: timestamptz
+  id: uuid
+  source_list_id: uuid
+  words: [String!]
+}
+
+"""
+response of any mutation on the table "experiments.recall"
+"""
+type experiments_recall_mutation_response {
+  """number of rows affected by the mutation"""
+  affected_rows: Int!
+
+  """data from the rows affected by the mutation"""
+  returning: [experiments_recall!]!
+}
+
+"""
+input type for inserting object relation for remote table "experiments.recall"
+"""
+input experiments_recall_obj_rel_insert_input {
+  data: experiments_recall_insert_input!
+
+  """upsert condition"""
+  on_conflict: experiments_recall_on_conflict
+}
+
+"""
+on_conflict condition type for table "experiments.recall"
+"""
+input experiments_recall_on_conflict {
+  constraint: experiments_recall_constraint!
+  update_columns: [experiments_recall_update_column!]! = []
+  where: experiments_recall_bool_exp
+}
+
+"""Ordering options when selecting data from "experiments.recall"."""
+input experiments_recall_order_by {
+  answers: order_by
+  completed_at: order_by
+  created_at: order_by
+  experiment: experiments_experiments_order_by
+  id: order_by
+  list: words_lists_order_by
+  source_list_id: order_by
+  words: order_by
+}
+
+"""primary key columns input for table: experiments.recall"""
+input experiments_recall_pk_columns_input {
+  id: uuid!
+}
+
+"""prepend existing jsonb value of filtered columns with new jsonb value"""
+input experiments_recall_prepend_input {
+  answers: jsonb
+}
+
+"""
+select columns of table "experiments.recall"
+"""
+enum experiments_recall_select_column {
+  """column name"""
+  answers
+
+  """column name"""
+  completed_at
+
+  """column name"""
+  created_at
+
+  """column name"""
+  id
+
+  """column name"""
+  source_list_id
+
+  """column name"""
+  words
+}
+
+"""
+input type for updating data in table "experiments.recall"
+"""
+input experiments_recall_set_input {
+  answers: jsonb
+  completed_at: timestamptz
+  created_at: timestamptz
+  id: uuid
+  source_list_id: uuid
+  words: [String!]
+}
+
+"""
+Streaming cursor of the table "experiments_recall"
+"""
+input experiments_recall_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: experiments_recall_stream_cursor_value_input!
+
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input experiments_recall_stream_cursor_value_input {
+  answers: jsonb
+  completed_at: timestamptz
+  created_at: timestamptz
+  id: uuid
+  source_list_id: uuid
+  words: [String!]
+}
+
+"""
+update columns of table "experiments.recall"
+"""
+enum experiments_recall_update_column {
+  """column name"""
+  answers
+
+  """column name"""
+  completed_at
+
+  """column name"""
+  created_at
+
+  """column name"""
+  id
+
+  """column name"""
+  source_list_id
+
+  """column name"""
+  words
+}
+
+input experiments_recall_updates {
+  """append existing jsonb value of filtered columns with new jsonb value"""
+  _append: experiments_recall_append_input
+
+  """
+  delete the field or element with specified path (for JSON arrays, negative integers count from the end)
+  """
+  _delete_at_path: experiments_recall_delete_at_path_input
+
+  """
+  delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array
+  """
+  _delete_elem: experiments_recall_delete_elem_input
+
+  """
+  delete key/value pair or string element. key/value pairs are matched based on their key value
+  """
+  _delete_key: experiments_recall_delete_key_input
+
+  """prepend existing jsonb value of filtered columns with new jsonb value"""
+  _prepend: experiments_recall_prepend_input
+
+  """sets the columns of the filtered rows to the given values"""
+  _set: experiments_recall_set_input
+
+  """filter the rows which have to be updated"""
+  where: experiments_recall_bool_exp!
+}
+
+"""The recognition phase of an experiment"""
+type experiments_recognition {
+  answers(
+    """JSON select path"""
+    path: String
+  ): jsonb
+  completed_at: timestamptz
+  distractors: [String!]!
+
+  """An object relationship"""
+  experiment: experiments_experiments
+  id: uuid!
+
+  """An object relationship"""
+  list: words_lists!
+  source_list_id: uuid!
+  words: [String!]!
+}
+
+"""
+aggregated selection of "experiments.recognition"
+"""
+type experiments_recognition_aggregate {
+  aggregate: experiments_recognition_aggregate_fields
+  nodes: [experiments_recognition!]!
+}
+
+"""
+aggregate fields of "experiments.recognition"
+"""
+type experiments_recognition_aggregate_fields {
+  count(columns: [experiments_recognition_select_column!], distinct: Boolean): Int!
+  max: experiments_recognition_max_fields
+  min: experiments_recognition_min_fields
+}
+
+"""append existing jsonb value of filtered columns with new jsonb value"""
+input experiments_recognition_append_input {
+  answers: jsonb
+}
+
+"""
+Boolean expression to filter rows from the table "experiments.recognition". All fields are combined with a logical 'AND'.
+"""
+input experiments_recognition_bool_exp {
+  _and: [experiments_recognition_bool_exp!]
+  _not: experiments_recognition_bool_exp
+  _or: [experiments_recognition_bool_exp!]
+  answers: jsonb_comparison_exp
+  completed_at: timestamptz_comparison_exp
+  distractors: String_array_comparison_exp
+  experiment: experiments_experiments_bool_exp
+  id: uuid_comparison_exp
+  list: words_lists_bool_exp
+  source_list_id: uuid_comparison_exp
+  words: String_array_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "experiments.recognition"
+"""
+enum experiments_recognition_constraint {
+  """
+  unique or primary key constraint on columns "id"
+  """
+  recognition_pkey
+}
+
+"""
+delete the field or element with specified path (for JSON arrays, negative integers count from the end)
+"""
+input experiments_recognition_delete_at_path_input {
+  answers: [String!]
+}
+
+"""
+delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array
+"""
+input experiments_recognition_delete_elem_input {
+  answers: Int
+}
+
+"""
+delete key/value pair or string element. key/value pairs are matched based on their key value
+"""
+input experiments_recognition_delete_key_input {
+  answers: String
+}
+
+"""
+input type for inserting data into table "experiments.recognition"
+"""
+input experiments_recognition_insert_input {
+  answers: jsonb
+  completed_at: timestamptz
+  distractors: [String!]
+  experiment: experiments_experiments_obj_rel_insert_input
+  id: uuid
+  list: words_lists_obj_rel_insert_input
+  source_list_id: uuid
+  words: [String!]
+}
+
+"""aggregate max on columns"""
+type experiments_recognition_max_fields {
+  completed_at: timestamptz
+  distractors: [String!]
+  id: uuid
+  source_list_id: uuid
+  words: [String!]
+}
+
+"""aggregate min on columns"""
+type experiments_recognition_min_fields {
+  completed_at: timestamptz
+  distractors: [String!]
+  id: uuid
+  source_list_id: uuid
+  words: [String!]
+}
+
+"""
+response of any mutation on the table "experiments.recognition"
+"""
+type experiments_recognition_mutation_response {
+  """number of rows affected by the mutation"""
+  affected_rows: Int!
+
+  """data from the rows affected by the mutation"""
+  returning: [experiments_recognition!]!
+}
+
+"""
+input type for inserting object relation for remote table "experiments.recognition"
+"""
+input experiments_recognition_obj_rel_insert_input {
+  data: experiments_recognition_insert_input!
+
+  """upsert condition"""
+  on_conflict: experiments_recognition_on_conflict
+}
+
+"""
+on_conflict condition type for table "experiments.recognition"
+"""
+input experiments_recognition_on_conflict {
+  constraint: experiments_recognition_constraint!
+  update_columns: [experiments_recognition_update_column!]! = []
+  where: experiments_recognition_bool_exp
+}
+
+"""Ordering options when selecting data from "experiments.recognition"."""
+input experiments_recognition_order_by {
+  answers: order_by
+  completed_at: order_by
+  distractors: order_by
+  experiment: experiments_experiments_order_by
+  id: order_by
+  list: words_lists_order_by
+  source_list_id: order_by
+  words: order_by
+}
+
+"""primary key columns input for table: experiments.recognition"""
+input experiments_recognition_pk_columns_input {
+  id: uuid!
+}
+
+"""prepend existing jsonb value of filtered columns with new jsonb value"""
+input experiments_recognition_prepend_input {
+  answers: jsonb
+}
+
+"""
+select columns of table "experiments.recognition"
+"""
+enum experiments_recognition_select_column {
+  """column name"""
+  answers
+
+  """column name"""
+  completed_at
+
+  """column name"""
+  distractors
+
+  """column name"""
+  id
+
+  """column name"""
+  source_list_id
+
+  """column name"""
+  words
+}
+
+"""
+input type for updating data in table "experiments.recognition"
+"""
+input experiments_recognition_set_input {
+  answers: jsonb
+  completed_at: timestamptz
+  distractors: [String!]
+  id: uuid
+  source_list_id: uuid
+  words: [String!]
+}
+
+"""
+Streaming cursor of the table "experiments_recognition"
+"""
+input experiments_recognition_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: experiments_recognition_stream_cursor_value_input!
+
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input experiments_recognition_stream_cursor_value_input {
+  answers: jsonb
+  completed_at: timestamptz
+  distractors: [String!]
+  id: uuid
+  source_list_id: uuid
+  words: [String!]
+}
+
+"""
+update columns of table "experiments.recognition"
+"""
+enum experiments_recognition_update_column {
+  """column name"""
+  answers
+
+  """column name"""
+  completed_at
+
+  """column name"""
+  distractors
+
+  """column name"""
+  id
+
+  """column name"""
+  source_list_id
+
+  """column name"""
+  words
+}
+
+input experiments_recognition_updates {
+  """append existing jsonb value of filtered columns with new jsonb value"""
+  _append: experiments_recognition_append_input
+
+  """
+  delete the field or element with specified path (for JSON arrays, negative integers count from the end)
+  """
+  _delete_at_path: experiments_recognition_delete_at_path_input
+
+  """
+  delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array
+  """
+  _delete_elem: experiments_recognition_delete_elem_input
+
+  """
+  delete key/value pair or string element. key/value pairs are matched based on their key value
+  """
+  _delete_key: experiments_recognition_delete_key_input
+
+  """prepend existing jsonb value of filtered columns with new jsonb value"""
+  _prepend: experiments_recognition_prepend_input
+
+  """sets the columns of the filtered rows to the given values"""
+  _set: experiments_recognition_set_input
+
+  """filter the rows which have to be updated"""
+  where: experiments_recognition_bool_exp!
+}
+
+"""An experiment run"""
+type experiments_run {
+  """Code for accessing the run"""
+  code: Int!
+  id: uuid!
+  lengths: [Int!]!
+  name: String!
+  run_list_type: experiments_run_list_types_enum!
+}
+
+"""
+aggregated selection of "experiments.run"
+"""
+type experiments_run_aggregate {
+  aggregate: experiments_run_aggregate_fields
+  nodes: [experiments_run!]!
+}
+
+"""
+aggregate fields of "experiments.run"
+"""
+type experiments_run_aggregate_fields {
+  avg: experiments_run_avg_fields
+  count(columns: [experiments_run_select_column!], distinct: Boolean): Int!
+  max: experiments_run_max_fields
+  min: experiments_run_min_fields
+  stddev: experiments_run_stddev_fields
+  stddev_pop: experiments_run_stddev_pop_fields
+  stddev_samp: experiments_run_stddev_samp_fields
+  sum: experiments_run_sum_fields
+  var_pop: experiments_run_var_pop_fields
+  var_samp: experiments_run_var_samp_fields
+  variance: experiments_run_variance_fields
+}
+
+"""aggregate avg on columns"""
+type experiments_run_avg_fields {
+  """Code for accessing the run"""
+  code: Float
+}
+
+"""
+Boolean expression to filter rows from the table "experiments.run". All fields are combined with a logical 'AND'.
+"""
+input experiments_run_bool_exp {
+  _and: [experiments_run_bool_exp!]
+  _not: experiments_run_bool_exp
+  _or: [experiments_run_bool_exp!]
+  code: Int_comparison_exp
+  id: uuid_comparison_exp
+  lengths: Int_array_comparison_exp
+  name: String_comparison_exp
+  run_list_type: experiments_run_list_types_enum_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "experiments.run"
+"""
+enum experiments_run_constraint {
+  """
+  unique or primary key constraint on columns "code"
+  """
+  run_code_key
+
+  """
+  unique or primary key constraint on columns "id"
+  """
+  run_pkey
+}
+
+"""
+input type for incrementing numeric columns in table "experiments.run"
+"""
+input experiments_run_inc_input {
+  """Code for accessing the run"""
+  code: Int
+}
+
+"""
+input type for inserting data into table "experiments.run"
+"""
+input experiments_run_insert_input {
+  """Code for accessing the run"""
+  code: Int
+  id: uuid
+  lengths: [Int!]
+  name: String
+  run_list_type: experiments_run_list_types_enum
+}
+
+"""Types of experiment runs"""
+type experiments_run_list_types {
+  type: String!
+}
+
+"""
+aggregated selection of "experiments.run_list_types"
+"""
+type experiments_run_list_types_aggregate {
+  aggregate: experiments_run_list_types_aggregate_fields
+  nodes: [experiments_run_list_types!]!
+}
+
+"""
+aggregate fields of "experiments.run_list_types"
+"""
+type experiments_run_list_types_aggregate_fields {
+  count(columns: [experiments_run_list_types_select_column!], distinct: Boolean): Int!
+  max: experiments_run_list_types_max_fields
+  min: experiments_run_list_types_min_fields
+}
+
+"""
+Boolean expression to filter rows from the table "experiments.run_list_types". All fields are combined with a logical 'AND'.
+"""
+input experiments_run_list_types_bool_exp {
+  _and: [experiments_run_list_types_bool_exp!]
+  _not: experiments_run_list_types_bool_exp
+  _or: [experiments_run_list_types_bool_exp!]
+  type: String_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "experiments.run_list_types"
+"""
+enum experiments_run_list_types_constraint {
+  """
+  unique or primary key constraint on columns "type"
+  """
+  run_list_types_pkey
+}
+
+enum experiments_run_list_types_enum {
+  categorized_or_random
+  only_categorized
+  only_random
+}
+
+"""
+Boolean expression to compare columns of type "experiments_run_list_types_enum". All fields are combined with logical 'AND'.
+"""
+input experiments_run_list_types_enum_comparison_exp {
+  _eq: experiments_run_list_types_enum
+  _in: [experiments_run_list_types_enum!]
+  _is_null: Boolean
+  _neq: experiments_run_list_types_enum
+  _nin: [experiments_run_list_types_enum!]
+}
+
+"""
+input type for inserting data into table "experiments.run_list_types"
+"""
+input experiments_run_list_types_insert_input {
+  type: String
+}
+
+"""aggregate max on columns"""
+type experiments_run_list_types_max_fields {
+  type: String
+}
+
+"""aggregate min on columns"""
+type experiments_run_list_types_min_fields {
+  type: String
+}
+
+"""
+response of any mutation on the table "experiments.run_list_types"
+"""
+type experiments_run_list_types_mutation_response {
+  """number of rows affected by the mutation"""
+  affected_rows: Int!
+
+  """data from the rows affected by the mutation"""
+  returning: [experiments_run_list_types!]!
+}
+
+"""
+on_conflict condition type for table "experiments.run_list_types"
+"""
+input experiments_run_list_types_on_conflict {
+  constraint: experiments_run_list_types_constraint!
+  update_columns: [experiments_run_list_types_update_column!]! = []
+  where: experiments_run_list_types_bool_exp
+}
+
+"""
+Ordering options when selecting data from "experiments.run_list_types".
+"""
+input experiments_run_list_types_order_by {
+  type: order_by
+}
+
+"""primary key columns input for table: experiments.run_list_types"""
+input experiments_run_list_types_pk_columns_input {
+  type: String!
+}
+
+"""
+select columns of table "experiments.run_list_types"
+"""
+enum experiments_run_list_types_select_column {
+  """column name"""
+  type
+}
+
+"""
+input type for updating data in table "experiments.run_list_types"
+"""
+input experiments_run_list_types_set_input {
+  type: String
+}
+
+"""
+Streaming cursor of the table "experiments_run_list_types"
+"""
+input experiments_run_list_types_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: experiments_run_list_types_stream_cursor_value_input!
+
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input experiments_run_list_types_stream_cursor_value_input {
+  type: String
+}
+
+"""
+update columns of table "experiments.run_list_types"
+"""
+enum experiments_run_list_types_update_column {
+  """column name"""
+  type
+}
+
+input experiments_run_list_types_updates {
+  """sets the columns of the filtered rows to the given values"""
+  _set: experiments_run_list_types_set_input
+
+  """filter the rows which have to be updated"""
+  where: experiments_run_list_types_bool_exp!
+}
+
+"""aggregate max on columns"""
+type experiments_run_max_fields {
+  """Code for accessing the run"""
+  code: Int
+  id: uuid
+  lengths: [Int!]
+  name: String
+}
+
+"""aggregate min on columns"""
+type experiments_run_min_fields {
+  """Code for accessing the run"""
+  code: Int
+  id: uuid
+  lengths: [Int!]
+  name: String
+}
+
+"""
+response of any mutation on the table "experiments.run"
+"""
+type experiments_run_mutation_response {
+  """number of rows affected by the mutation"""
+  affected_rows: Int!
+
+  """data from the rows affected by the mutation"""
+  returning: [experiments_run!]!
+}
+
+"""
+input type for inserting object relation for remote table "experiments.run"
+"""
+input experiments_run_obj_rel_insert_input {
+  data: experiments_run_insert_input!
+
+  """upsert condition"""
+  on_conflict: experiments_run_on_conflict
+}
+
+"""
+on_conflict condition type for table "experiments.run"
+"""
+input experiments_run_on_conflict {
+  constraint: experiments_run_constraint!
+  update_columns: [experiments_run_update_column!]! = []
+  where: experiments_run_bool_exp
+}
+
+"""Ordering options when selecting data from "experiments.run"."""
+input experiments_run_order_by {
+  code: order_by
+  id: order_by
+  lengths: order_by
+  name: order_by
+  run_list_type: order_by
+}
+
+"""primary key columns input for table: experiments.run"""
+input experiments_run_pk_columns_input {
+  id: uuid!
+}
+
+"""
+select columns of table "experiments.run"
+"""
+enum experiments_run_select_column {
+  """column name"""
+  code
+
+  """column name"""
+  id
+
+  """column name"""
+  lengths
+
+  """column name"""
+  name
+
+  """column name"""
+  run_list_type
+}
+
+"""
+input type for updating data in table "experiments.run"
+"""
+input experiments_run_set_input {
+  """Code for accessing the run"""
+  code: Int
+  id: uuid
+  lengths: [Int!]
+  name: String
+  run_list_type: experiments_run_list_types_enum
+}
+
+"""aggregate stddev on columns"""
+type experiments_run_stddev_fields {
+  """Code for accessing the run"""
+  code: Float
+}
+
+"""aggregate stddev_pop on columns"""
+type experiments_run_stddev_pop_fields {
+  """Code for accessing the run"""
+  code: Float
+}
+
+"""aggregate stddev_samp on columns"""
+type experiments_run_stddev_samp_fields {
+  """Code for accessing the run"""
+  code: Float
+}
+
+"""
+Streaming cursor of the table "experiments_run"
+"""
+input experiments_run_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: experiments_run_stream_cursor_value_input!
+
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input experiments_run_stream_cursor_value_input {
+  """Code for accessing the run"""
+  code: Int
+  id: uuid
+  lengths: [Int!]
+  name: String
+  run_list_type: experiments_run_list_types_enum
+}
+
+"""aggregate sum on columns"""
+type experiments_run_sum_fields {
+  """Code for accessing the run"""
+  code: Int
+}
+
+"""
+update columns of table "experiments.run"
+"""
+enum experiments_run_update_column {
+  """column name"""
+  code
+
+  """column name"""
+  id
+
+  """column name"""
+  lengths
+
+  """column name"""
+  name
+
+  """column name"""
+  run_list_type
+}
+
+input experiments_run_updates {
+  """increments the numeric columns with given value of the filtered values"""
+  _inc: experiments_run_inc_input
+
+  """sets the columns of the filtered rows to the given values"""
+  _set: experiments_run_set_input
+
+  """filter the rows which have to be updated"""
+  where: experiments_run_bool_exp!
+}
+
+"""aggregate var_pop on columns"""
+type experiments_run_var_pop_fields {
+  """Code for accessing the run"""
+  code: Float
+}
+
+"""aggregate var_samp on columns"""
+type experiments_run_var_samp_fields {
+  """Code for accessing the run"""
+  code: Float
+}
+
+"""aggregate variance on columns"""
+type experiments_run_variance_fields {
+  """Code for accessing the run"""
+  code: Float
+}
+
 """
 columns and relationships of "storage.files"
 """
@@ -3594,6 +4945,71 @@ type mutation_root {
   ): virus_mutation_response
 
   """
+  delete data from the table: "experiments.experiments"
+  """
+  delete_experiments_experiments(
+    """filter the rows which have to be deleted"""
+    where: experiments_experiments_bool_exp!
+  ): experiments_experiments_mutation_response
+
+  """
+  delete single row from the table: "experiments.experiments"
+  """
+  delete_experiments_experiments_by_pk(id: uuid!): experiments_experiments
+
+  """
+  delete data from the table: "experiments.recall"
+  """
+  delete_experiments_recall(
+    """filter the rows which have to be deleted"""
+    where: experiments_recall_bool_exp!
+  ): experiments_recall_mutation_response
+
+  """
+  delete single row from the table: "experiments.recall"
+  """
+  delete_experiments_recall_by_pk(id: uuid!): experiments_recall
+
+  """
+  delete data from the table: "experiments.recognition"
+  """
+  delete_experiments_recognition(
+    """filter the rows which have to be deleted"""
+    where: experiments_recognition_bool_exp!
+  ): experiments_recognition_mutation_response
+
+  """
+  delete single row from the table: "experiments.recognition"
+  """
+  delete_experiments_recognition_by_pk(id: uuid!): experiments_recognition
+
+  """
+  delete data from the table: "experiments.run"
+  """
+  delete_experiments_run(
+    """filter the rows which have to be deleted"""
+    where: experiments_run_bool_exp!
+  ): experiments_run_mutation_response
+
+  """
+  delete single row from the table: "experiments.run"
+  """
+  delete_experiments_run_by_pk(id: uuid!): experiments_run
+
+  """
+  delete data from the table: "experiments.run_list_types"
+  """
+  delete_experiments_run_list_types(
+    """filter the rows which have to be deleted"""
+    where: experiments_run_list_types_bool_exp!
+  ): experiments_run_list_types_mutation_response
+
+  """
+  delete single row from the table: "experiments.run_list_types"
+  """
+  delete_experiments_run_list_types_by_pk(type: String!): experiments_run_list_types
+
+  """
   delete data from the table: "genders"
   """
   delete_genders(
@@ -3947,6 +5363,116 @@ type mutation_root {
     """upsert condition"""
     on_conflict: virus_on_conflict
   ): virus_mutation_response
+
+  """
+  insert data into the table: "experiments.experiments"
+  """
+  insert_experiments_experiments(
+    """the rows to be inserted"""
+    objects: [experiments_experiments_insert_input!]!
+
+    """upsert condition"""
+    on_conflict: experiments_experiments_on_conflict
+  ): experiments_experiments_mutation_response
+
+  """
+  insert a single row into the table: "experiments.experiments"
+  """
+  insert_experiments_experiments_one(
+    """the row to be inserted"""
+    object: experiments_experiments_insert_input!
+
+    """upsert condition"""
+    on_conflict: experiments_experiments_on_conflict
+  ): experiments_experiments
+
+  """
+  insert data into the table: "experiments.recall"
+  """
+  insert_experiments_recall(
+    """the rows to be inserted"""
+    objects: [experiments_recall_insert_input!]!
+
+    """upsert condition"""
+    on_conflict: experiments_recall_on_conflict
+  ): experiments_recall_mutation_response
+
+  """
+  insert a single row into the table: "experiments.recall"
+  """
+  insert_experiments_recall_one(
+    """the row to be inserted"""
+    object: experiments_recall_insert_input!
+
+    """upsert condition"""
+    on_conflict: experiments_recall_on_conflict
+  ): experiments_recall
+
+  """
+  insert data into the table: "experiments.recognition"
+  """
+  insert_experiments_recognition(
+    """the rows to be inserted"""
+    objects: [experiments_recognition_insert_input!]!
+
+    """upsert condition"""
+    on_conflict: experiments_recognition_on_conflict
+  ): experiments_recognition_mutation_response
+
+  """
+  insert a single row into the table: "experiments.recognition"
+  """
+  insert_experiments_recognition_one(
+    """the row to be inserted"""
+    object: experiments_recognition_insert_input!
+
+    """upsert condition"""
+    on_conflict: experiments_recognition_on_conflict
+  ): experiments_recognition
+
+  """
+  insert data into the table: "experiments.run"
+  """
+  insert_experiments_run(
+    """the rows to be inserted"""
+    objects: [experiments_run_insert_input!]!
+
+    """upsert condition"""
+    on_conflict: experiments_run_on_conflict
+  ): experiments_run_mutation_response
+
+  """
+  insert data into the table: "experiments.run_list_types"
+  """
+  insert_experiments_run_list_types(
+    """the rows to be inserted"""
+    objects: [experiments_run_list_types_insert_input!]!
+
+    """upsert condition"""
+    on_conflict: experiments_run_list_types_on_conflict
+  ): experiments_run_list_types_mutation_response
+
+  """
+  insert a single row into the table: "experiments.run_list_types"
+  """
+  insert_experiments_run_list_types_one(
+    """the row to be inserted"""
+    object: experiments_run_list_types_insert_input!
+
+    """upsert condition"""
+    on_conflict: experiments_run_list_types_on_conflict
+  ): experiments_run_list_types
+
+  """
+  insert a single row into the table: "experiments.run"
+  """
+  insert_experiments_run_one(
+    """the row to be inserted"""
+    object: experiments_run_insert_input!
+
+    """upsert condition"""
+    on_conflict: experiments_run_on_conflict
+  ): experiments_run
 
   """
   insert data into the table: "genders"
@@ -4643,6 +6169,236 @@ type mutation_root {
   ): [buckets_mutation_response]
 
   """
+  update data of the table: "experiments.experiments"
+  """
+  update_experiments_experiments(
+    """sets the columns of the filtered rows to the given values"""
+    _set: experiments_experiments_set_input
+
+    """filter the rows which have to be updated"""
+    where: experiments_experiments_bool_exp!
+  ): experiments_experiments_mutation_response
+
+  """
+  update single row of the table: "experiments.experiments"
+  """
+  update_experiments_experiments_by_pk(
+    """sets the columns of the filtered rows to the given values"""
+    _set: experiments_experiments_set_input
+    pk_columns: experiments_experiments_pk_columns_input!
+  ): experiments_experiments
+
+  """
+  update multiples rows of table: "experiments.experiments"
+  """
+  update_experiments_experiments_many(
+    """updates to execute, in order"""
+    updates: [experiments_experiments_updates!]!
+  ): [experiments_experiments_mutation_response]
+
+  """
+  update data of the table: "experiments.recall"
+  """
+  update_experiments_recall(
+    """append existing jsonb value of filtered columns with new jsonb value"""
+    _append: experiments_recall_append_input
+
+    """
+    delete the field or element with specified path (for JSON arrays, negative integers count from the end)
+    """
+    _delete_at_path: experiments_recall_delete_at_path_input
+
+    """
+    delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array
+    """
+    _delete_elem: experiments_recall_delete_elem_input
+
+    """
+    delete key/value pair or string element. key/value pairs are matched based on their key value
+    """
+    _delete_key: experiments_recall_delete_key_input
+
+    """prepend existing jsonb value of filtered columns with new jsonb value"""
+    _prepend: experiments_recall_prepend_input
+
+    """sets the columns of the filtered rows to the given values"""
+    _set: experiments_recall_set_input
+
+    """filter the rows which have to be updated"""
+    where: experiments_recall_bool_exp!
+  ): experiments_recall_mutation_response
+
+  """
+  update single row of the table: "experiments.recall"
+  """
+  update_experiments_recall_by_pk(
+    """append existing jsonb value of filtered columns with new jsonb value"""
+    _append: experiments_recall_append_input
+
+    """
+    delete the field or element with specified path (for JSON arrays, negative integers count from the end)
+    """
+    _delete_at_path: experiments_recall_delete_at_path_input
+
+    """
+    delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array
+    """
+    _delete_elem: experiments_recall_delete_elem_input
+
+    """
+    delete key/value pair or string element. key/value pairs are matched based on their key value
+    """
+    _delete_key: experiments_recall_delete_key_input
+
+    """prepend existing jsonb value of filtered columns with new jsonb value"""
+    _prepend: experiments_recall_prepend_input
+
+    """sets the columns of the filtered rows to the given values"""
+    _set: experiments_recall_set_input
+    pk_columns: experiments_recall_pk_columns_input!
+  ): experiments_recall
+
+  """
+  update multiples rows of table: "experiments.recall"
+  """
+  update_experiments_recall_many(
+    """updates to execute, in order"""
+    updates: [experiments_recall_updates!]!
+  ): [experiments_recall_mutation_response]
+
+  """
+  update data of the table: "experiments.recognition"
+  """
+  update_experiments_recognition(
+    """append existing jsonb value of filtered columns with new jsonb value"""
+    _append: experiments_recognition_append_input
+
+    """
+    delete the field or element with specified path (for JSON arrays, negative integers count from the end)
+    """
+    _delete_at_path: experiments_recognition_delete_at_path_input
+
+    """
+    delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array
+    """
+    _delete_elem: experiments_recognition_delete_elem_input
+
+    """
+    delete key/value pair or string element. key/value pairs are matched based on their key value
+    """
+    _delete_key: experiments_recognition_delete_key_input
+
+    """prepend existing jsonb value of filtered columns with new jsonb value"""
+    _prepend: experiments_recognition_prepend_input
+
+    """sets the columns of the filtered rows to the given values"""
+    _set: experiments_recognition_set_input
+
+    """filter the rows which have to be updated"""
+    where: experiments_recognition_bool_exp!
+  ): experiments_recognition_mutation_response
+
+  """
+  update single row of the table: "experiments.recognition"
+  """
+  update_experiments_recognition_by_pk(
+    """append existing jsonb value of filtered columns with new jsonb value"""
+    _append: experiments_recognition_append_input
+
+    """
+    delete the field or element with specified path (for JSON arrays, negative integers count from the end)
+    """
+    _delete_at_path: experiments_recognition_delete_at_path_input
+
+    """
+    delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array
+    """
+    _delete_elem: experiments_recognition_delete_elem_input
+
+    """
+    delete key/value pair or string element. key/value pairs are matched based on their key value
+    """
+    _delete_key: experiments_recognition_delete_key_input
+
+    """prepend existing jsonb value of filtered columns with new jsonb value"""
+    _prepend: experiments_recognition_prepend_input
+
+    """sets the columns of the filtered rows to the given values"""
+    _set: experiments_recognition_set_input
+    pk_columns: experiments_recognition_pk_columns_input!
+  ): experiments_recognition
+
+  """
+  update multiples rows of table: "experiments.recognition"
+  """
+  update_experiments_recognition_many(
+    """updates to execute, in order"""
+    updates: [experiments_recognition_updates!]!
+  ): [experiments_recognition_mutation_response]
+
+  """
+  update data of the table: "experiments.run"
+  """
+  update_experiments_run(
+    """increments the numeric columns with given value of the filtered values"""
+    _inc: experiments_run_inc_input
+
+    """sets the columns of the filtered rows to the given values"""
+    _set: experiments_run_set_input
+
+    """filter the rows which have to be updated"""
+    where: experiments_run_bool_exp!
+  ): experiments_run_mutation_response
+
+  """
+  update single row of the table: "experiments.run"
+  """
+  update_experiments_run_by_pk(
+    """increments the numeric columns with given value of the filtered values"""
+    _inc: experiments_run_inc_input
+
+    """sets the columns of the filtered rows to the given values"""
+    _set: experiments_run_set_input
+    pk_columns: experiments_run_pk_columns_input!
+  ): experiments_run
+
+  """
+  update data of the table: "experiments.run_list_types"
+  """
+  update_experiments_run_list_types(
+    """sets the columns of the filtered rows to the given values"""
+    _set: experiments_run_list_types_set_input
+
+    """filter the rows which have to be updated"""
+    where: experiments_run_list_types_bool_exp!
+  ): experiments_run_list_types_mutation_response
+
+  """
+  update single row of the table: "experiments.run_list_types"
+  """
+  update_experiments_run_list_types_by_pk(
+    """sets the columns of the filtered rows to the given values"""
+    _set: experiments_run_list_types_set_input
+    pk_columns: experiments_run_list_types_pk_columns_input!
+  ): experiments_run_list_types
+
+  """
+  update multiples rows of table: "experiments.run_list_types"
+  """
+  update_experiments_run_list_types_many(
+    """updates to execute, in order"""
+    updates: [experiments_run_list_types_updates!]!
+  ): [experiments_run_list_types_mutation_response]
+
+  """
+  update multiples rows of table: "experiments.run"
+  """
+  update_experiments_run_many(
+    """updates to execute, in order"""
+    updates: [experiments_run_updates!]!
+  ): [experiments_run_mutation_response]
+
+  """
   update multiples rows of table: "storage.files"
   """
   update_files_many(
@@ -5317,6 +7073,229 @@ type query_root {
     where: buckets_bool_exp
   ): buckets_aggregate!
 
+  """
+  fetch data from the table: "experiments.experiments"
+  """
+  experiments_experiments(
+    """distinct select on columns"""
+    distinct_on: [experiments_experiments_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [experiments_experiments_order_by!]
+
+    """filter the rows returned"""
+    where: experiments_experiments_bool_exp
+  ): [experiments_experiments!]!
+
+  """
+  fetch aggregated fields from the table: "experiments.experiments"
+  """
+  experiments_experiments_aggregate(
+    """distinct select on columns"""
+    distinct_on: [experiments_experiments_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [experiments_experiments_order_by!]
+
+    """filter the rows returned"""
+    where: experiments_experiments_bool_exp
+  ): experiments_experiments_aggregate!
+
+  """
+  fetch data from the table: "experiments.experiments" using primary key columns
+  """
+  experiments_experiments_by_pk(id: uuid!): experiments_experiments
+
+  """
+  fetch data from the table: "experiments.recall"
+  """
+  experiments_recall(
+    """distinct select on columns"""
+    distinct_on: [experiments_recall_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [experiments_recall_order_by!]
+
+    """filter the rows returned"""
+    where: experiments_recall_bool_exp
+  ): [experiments_recall!]!
+
+  """
+  fetch aggregated fields from the table: "experiments.recall"
+  """
+  experiments_recall_aggregate(
+    """distinct select on columns"""
+    distinct_on: [experiments_recall_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [experiments_recall_order_by!]
+
+    """filter the rows returned"""
+    where: experiments_recall_bool_exp
+  ): experiments_recall_aggregate!
+
+  """
+  fetch data from the table: "experiments.recall" using primary key columns
+  """
+  experiments_recall_by_pk(id: uuid!): experiments_recall
+
+  """
+  fetch data from the table: "experiments.recognition"
+  """
+  experiments_recognition(
+    """distinct select on columns"""
+    distinct_on: [experiments_recognition_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [experiments_recognition_order_by!]
+
+    """filter the rows returned"""
+    where: experiments_recognition_bool_exp
+  ): [experiments_recognition!]!
+
+  """
+  fetch aggregated fields from the table: "experiments.recognition"
+  """
+  experiments_recognition_aggregate(
+    """distinct select on columns"""
+    distinct_on: [experiments_recognition_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [experiments_recognition_order_by!]
+
+    """filter the rows returned"""
+    where: experiments_recognition_bool_exp
+  ): experiments_recognition_aggregate!
+
+  """
+  fetch data from the table: "experiments.recognition" using primary key columns
+  """
+  experiments_recognition_by_pk(id: uuid!): experiments_recognition
+
+  """
+  fetch data from the table: "experiments.run"
+  """
+  experiments_run(
+    """distinct select on columns"""
+    distinct_on: [experiments_run_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [experiments_run_order_by!]
+
+    """filter the rows returned"""
+    where: experiments_run_bool_exp
+  ): [experiments_run!]!
+
+  """
+  fetch aggregated fields from the table: "experiments.run"
+  """
+  experiments_run_aggregate(
+    """distinct select on columns"""
+    distinct_on: [experiments_run_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [experiments_run_order_by!]
+
+    """filter the rows returned"""
+    where: experiments_run_bool_exp
+  ): experiments_run_aggregate!
+
+  """fetch data from the table: "experiments.run" using primary key columns"""
+  experiments_run_by_pk(id: uuid!): experiments_run
+
+  """
+  fetch data from the table: "experiments.run_list_types"
+  """
+  experiments_run_list_types(
+    """distinct select on columns"""
+    distinct_on: [experiments_run_list_types_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [experiments_run_list_types_order_by!]
+
+    """filter the rows returned"""
+    where: experiments_run_list_types_bool_exp
+  ): [experiments_run_list_types!]!
+
+  """
+  fetch aggregated fields from the table: "experiments.run_list_types"
+  """
+  experiments_run_list_types_aggregate(
+    """distinct select on columns"""
+    distinct_on: [experiments_run_list_types_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [experiments_run_list_types_order_by!]
+
+    """filter the rows returned"""
+    where: experiments_run_list_types_bool_exp
+  ): experiments_run_list_types_aggregate!
+
+  """
+  fetch data from the table: "experiments.run_list_types" using primary key columns
+  """
+  experiments_run_list_types_by_pk(type: String!): experiments_run_list_types
+
   """fetch data from the table: "storage.files" using primary key columns"""
   file(id: uuid!): files
 
@@ -5664,6 +7643,46 @@ type query_root {
   words_lists_by_pk(id: uuid!): words_lists
 
   """
+  fetch data from the table: "words.lists_categories"
+  """
+  words_lists_categories(
+    """distinct select on columns"""
+    distinct_on: [words_lists_categories_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [words_lists_categories_order_by!]
+
+    """filter the rows returned"""
+    where: words_lists_categories_bool_exp
+  ): [words_lists_categories!]!
+
+  """
+  fetch aggregated fields from the table: "words.lists_categories"
+  """
+  words_lists_categories_aggregate(
+    """distinct select on columns"""
+    distinct_on: [words_lists_categories_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [words_lists_categories_order_by!]
+
+    """filter the rows returned"""
+    where: words_lists_categories_bool_exp
+  ): words_lists_categories_aggregate!
+
+  """
   fetch data from the table: "words.lists_words_view"
   """
   words_lists_words_view(
@@ -5795,6 +7814,42 @@ type query_root {
 """People taking part in the experiment"""
 type subjects {
   age: Int!
+
+  """An array relationship"""
+  experiments(
+    """distinct select on columns"""
+    distinct_on: [experiments_experiments_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [experiments_experiments_order_by!]
+
+    """filter the rows returned"""
+    where: experiments_experiments_bool_exp
+  ): [experiments_experiments!]!
+
+  """An aggregate relationship"""
+  experiments_aggregate(
+    """distinct select on columns"""
+    distinct_on: [experiments_experiments_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [experiments_experiments_order_by!]
+
+    """filter the rows returned"""
+    where: experiments_experiments_bool_exp
+  ): experiments_experiments_aggregate!
   gender: genders_enum!
   id: uuid!
 
@@ -5840,6 +7895,8 @@ input subjects_bool_exp {
   _not: subjects_bool_exp
   _or: [subjects_bool_exp!]
   age: Int_comparison_exp
+  experiments: experiments_experiments_bool_exp
+  experiments_aggregate: experiments_experiments_aggregate_bool_exp
   gender: genders_enum_comparison_exp
   id: uuid_comparison_exp
   user: users_bool_exp
@@ -5867,6 +7924,7 @@ input type for inserting data into table "subjects"
 """
 input subjects_insert_input {
   age: Int
+  experiments: experiments_experiments_arr_rel_insert_input
   gender: genders_enum
   id: uuid
   user: users_obj_rel_insert_input
@@ -5896,6 +7954,16 @@ type subjects_mutation_response {
 }
 
 """
+input type for inserting object relation for remote table "subjects"
+"""
+input subjects_obj_rel_insert_input {
+  data: subjects_insert_input!
+
+  """upsert condition"""
+  on_conflict: subjects_on_conflict
+}
+
+"""
 on_conflict condition type for table "subjects"
 """
 input subjects_on_conflict {
@@ -5907,6 +7975,7 @@ input subjects_on_conflict {
 """Ordering options when selecting data from "subjects"."""
 input subjects_order_by {
   age: order_by
+  experiments_aggregate: experiments_experiments_aggregate_order_by
   gender: order_by
   id: order_by
   user: users_order_by
@@ -6542,6 +8611,299 @@ type subscription_root {
     where: buckets_bool_exp
   ): [buckets!]!
 
+  """
+  fetch data from the table: "experiments.experiments"
+  """
+  experiments_experiments(
+    """distinct select on columns"""
+    distinct_on: [experiments_experiments_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [experiments_experiments_order_by!]
+
+    """filter the rows returned"""
+    where: experiments_experiments_bool_exp
+  ): [experiments_experiments!]!
+
+  """
+  fetch aggregated fields from the table: "experiments.experiments"
+  """
+  experiments_experiments_aggregate(
+    """distinct select on columns"""
+    distinct_on: [experiments_experiments_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [experiments_experiments_order_by!]
+
+    """filter the rows returned"""
+    where: experiments_experiments_bool_exp
+  ): experiments_experiments_aggregate!
+
+  """
+  fetch data from the table: "experiments.experiments" using primary key columns
+  """
+  experiments_experiments_by_pk(id: uuid!): experiments_experiments
+
+  """
+  fetch data from the table in a streaming manner: "experiments.experiments"
+  """
+  experiments_experiments_stream(
+    """maximum number of rows returned in a single batch"""
+    batch_size: Int!
+
+    """cursor to stream the results returned by the query"""
+    cursor: [experiments_experiments_stream_cursor_input]!
+
+    """filter the rows returned"""
+    where: experiments_experiments_bool_exp
+  ): [experiments_experiments!]!
+
+  """
+  fetch data from the table: "experiments.recall"
+  """
+  experiments_recall(
+    """distinct select on columns"""
+    distinct_on: [experiments_recall_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [experiments_recall_order_by!]
+
+    """filter the rows returned"""
+    where: experiments_recall_bool_exp
+  ): [experiments_recall!]!
+
+  """
+  fetch aggregated fields from the table: "experiments.recall"
+  """
+  experiments_recall_aggregate(
+    """distinct select on columns"""
+    distinct_on: [experiments_recall_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [experiments_recall_order_by!]
+
+    """filter the rows returned"""
+    where: experiments_recall_bool_exp
+  ): experiments_recall_aggregate!
+
+  """
+  fetch data from the table: "experiments.recall" using primary key columns
+  """
+  experiments_recall_by_pk(id: uuid!): experiments_recall
+
+  """
+  fetch data from the table in a streaming manner: "experiments.recall"
+  """
+  experiments_recall_stream(
+    """maximum number of rows returned in a single batch"""
+    batch_size: Int!
+
+    """cursor to stream the results returned by the query"""
+    cursor: [experiments_recall_stream_cursor_input]!
+
+    """filter the rows returned"""
+    where: experiments_recall_bool_exp
+  ): [experiments_recall!]!
+
+  """
+  fetch data from the table: "experiments.recognition"
+  """
+  experiments_recognition(
+    """distinct select on columns"""
+    distinct_on: [experiments_recognition_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [experiments_recognition_order_by!]
+
+    """filter the rows returned"""
+    where: experiments_recognition_bool_exp
+  ): [experiments_recognition!]!
+
+  """
+  fetch aggregated fields from the table: "experiments.recognition"
+  """
+  experiments_recognition_aggregate(
+    """distinct select on columns"""
+    distinct_on: [experiments_recognition_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [experiments_recognition_order_by!]
+
+    """filter the rows returned"""
+    where: experiments_recognition_bool_exp
+  ): experiments_recognition_aggregate!
+
+  """
+  fetch data from the table: "experiments.recognition" using primary key columns
+  """
+  experiments_recognition_by_pk(id: uuid!): experiments_recognition
+
+  """
+  fetch data from the table in a streaming manner: "experiments.recognition"
+  """
+  experiments_recognition_stream(
+    """maximum number of rows returned in a single batch"""
+    batch_size: Int!
+
+    """cursor to stream the results returned by the query"""
+    cursor: [experiments_recognition_stream_cursor_input]!
+
+    """filter the rows returned"""
+    where: experiments_recognition_bool_exp
+  ): [experiments_recognition!]!
+
+  """
+  fetch data from the table: "experiments.run"
+  """
+  experiments_run(
+    """distinct select on columns"""
+    distinct_on: [experiments_run_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [experiments_run_order_by!]
+
+    """filter the rows returned"""
+    where: experiments_run_bool_exp
+  ): [experiments_run!]!
+
+  """
+  fetch aggregated fields from the table: "experiments.run"
+  """
+  experiments_run_aggregate(
+    """distinct select on columns"""
+    distinct_on: [experiments_run_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [experiments_run_order_by!]
+
+    """filter the rows returned"""
+    where: experiments_run_bool_exp
+  ): experiments_run_aggregate!
+
+  """fetch data from the table: "experiments.run" using primary key columns"""
+  experiments_run_by_pk(id: uuid!): experiments_run
+
+  """
+  fetch data from the table: "experiments.run_list_types"
+  """
+  experiments_run_list_types(
+    """distinct select on columns"""
+    distinct_on: [experiments_run_list_types_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [experiments_run_list_types_order_by!]
+
+    """filter the rows returned"""
+    where: experiments_run_list_types_bool_exp
+  ): [experiments_run_list_types!]!
+
+  """
+  fetch aggregated fields from the table: "experiments.run_list_types"
+  """
+  experiments_run_list_types_aggregate(
+    """distinct select on columns"""
+    distinct_on: [experiments_run_list_types_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [experiments_run_list_types_order_by!]
+
+    """filter the rows returned"""
+    where: experiments_run_list_types_bool_exp
+  ): experiments_run_list_types_aggregate!
+
+  """
+  fetch data from the table: "experiments.run_list_types" using primary key columns
+  """
+  experiments_run_list_types_by_pk(type: String!): experiments_run_list_types
+
+  """
+  fetch data from the table in a streaming manner: "experiments.run_list_types"
+  """
+  experiments_run_list_types_stream(
+    """maximum number of rows returned in a single batch"""
+    batch_size: Int!
+
+    """cursor to stream the results returned by the query"""
+    cursor: [experiments_run_list_types_stream_cursor_input]!
+
+    """filter the rows returned"""
+    where: experiments_run_list_types_bool_exp
+  ): [experiments_run_list_types!]!
+
+  """
+  fetch data from the table in a streaming manner: "experiments.run"
+  """
+  experiments_run_stream(
+    """maximum number of rows returned in a single batch"""
+    batch_size: Int!
+
+    """cursor to stream the results returned by the query"""
+    cursor: [experiments_run_stream_cursor_input]!
+
+    """filter the rows returned"""
+    where: experiments_run_bool_exp
+  ): [experiments_run!]!
+
   """fetch data from the table: "storage.files" using primary key columns"""
   file(id: uuid!): files
 
@@ -6985,6 +9347,60 @@ type subscription_root {
 
   """fetch data from the table: "words.lists" using primary key columns"""
   words_lists_by_pk(id: uuid!): words_lists
+
+  """
+  fetch data from the table: "words.lists_categories"
+  """
+  words_lists_categories(
+    """distinct select on columns"""
+    distinct_on: [words_lists_categories_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [words_lists_categories_order_by!]
+
+    """filter the rows returned"""
+    where: words_lists_categories_bool_exp
+  ): [words_lists_categories!]!
+
+  """
+  fetch aggregated fields from the table: "words.lists_categories"
+  """
+  words_lists_categories_aggregate(
+    """distinct select on columns"""
+    distinct_on: [words_lists_categories_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [words_lists_categories_order_by!]
+
+    """filter the rows returned"""
+    where: words_lists_categories_bool_exp
+  ): words_lists_categories_aggregate!
+
+  """
+  fetch data from the table in a streaming manner: "words.lists_categories"
+  """
+  words_lists_categories_stream(
+    """maximum number of rows returned in a single batch"""
+    batch_size: Int!
+
+    """cursor to stream the results returned by the query"""
+    cursor: [words_lists_categories_stream_cursor_input]!
+
+    """filter the rows returned"""
+    where: words_lists_categories_bool_exp
+  ): [words_lists_categories!]!
 
   """
   fetch data from the table in a streaming manner: "words.lists"
@@ -8639,6 +11055,41 @@ input words_list_types_updates {
 
 """Lists of words that can be used in an experiment"""
 type words_lists {
+  """An array relationship"""
+  categories(
+    """distinct select on columns"""
+    distinct_on: [words_lists_categories_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [words_lists_categories_order_by!]
+
+    """filter the rows returned"""
+    where: words_lists_categories_bool_exp
+  ): [words_lists_categories!]!
+
+  """An aggregate relationship"""
+  categories_aggregate(
+    """distinct select on columns"""
+    distinct_on: [words_lists_categories_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [words_lists_categories_order_by!]
+
+    """filter the rows returned"""
+    where: words_lists_categories_bool_exp
+  ): words_lists_categories_aggregate!
   id: uuid!
   type: words_list_types_enum!
 
@@ -8739,12 +11190,147 @@ input words_lists_bool_exp {
   _and: [words_lists_bool_exp!]
   _not: words_lists_bool_exp
   _or: [words_lists_bool_exp!]
+  categories: words_lists_categories_bool_exp
+  categories_aggregate: words_lists_categories_aggregate_bool_exp
   id: uuid_comparison_exp
   type: words_list_types_enum_comparison_exp
   words: words_lists_words_view_bool_exp
   words_aggregate: words_lists_words_view_aggregate_bool_exp
   words_lists: words_words_lists_bool_exp
   words_lists_aggregate: words_words_lists_aggregate_bool_exp
+}
+
+"""
+columns and relationships of "words.lists_categories"
+"""
+type words_lists_categories {
+  category: String
+  list_id: uuid
+}
+
+"""
+aggregated selection of "words.lists_categories"
+"""
+type words_lists_categories_aggregate {
+  aggregate: words_lists_categories_aggregate_fields
+  nodes: [words_lists_categories!]!
+}
+
+input words_lists_categories_aggregate_bool_exp {
+  count: words_lists_categories_aggregate_bool_exp_count
+}
+
+input words_lists_categories_aggregate_bool_exp_count {
+  arguments: [words_lists_categories_select_column!]
+  distinct: Boolean
+  filter: words_lists_categories_bool_exp
+  predicate: Int_comparison_exp!
+}
+
+"""
+aggregate fields of "words.lists_categories"
+"""
+type words_lists_categories_aggregate_fields {
+  count(columns: [words_lists_categories_select_column!], distinct: Boolean): Int!
+  max: words_lists_categories_max_fields
+  min: words_lists_categories_min_fields
+}
+
+"""
+order by aggregate values of table "words.lists_categories"
+"""
+input words_lists_categories_aggregate_order_by {
+  count: order_by
+  max: words_lists_categories_max_order_by
+  min: words_lists_categories_min_order_by
+}
+
+"""
+input type for inserting array relation for remote table "words.lists_categories"
+"""
+input words_lists_categories_arr_rel_insert_input {
+  data: [words_lists_categories_insert_input!]!
+}
+
+"""
+Boolean expression to filter rows from the table "words.lists_categories". All fields are combined with a logical 'AND'.
+"""
+input words_lists_categories_bool_exp {
+  _and: [words_lists_categories_bool_exp!]
+  _not: words_lists_categories_bool_exp
+  _or: [words_lists_categories_bool_exp!]
+  category: String_comparison_exp
+  list_id: uuid_comparison_exp
+}
+
+"""
+input type for inserting data into table "words.lists_categories"
+"""
+input words_lists_categories_insert_input {
+  category: String
+  list_id: uuid
+}
+
+"""aggregate max on columns"""
+type words_lists_categories_max_fields {
+  category: String
+  list_id: uuid
+}
+
+"""
+order by max() on columns of table "words.lists_categories"
+"""
+input words_lists_categories_max_order_by {
+  category: order_by
+  list_id: order_by
+}
+
+"""aggregate min on columns"""
+type words_lists_categories_min_fields {
+  category: String
+  list_id: uuid
+}
+
+"""
+order by min() on columns of table "words.lists_categories"
+"""
+input words_lists_categories_min_order_by {
+  category: order_by
+  list_id: order_by
+}
+
+"""Ordering options when selecting data from "words.lists_categories"."""
+input words_lists_categories_order_by {
+  category: order_by
+  list_id: order_by
+}
+
+"""
+select columns of table "words.lists_categories"
+"""
+enum words_lists_categories_select_column {
+  """column name"""
+  category
+
+  """column name"""
+  list_id
+}
+
+"""
+Streaming cursor of the table "words_lists_categories"
+"""
+input words_lists_categories_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: words_lists_categories_stream_cursor_value_input!
+
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input words_lists_categories_stream_cursor_value_input {
+  category: String
+  list_id: uuid
 }
 
 """
@@ -8761,6 +11347,7 @@ enum words_lists_constraint {
 input type for inserting data into table "words.lists"
 """
 input words_lists_insert_input {
+  categories: words_lists_categories_arr_rel_insert_input
   id: uuid
   type: words_list_types_enum
   words: words_lists_words_view_arr_rel_insert_input
@@ -8809,6 +11396,7 @@ input words_lists_on_conflict {
 
 """Ordering options when selecting data from "words.lists"."""
 input words_lists_order_by {
+  categories_aggregate: words_lists_categories_aggregate_order_by
   id: order_by
   type: order_by
   words_aggregate: words_lists_words_view_aggregate_order_by

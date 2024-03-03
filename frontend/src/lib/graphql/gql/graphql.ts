@@ -37,6 +37,23 @@ export type Boolean_Comparison_Exp = {
 };
 
 /** Boolean expression to compare columns of type "Int". All fields are combined with logical 'AND'. */
+export type Int_Array_Comparison_Exp = {
+  /** is the array contained in the given array value */
+  _contained_in?: InputMaybe<Array<Scalars['Int']['input']>>;
+  /** does the array contain the given value */
+  _contains?: InputMaybe<Array<Scalars['Int']['input']>>;
+  _eq?: InputMaybe<Array<Scalars['Int']['input']>>;
+  _gt?: InputMaybe<Array<Scalars['Int']['input']>>;
+  _gte?: InputMaybe<Array<Scalars['Int']['input']>>;
+  _in?: InputMaybe<Array<Array<Scalars['Int']['input']>>>;
+  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
+  _lt?: InputMaybe<Array<Scalars['Int']['input']>>;
+  _lte?: InputMaybe<Array<Scalars['Int']['input']>>;
+  _neq?: InputMaybe<Array<Scalars['Int']['input']>>;
+  _nin?: InputMaybe<Array<Array<Scalars['Int']['input']>>>;
+};
+
+/** Boolean expression to compare columns of type "Int". All fields are combined with logical 'AND'. */
 export type Int_Comparison_Exp = {
   _eq?: InputMaybe<Scalars['Int']['input']>;
   _gt?: InputMaybe<Scalars['Int']['input']>;
@@ -47,6 +64,23 @@ export type Int_Comparison_Exp = {
   _lte?: InputMaybe<Scalars['Int']['input']>;
   _neq?: InputMaybe<Scalars['Int']['input']>;
   _nin?: InputMaybe<Array<Scalars['Int']['input']>>;
+};
+
+/** Boolean expression to compare columns of type "String". All fields are combined with logical 'AND'. */
+export type String_Array_Comparison_Exp = {
+  /** is the array contained in the given array value */
+  _contained_in?: InputMaybe<Array<Scalars['String']['input']>>;
+  /** does the array contain the given value */
+  _contains?: InputMaybe<Array<Scalars['String']['input']>>;
+  _eq?: InputMaybe<Array<Scalars['String']['input']>>;
+  _gt?: InputMaybe<Array<Scalars['String']['input']>>;
+  _gte?: InputMaybe<Array<Scalars['String']['input']>>;
+  _in?: InputMaybe<Array<Array<Scalars['String']['input']>>>;
+  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
+  _lt?: InputMaybe<Array<Scalars['String']['input']>>;
+  _lte?: InputMaybe<Array<Scalars['String']['input']>>;
+  _neq?: InputMaybe<Array<Scalars['String']['input']>>;
+  _nin?: InputMaybe<Array<Array<Scalars['String']['input']>>>;
 };
 
 /** Boolean expression to compare columns of type "String". All fields are combined with logical 'AND'. */
@@ -2276,6 +2310,1142 @@ export enum Cursor_Ordering {
   Desc = 'DESC'
 }
 
+/** A full experiment performed by a subject */
+export type Experiments_Experiments = {
+  __typename?: 'experiments_experiments';
+  created_at: Scalars['timestamptz']['output'];
+  id: Scalars['uuid']['output'];
+  list_type: Words_List_Types_Enum;
+  /** An object relationship */
+  recall?: Maybe<Experiments_Recall>;
+  recall_id?: Maybe<Scalars['uuid']['output']>;
+  /** An object relationship */
+  recognition?: Maybe<Experiments_Recognition>;
+  recognition_id?: Maybe<Scalars['uuid']['output']>;
+  /** An object relationship */
+  run: Experiments_Run;
+  run_id: Scalars['uuid']['output'];
+  /** An object relationship */
+  subject: Subjects;
+  subject_id: Scalars['uuid']['output'];
+};
+
+/** aggregated selection of "experiments.experiments" */
+export type Experiments_Experiments_Aggregate = {
+  __typename?: 'experiments_experiments_aggregate';
+  aggregate?: Maybe<Experiments_Experiments_Aggregate_Fields>;
+  nodes: Array<Experiments_Experiments>;
+};
+
+export type Experiments_Experiments_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Experiments_Experiments_Aggregate_Bool_Exp_Count>;
+};
+
+export type Experiments_Experiments_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Experiments_Experiments_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+  filter?: InputMaybe<Experiments_Experiments_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
+};
+
+/** aggregate fields of "experiments.experiments" */
+export type Experiments_Experiments_Aggregate_Fields = {
+  __typename?: 'experiments_experiments_aggregate_fields';
+  count: Scalars['Int']['output'];
+  max?: Maybe<Experiments_Experiments_Max_Fields>;
+  min?: Maybe<Experiments_Experiments_Min_Fields>;
+};
+
+
+/** aggregate fields of "experiments.experiments" */
+export type Experiments_Experiments_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Experiments_Experiments_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** order by aggregate values of table "experiments.experiments" */
+export type Experiments_Experiments_Aggregate_Order_By = {
+  count?: InputMaybe<Order_By>;
+  max?: InputMaybe<Experiments_Experiments_Max_Order_By>;
+  min?: InputMaybe<Experiments_Experiments_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "experiments.experiments" */
+export type Experiments_Experiments_Arr_Rel_Insert_Input = {
+  data: Array<Experiments_Experiments_Insert_Input>;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Experiments_Experiments_On_Conflict>;
+};
+
+/** Boolean expression to filter rows from the table "experiments.experiments". All fields are combined with a logical 'AND'. */
+export type Experiments_Experiments_Bool_Exp = {
+  _and?: InputMaybe<Array<Experiments_Experiments_Bool_Exp>>;
+  _not?: InputMaybe<Experiments_Experiments_Bool_Exp>;
+  _or?: InputMaybe<Array<Experiments_Experiments_Bool_Exp>>;
+  created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  id?: InputMaybe<Uuid_Comparison_Exp>;
+  list_type?: InputMaybe<Words_List_Types_Enum_Comparison_Exp>;
+  recall?: InputMaybe<Experiments_Recall_Bool_Exp>;
+  recall_id?: InputMaybe<Uuid_Comparison_Exp>;
+  recognition?: InputMaybe<Experiments_Recognition_Bool_Exp>;
+  recognition_id?: InputMaybe<Uuid_Comparison_Exp>;
+  run?: InputMaybe<Experiments_Run_Bool_Exp>;
+  run_id?: InputMaybe<Uuid_Comparison_Exp>;
+  subject?: InputMaybe<Subjects_Bool_Exp>;
+  subject_id?: InputMaybe<Uuid_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "experiments.experiments" */
+export enum Experiments_Experiments_Constraint {
+  /** unique or primary key constraint on columns "id" */
+  ExperimentsPkey = 'experiments_pkey',
+  /** unique or primary key constraint on columns "recall_id" */
+  ExperimentsRecallIdKey = 'experiments_recall_id_key',
+  /** unique or primary key constraint on columns "recognition_id" */
+  ExperimentsRecognitionIdKey = 'experiments_recognition_id_key'
+}
+
+/** input type for inserting data into table "experiments.experiments" */
+export type Experiments_Experiments_Insert_Input = {
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  list_type?: InputMaybe<Words_List_Types_Enum>;
+  recall?: InputMaybe<Experiments_Recall_Obj_Rel_Insert_Input>;
+  recall_id?: InputMaybe<Scalars['uuid']['input']>;
+  recognition?: InputMaybe<Experiments_Recognition_Obj_Rel_Insert_Input>;
+  recognition_id?: InputMaybe<Scalars['uuid']['input']>;
+  run?: InputMaybe<Experiments_Run_Obj_Rel_Insert_Input>;
+  run_id?: InputMaybe<Scalars['uuid']['input']>;
+  subject?: InputMaybe<Subjects_Obj_Rel_Insert_Input>;
+  subject_id?: InputMaybe<Scalars['uuid']['input']>;
+};
+
+/** aggregate max on columns */
+export type Experiments_Experiments_Max_Fields = {
+  __typename?: 'experiments_experiments_max_fields';
+  created_at?: Maybe<Scalars['timestamptz']['output']>;
+  id?: Maybe<Scalars['uuid']['output']>;
+  recall_id?: Maybe<Scalars['uuid']['output']>;
+  recognition_id?: Maybe<Scalars['uuid']['output']>;
+  run_id?: Maybe<Scalars['uuid']['output']>;
+  subject_id?: Maybe<Scalars['uuid']['output']>;
+};
+
+/** order by max() on columns of table "experiments.experiments" */
+export type Experiments_Experiments_Max_Order_By = {
+  created_at?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  recall_id?: InputMaybe<Order_By>;
+  recognition_id?: InputMaybe<Order_By>;
+  run_id?: InputMaybe<Order_By>;
+  subject_id?: InputMaybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Experiments_Experiments_Min_Fields = {
+  __typename?: 'experiments_experiments_min_fields';
+  created_at?: Maybe<Scalars['timestamptz']['output']>;
+  id?: Maybe<Scalars['uuid']['output']>;
+  recall_id?: Maybe<Scalars['uuid']['output']>;
+  recognition_id?: Maybe<Scalars['uuid']['output']>;
+  run_id?: Maybe<Scalars['uuid']['output']>;
+  subject_id?: Maybe<Scalars['uuid']['output']>;
+};
+
+/** order by min() on columns of table "experiments.experiments" */
+export type Experiments_Experiments_Min_Order_By = {
+  created_at?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  recall_id?: InputMaybe<Order_By>;
+  recognition_id?: InputMaybe<Order_By>;
+  run_id?: InputMaybe<Order_By>;
+  subject_id?: InputMaybe<Order_By>;
+};
+
+/** response of any mutation on the table "experiments.experiments" */
+export type Experiments_Experiments_Mutation_Response = {
+  __typename?: 'experiments_experiments_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']['output'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Experiments_Experiments>;
+};
+
+/** input type for inserting object relation for remote table "experiments.experiments" */
+export type Experiments_Experiments_Obj_Rel_Insert_Input = {
+  data: Experiments_Experiments_Insert_Input;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Experiments_Experiments_On_Conflict>;
+};
+
+/** on_conflict condition type for table "experiments.experiments" */
+export type Experiments_Experiments_On_Conflict = {
+  constraint: Experiments_Experiments_Constraint;
+  update_columns?: Array<Experiments_Experiments_Update_Column>;
+  where?: InputMaybe<Experiments_Experiments_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "experiments.experiments". */
+export type Experiments_Experiments_Order_By = {
+  created_at?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  list_type?: InputMaybe<Order_By>;
+  recall?: InputMaybe<Experiments_Recall_Order_By>;
+  recall_id?: InputMaybe<Order_By>;
+  recognition?: InputMaybe<Experiments_Recognition_Order_By>;
+  recognition_id?: InputMaybe<Order_By>;
+  run?: InputMaybe<Experiments_Run_Order_By>;
+  run_id?: InputMaybe<Order_By>;
+  subject?: InputMaybe<Subjects_Order_By>;
+  subject_id?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: experiments.experiments */
+export type Experiments_Experiments_Pk_Columns_Input = {
+  id: Scalars['uuid']['input'];
+};
+
+/** select columns of table "experiments.experiments" */
+export enum Experiments_Experiments_Select_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  ListType = 'list_type',
+  /** column name */
+  RecallId = 'recall_id',
+  /** column name */
+  RecognitionId = 'recognition_id',
+  /** column name */
+  RunId = 'run_id',
+  /** column name */
+  SubjectId = 'subject_id'
+}
+
+/** input type for updating data in table "experiments.experiments" */
+export type Experiments_Experiments_Set_Input = {
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  list_type?: InputMaybe<Words_List_Types_Enum>;
+  recall_id?: InputMaybe<Scalars['uuid']['input']>;
+  recognition_id?: InputMaybe<Scalars['uuid']['input']>;
+  run_id?: InputMaybe<Scalars['uuid']['input']>;
+  subject_id?: InputMaybe<Scalars['uuid']['input']>;
+};
+
+/** Streaming cursor of the table "experiments_experiments" */
+export type Experiments_Experiments_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Experiments_Experiments_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Experiments_Experiments_Stream_Cursor_Value_Input = {
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  list_type?: InputMaybe<Words_List_Types_Enum>;
+  recall_id?: InputMaybe<Scalars['uuid']['input']>;
+  recognition_id?: InputMaybe<Scalars['uuid']['input']>;
+  run_id?: InputMaybe<Scalars['uuid']['input']>;
+  subject_id?: InputMaybe<Scalars['uuid']['input']>;
+};
+
+/** update columns of table "experiments.experiments" */
+export enum Experiments_Experiments_Update_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  ListType = 'list_type',
+  /** column name */
+  RecallId = 'recall_id',
+  /** column name */
+  RecognitionId = 'recognition_id',
+  /** column name */
+  RunId = 'run_id',
+  /** column name */
+  SubjectId = 'subject_id'
+}
+
+export type Experiments_Experiments_Updates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Experiments_Experiments_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Experiments_Experiments_Bool_Exp;
+};
+
+/** The recall phase of an experiment */
+export type Experiments_Recall = {
+  __typename?: 'experiments_recall';
+  answers?: Maybe<Scalars['jsonb']['output']>;
+  completed_at?: Maybe<Scalars['timestamptz']['output']>;
+  created_at: Scalars['timestamptz']['output'];
+  /** An object relationship */
+  experiment?: Maybe<Experiments_Experiments>;
+  id: Scalars['uuid']['output'];
+  /** An object relationship */
+  list: Words_Lists;
+  source_list_id: Scalars['uuid']['output'];
+  words: Array<Scalars['String']['output']>;
+};
+
+
+/** The recall phase of an experiment */
+export type Experiments_RecallAnswersArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregated selection of "experiments.recall" */
+export type Experiments_Recall_Aggregate = {
+  __typename?: 'experiments_recall_aggregate';
+  aggregate?: Maybe<Experiments_Recall_Aggregate_Fields>;
+  nodes: Array<Experiments_Recall>;
+};
+
+/** aggregate fields of "experiments.recall" */
+export type Experiments_Recall_Aggregate_Fields = {
+  __typename?: 'experiments_recall_aggregate_fields';
+  count: Scalars['Int']['output'];
+  max?: Maybe<Experiments_Recall_Max_Fields>;
+  min?: Maybe<Experiments_Recall_Min_Fields>;
+};
+
+
+/** aggregate fields of "experiments.recall" */
+export type Experiments_Recall_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Experiments_Recall_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** append existing jsonb value of filtered columns with new jsonb value */
+export type Experiments_Recall_Append_Input = {
+  answers?: InputMaybe<Scalars['jsonb']['input']>;
+};
+
+/** Boolean expression to filter rows from the table "experiments.recall". All fields are combined with a logical 'AND'. */
+export type Experiments_Recall_Bool_Exp = {
+  _and?: InputMaybe<Array<Experiments_Recall_Bool_Exp>>;
+  _not?: InputMaybe<Experiments_Recall_Bool_Exp>;
+  _or?: InputMaybe<Array<Experiments_Recall_Bool_Exp>>;
+  answers?: InputMaybe<Jsonb_Comparison_Exp>;
+  completed_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  experiment?: InputMaybe<Experiments_Experiments_Bool_Exp>;
+  id?: InputMaybe<Uuid_Comparison_Exp>;
+  list?: InputMaybe<Words_Lists_Bool_Exp>;
+  source_list_id?: InputMaybe<Uuid_Comparison_Exp>;
+  words?: InputMaybe<String_Array_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "experiments.recall" */
+export enum Experiments_Recall_Constraint {
+  /** unique or primary key constraint on columns "id" */
+  RecallPkey = 'recall_pkey'
+}
+
+/** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+export type Experiments_Recall_Delete_At_Path_Input = {
+  answers?: InputMaybe<Array<Scalars['String']['input']>>;
+};
+
+/** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+export type Experiments_Recall_Delete_Elem_Input = {
+  answers?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** delete key/value pair or string element. key/value pairs are matched based on their key value */
+export type Experiments_Recall_Delete_Key_Input = {
+  answers?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** input type for inserting data into table "experiments.recall" */
+export type Experiments_Recall_Insert_Input = {
+  answers?: InputMaybe<Scalars['jsonb']['input']>;
+  completed_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  experiment?: InputMaybe<Experiments_Experiments_Obj_Rel_Insert_Input>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  list?: InputMaybe<Words_Lists_Obj_Rel_Insert_Input>;
+  source_list_id?: InputMaybe<Scalars['uuid']['input']>;
+  words?: InputMaybe<Array<Scalars['String']['input']>>;
+};
+
+/** aggregate max on columns */
+export type Experiments_Recall_Max_Fields = {
+  __typename?: 'experiments_recall_max_fields';
+  completed_at?: Maybe<Scalars['timestamptz']['output']>;
+  created_at?: Maybe<Scalars['timestamptz']['output']>;
+  id?: Maybe<Scalars['uuid']['output']>;
+  source_list_id?: Maybe<Scalars['uuid']['output']>;
+  words?: Maybe<Array<Scalars['String']['output']>>;
+};
+
+/** aggregate min on columns */
+export type Experiments_Recall_Min_Fields = {
+  __typename?: 'experiments_recall_min_fields';
+  completed_at?: Maybe<Scalars['timestamptz']['output']>;
+  created_at?: Maybe<Scalars['timestamptz']['output']>;
+  id?: Maybe<Scalars['uuid']['output']>;
+  source_list_id?: Maybe<Scalars['uuid']['output']>;
+  words?: Maybe<Array<Scalars['String']['output']>>;
+};
+
+/** response of any mutation on the table "experiments.recall" */
+export type Experiments_Recall_Mutation_Response = {
+  __typename?: 'experiments_recall_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']['output'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Experiments_Recall>;
+};
+
+/** input type for inserting object relation for remote table "experiments.recall" */
+export type Experiments_Recall_Obj_Rel_Insert_Input = {
+  data: Experiments_Recall_Insert_Input;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Experiments_Recall_On_Conflict>;
+};
+
+/** on_conflict condition type for table "experiments.recall" */
+export type Experiments_Recall_On_Conflict = {
+  constraint: Experiments_Recall_Constraint;
+  update_columns?: Array<Experiments_Recall_Update_Column>;
+  where?: InputMaybe<Experiments_Recall_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "experiments.recall". */
+export type Experiments_Recall_Order_By = {
+  answers?: InputMaybe<Order_By>;
+  completed_at?: InputMaybe<Order_By>;
+  created_at?: InputMaybe<Order_By>;
+  experiment?: InputMaybe<Experiments_Experiments_Order_By>;
+  id?: InputMaybe<Order_By>;
+  list?: InputMaybe<Words_Lists_Order_By>;
+  source_list_id?: InputMaybe<Order_By>;
+  words?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: experiments.recall */
+export type Experiments_Recall_Pk_Columns_Input = {
+  id: Scalars['uuid']['input'];
+};
+
+/** prepend existing jsonb value of filtered columns with new jsonb value */
+export type Experiments_Recall_Prepend_Input = {
+  answers?: InputMaybe<Scalars['jsonb']['input']>;
+};
+
+/** select columns of table "experiments.recall" */
+export enum Experiments_Recall_Select_Column {
+  /** column name */
+  Answers = 'answers',
+  /** column name */
+  CompletedAt = 'completed_at',
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  SourceListId = 'source_list_id',
+  /** column name */
+  Words = 'words'
+}
+
+/** input type for updating data in table "experiments.recall" */
+export type Experiments_Recall_Set_Input = {
+  answers?: InputMaybe<Scalars['jsonb']['input']>;
+  completed_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  source_list_id?: InputMaybe<Scalars['uuid']['input']>;
+  words?: InputMaybe<Array<Scalars['String']['input']>>;
+};
+
+/** Streaming cursor of the table "experiments_recall" */
+export type Experiments_Recall_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Experiments_Recall_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Experiments_Recall_Stream_Cursor_Value_Input = {
+  answers?: InputMaybe<Scalars['jsonb']['input']>;
+  completed_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  source_list_id?: InputMaybe<Scalars['uuid']['input']>;
+  words?: InputMaybe<Array<Scalars['String']['input']>>;
+};
+
+/** update columns of table "experiments.recall" */
+export enum Experiments_Recall_Update_Column {
+  /** column name */
+  Answers = 'answers',
+  /** column name */
+  CompletedAt = 'completed_at',
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  SourceListId = 'source_list_id',
+  /** column name */
+  Words = 'words'
+}
+
+export type Experiments_Recall_Updates = {
+  /** append existing jsonb value of filtered columns with new jsonb value */
+  _append?: InputMaybe<Experiments_Recall_Append_Input>;
+  /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+  _delete_at_path?: InputMaybe<Experiments_Recall_Delete_At_Path_Input>;
+  /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+  _delete_elem?: InputMaybe<Experiments_Recall_Delete_Elem_Input>;
+  /** delete key/value pair or string element. key/value pairs are matched based on their key value */
+  _delete_key?: InputMaybe<Experiments_Recall_Delete_Key_Input>;
+  /** prepend existing jsonb value of filtered columns with new jsonb value */
+  _prepend?: InputMaybe<Experiments_Recall_Prepend_Input>;
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Experiments_Recall_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Experiments_Recall_Bool_Exp;
+};
+
+/** The recognition phase of an experiment */
+export type Experiments_Recognition = {
+  __typename?: 'experiments_recognition';
+  answers?: Maybe<Scalars['jsonb']['output']>;
+  completed_at?: Maybe<Scalars['timestamptz']['output']>;
+  distractors: Array<Scalars['String']['output']>;
+  /** An object relationship */
+  experiment?: Maybe<Experiments_Experiments>;
+  id: Scalars['uuid']['output'];
+  /** An object relationship */
+  list: Words_Lists;
+  source_list_id: Scalars['uuid']['output'];
+  words: Array<Scalars['String']['output']>;
+};
+
+
+/** The recognition phase of an experiment */
+export type Experiments_RecognitionAnswersArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregated selection of "experiments.recognition" */
+export type Experiments_Recognition_Aggregate = {
+  __typename?: 'experiments_recognition_aggregate';
+  aggregate?: Maybe<Experiments_Recognition_Aggregate_Fields>;
+  nodes: Array<Experiments_Recognition>;
+};
+
+/** aggregate fields of "experiments.recognition" */
+export type Experiments_Recognition_Aggregate_Fields = {
+  __typename?: 'experiments_recognition_aggregate_fields';
+  count: Scalars['Int']['output'];
+  max?: Maybe<Experiments_Recognition_Max_Fields>;
+  min?: Maybe<Experiments_Recognition_Min_Fields>;
+};
+
+
+/** aggregate fields of "experiments.recognition" */
+export type Experiments_Recognition_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Experiments_Recognition_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** append existing jsonb value of filtered columns with new jsonb value */
+export type Experiments_Recognition_Append_Input = {
+  answers?: InputMaybe<Scalars['jsonb']['input']>;
+};
+
+/** Boolean expression to filter rows from the table "experiments.recognition". All fields are combined with a logical 'AND'. */
+export type Experiments_Recognition_Bool_Exp = {
+  _and?: InputMaybe<Array<Experiments_Recognition_Bool_Exp>>;
+  _not?: InputMaybe<Experiments_Recognition_Bool_Exp>;
+  _or?: InputMaybe<Array<Experiments_Recognition_Bool_Exp>>;
+  answers?: InputMaybe<Jsonb_Comparison_Exp>;
+  completed_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  distractors?: InputMaybe<String_Array_Comparison_Exp>;
+  experiment?: InputMaybe<Experiments_Experiments_Bool_Exp>;
+  id?: InputMaybe<Uuid_Comparison_Exp>;
+  list?: InputMaybe<Words_Lists_Bool_Exp>;
+  source_list_id?: InputMaybe<Uuid_Comparison_Exp>;
+  words?: InputMaybe<String_Array_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "experiments.recognition" */
+export enum Experiments_Recognition_Constraint {
+  /** unique or primary key constraint on columns "id" */
+  RecognitionPkey = 'recognition_pkey'
+}
+
+/** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+export type Experiments_Recognition_Delete_At_Path_Input = {
+  answers?: InputMaybe<Array<Scalars['String']['input']>>;
+};
+
+/** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+export type Experiments_Recognition_Delete_Elem_Input = {
+  answers?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** delete key/value pair or string element. key/value pairs are matched based on their key value */
+export type Experiments_Recognition_Delete_Key_Input = {
+  answers?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** input type for inserting data into table "experiments.recognition" */
+export type Experiments_Recognition_Insert_Input = {
+  answers?: InputMaybe<Scalars['jsonb']['input']>;
+  completed_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  distractors?: InputMaybe<Array<Scalars['String']['input']>>;
+  experiment?: InputMaybe<Experiments_Experiments_Obj_Rel_Insert_Input>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  list?: InputMaybe<Words_Lists_Obj_Rel_Insert_Input>;
+  source_list_id?: InputMaybe<Scalars['uuid']['input']>;
+  words?: InputMaybe<Array<Scalars['String']['input']>>;
+};
+
+/** aggregate max on columns */
+export type Experiments_Recognition_Max_Fields = {
+  __typename?: 'experiments_recognition_max_fields';
+  completed_at?: Maybe<Scalars['timestamptz']['output']>;
+  distractors?: Maybe<Array<Scalars['String']['output']>>;
+  id?: Maybe<Scalars['uuid']['output']>;
+  source_list_id?: Maybe<Scalars['uuid']['output']>;
+  words?: Maybe<Array<Scalars['String']['output']>>;
+};
+
+/** aggregate min on columns */
+export type Experiments_Recognition_Min_Fields = {
+  __typename?: 'experiments_recognition_min_fields';
+  completed_at?: Maybe<Scalars['timestamptz']['output']>;
+  distractors?: Maybe<Array<Scalars['String']['output']>>;
+  id?: Maybe<Scalars['uuid']['output']>;
+  source_list_id?: Maybe<Scalars['uuid']['output']>;
+  words?: Maybe<Array<Scalars['String']['output']>>;
+};
+
+/** response of any mutation on the table "experiments.recognition" */
+export type Experiments_Recognition_Mutation_Response = {
+  __typename?: 'experiments_recognition_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']['output'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Experiments_Recognition>;
+};
+
+/** input type for inserting object relation for remote table "experiments.recognition" */
+export type Experiments_Recognition_Obj_Rel_Insert_Input = {
+  data: Experiments_Recognition_Insert_Input;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Experiments_Recognition_On_Conflict>;
+};
+
+/** on_conflict condition type for table "experiments.recognition" */
+export type Experiments_Recognition_On_Conflict = {
+  constraint: Experiments_Recognition_Constraint;
+  update_columns?: Array<Experiments_Recognition_Update_Column>;
+  where?: InputMaybe<Experiments_Recognition_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "experiments.recognition". */
+export type Experiments_Recognition_Order_By = {
+  answers?: InputMaybe<Order_By>;
+  completed_at?: InputMaybe<Order_By>;
+  distractors?: InputMaybe<Order_By>;
+  experiment?: InputMaybe<Experiments_Experiments_Order_By>;
+  id?: InputMaybe<Order_By>;
+  list?: InputMaybe<Words_Lists_Order_By>;
+  source_list_id?: InputMaybe<Order_By>;
+  words?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: experiments.recognition */
+export type Experiments_Recognition_Pk_Columns_Input = {
+  id: Scalars['uuid']['input'];
+};
+
+/** prepend existing jsonb value of filtered columns with new jsonb value */
+export type Experiments_Recognition_Prepend_Input = {
+  answers?: InputMaybe<Scalars['jsonb']['input']>;
+};
+
+/** select columns of table "experiments.recognition" */
+export enum Experiments_Recognition_Select_Column {
+  /** column name */
+  Answers = 'answers',
+  /** column name */
+  CompletedAt = 'completed_at',
+  /** column name */
+  Distractors = 'distractors',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  SourceListId = 'source_list_id',
+  /** column name */
+  Words = 'words'
+}
+
+/** input type for updating data in table "experiments.recognition" */
+export type Experiments_Recognition_Set_Input = {
+  answers?: InputMaybe<Scalars['jsonb']['input']>;
+  completed_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  distractors?: InputMaybe<Array<Scalars['String']['input']>>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  source_list_id?: InputMaybe<Scalars['uuid']['input']>;
+  words?: InputMaybe<Array<Scalars['String']['input']>>;
+};
+
+/** Streaming cursor of the table "experiments_recognition" */
+export type Experiments_Recognition_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Experiments_Recognition_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Experiments_Recognition_Stream_Cursor_Value_Input = {
+  answers?: InputMaybe<Scalars['jsonb']['input']>;
+  completed_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  distractors?: InputMaybe<Array<Scalars['String']['input']>>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  source_list_id?: InputMaybe<Scalars['uuid']['input']>;
+  words?: InputMaybe<Array<Scalars['String']['input']>>;
+};
+
+/** update columns of table "experiments.recognition" */
+export enum Experiments_Recognition_Update_Column {
+  /** column name */
+  Answers = 'answers',
+  /** column name */
+  CompletedAt = 'completed_at',
+  /** column name */
+  Distractors = 'distractors',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  SourceListId = 'source_list_id',
+  /** column name */
+  Words = 'words'
+}
+
+export type Experiments_Recognition_Updates = {
+  /** append existing jsonb value of filtered columns with new jsonb value */
+  _append?: InputMaybe<Experiments_Recognition_Append_Input>;
+  /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+  _delete_at_path?: InputMaybe<Experiments_Recognition_Delete_At_Path_Input>;
+  /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+  _delete_elem?: InputMaybe<Experiments_Recognition_Delete_Elem_Input>;
+  /** delete key/value pair or string element. key/value pairs are matched based on their key value */
+  _delete_key?: InputMaybe<Experiments_Recognition_Delete_Key_Input>;
+  /** prepend existing jsonb value of filtered columns with new jsonb value */
+  _prepend?: InputMaybe<Experiments_Recognition_Prepend_Input>;
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Experiments_Recognition_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Experiments_Recognition_Bool_Exp;
+};
+
+/** An experiment run */
+export type Experiments_Run = {
+  __typename?: 'experiments_run';
+  /** Code for accessing the run */
+  code: Scalars['Int']['output'];
+  id: Scalars['uuid']['output'];
+  lengths: Array<Scalars['Int']['output']>;
+  name: Scalars['String']['output'];
+  run_list_type: Experiments_Run_List_Types_Enum;
+};
+
+/** aggregated selection of "experiments.run" */
+export type Experiments_Run_Aggregate = {
+  __typename?: 'experiments_run_aggregate';
+  aggregate?: Maybe<Experiments_Run_Aggregate_Fields>;
+  nodes: Array<Experiments_Run>;
+};
+
+/** aggregate fields of "experiments.run" */
+export type Experiments_Run_Aggregate_Fields = {
+  __typename?: 'experiments_run_aggregate_fields';
+  avg?: Maybe<Experiments_Run_Avg_Fields>;
+  count: Scalars['Int']['output'];
+  max?: Maybe<Experiments_Run_Max_Fields>;
+  min?: Maybe<Experiments_Run_Min_Fields>;
+  stddev?: Maybe<Experiments_Run_Stddev_Fields>;
+  stddev_pop?: Maybe<Experiments_Run_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Experiments_Run_Stddev_Samp_Fields>;
+  sum?: Maybe<Experiments_Run_Sum_Fields>;
+  var_pop?: Maybe<Experiments_Run_Var_Pop_Fields>;
+  var_samp?: Maybe<Experiments_Run_Var_Samp_Fields>;
+  variance?: Maybe<Experiments_Run_Variance_Fields>;
+};
+
+
+/** aggregate fields of "experiments.run" */
+export type Experiments_Run_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Experiments_Run_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** aggregate avg on columns */
+export type Experiments_Run_Avg_Fields = {
+  __typename?: 'experiments_run_avg_fields';
+  /** Code for accessing the run */
+  code?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Boolean expression to filter rows from the table "experiments.run". All fields are combined with a logical 'AND'. */
+export type Experiments_Run_Bool_Exp = {
+  _and?: InputMaybe<Array<Experiments_Run_Bool_Exp>>;
+  _not?: InputMaybe<Experiments_Run_Bool_Exp>;
+  _or?: InputMaybe<Array<Experiments_Run_Bool_Exp>>;
+  code?: InputMaybe<Int_Comparison_Exp>;
+  id?: InputMaybe<Uuid_Comparison_Exp>;
+  lengths?: InputMaybe<Int_Array_Comparison_Exp>;
+  name?: InputMaybe<String_Comparison_Exp>;
+  run_list_type?: InputMaybe<Experiments_Run_List_Types_Enum_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "experiments.run" */
+export enum Experiments_Run_Constraint {
+  /** unique or primary key constraint on columns "code" */
+  RunCodeKey = 'run_code_key',
+  /** unique or primary key constraint on columns "id" */
+  RunPkey = 'run_pkey'
+}
+
+/** input type for incrementing numeric columns in table "experiments.run" */
+export type Experiments_Run_Inc_Input = {
+  /** Code for accessing the run */
+  code?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** input type for inserting data into table "experiments.run" */
+export type Experiments_Run_Insert_Input = {
+  /** Code for accessing the run */
+  code?: InputMaybe<Scalars['Int']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  lengths?: InputMaybe<Array<Scalars['Int']['input']>>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  run_list_type?: InputMaybe<Experiments_Run_List_Types_Enum>;
+};
+
+/** Types of experiment runs */
+export type Experiments_Run_List_Types = {
+  __typename?: 'experiments_run_list_types';
+  type: Scalars['String']['output'];
+};
+
+/** aggregated selection of "experiments.run_list_types" */
+export type Experiments_Run_List_Types_Aggregate = {
+  __typename?: 'experiments_run_list_types_aggregate';
+  aggregate?: Maybe<Experiments_Run_List_Types_Aggregate_Fields>;
+  nodes: Array<Experiments_Run_List_Types>;
+};
+
+/** aggregate fields of "experiments.run_list_types" */
+export type Experiments_Run_List_Types_Aggregate_Fields = {
+  __typename?: 'experiments_run_list_types_aggregate_fields';
+  count: Scalars['Int']['output'];
+  max?: Maybe<Experiments_Run_List_Types_Max_Fields>;
+  min?: Maybe<Experiments_Run_List_Types_Min_Fields>;
+};
+
+
+/** aggregate fields of "experiments.run_list_types" */
+export type Experiments_Run_List_Types_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Experiments_Run_List_Types_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Boolean expression to filter rows from the table "experiments.run_list_types". All fields are combined with a logical 'AND'. */
+export type Experiments_Run_List_Types_Bool_Exp = {
+  _and?: InputMaybe<Array<Experiments_Run_List_Types_Bool_Exp>>;
+  _not?: InputMaybe<Experiments_Run_List_Types_Bool_Exp>;
+  _or?: InputMaybe<Array<Experiments_Run_List_Types_Bool_Exp>>;
+  type?: InputMaybe<String_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "experiments.run_list_types" */
+export enum Experiments_Run_List_Types_Constraint {
+  /** unique or primary key constraint on columns "type" */
+  RunListTypesPkey = 'run_list_types_pkey'
+}
+
+export enum Experiments_Run_List_Types_Enum {
+  CategorizedOrRandom = 'categorized_or_random',
+  OnlyCategorized = 'only_categorized',
+  OnlyRandom = 'only_random'
+}
+
+/** Boolean expression to compare columns of type "experiments_run_list_types_enum". All fields are combined with logical 'AND'. */
+export type Experiments_Run_List_Types_Enum_Comparison_Exp = {
+  _eq?: InputMaybe<Experiments_Run_List_Types_Enum>;
+  _in?: InputMaybe<Array<Experiments_Run_List_Types_Enum>>;
+  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
+  _neq?: InputMaybe<Experiments_Run_List_Types_Enum>;
+  _nin?: InputMaybe<Array<Experiments_Run_List_Types_Enum>>;
+};
+
+/** input type for inserting data into table "experiments.run_list_types" */
+export type Experiments_Run_List_Types_Insert_Input = {
+  type?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregate max on columns */
+export type Experiments_Run_List_Types_Max_Fields = {
+  __typename?: 'experiments_run_list_types_max_fields';
+  type?: Maybe<Scalars['String']['output']>;
+};
+
+/** aggregate min on columns */
+export type Experiments_Run_List_Types_Min_Fields = {
+  __typename?: 'experiments_run_list_types_min_fields';
+  type?: Maybe<Scalars['String']['output']>;
+};
+
+/** response of any mutation on the table "experiments.run_list_types" */
+export type Experiments_Run_List_Types_Mutation_Response = {
+  __typename?: 'experiments_run_list_types_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']['output'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Experiments_Run_List_Types>;
+};
+
+/** on_conflict condition type for table "experiments.run_list_types" */
+export type Experiments_Run_List_Types_On_Conflict = {
+  constraint: Experiments_Run_List_Types_Constraint;
+  update_columns?: Array<Experiments_Run_List_Types_Update_Column>;
+  where?: InputMaybe<Experiments_Run_List_Types_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "experiments.run_list_types". */
+export type Experiments_Run_List_Types_Order_By = {
+  type?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: experiments.run_list_types */
+export type Experiments_Run_List_Types_Pk_Columns_Input = {
+  type: Scalars['String']['input'];
+};
+
+/** select columns of table "experiments.run_list_types" */
+export enum Experiments_Run_List_Types_Select_Column {
+  /** column name */
+  Type = 'type'
+}
+
+/** input type for updating data in table "experiments.run_list_types" */
+export type Experiments_Run_List_Types_Set_Input = {
+  type?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** Streaming cursor of the table "experiments_run_list_types" */
+export type Experiments_Run_List_Types_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Experiments_Run_List_Types_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Experiments_Run_List_Types_Stream_Cursor_Value_Input = {
+  type?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** update columns of table "experiments.run_list_types" */
+export enum Experiments_Run_List_Types_Update_Column {
+  /** column name */
+  Type = 'type'
+}
+
+export type Experiments_Run_List_Types_Updates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Experiments_Run_List_Types_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Experiments_Run_List_Types_Bool_Exp;
+};
+
+/** aggregate max on columns */
+export type Experiments_Run_Max_Fields = {
+  __typename?: 'experiments_run_max_fields';
+  /** Code for accessing the run */
+  code?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['uuid']['output']>;
+  lengths?: Maybe<Array<Scalars['Int']['output']>>;
+  name?: Maybe<Scalars['String']['output']>;
+};
+
+/** aggregate min on columns */
+export type Experiments_Run_Min_Fields = {
+  __typename?: 'experiments_run_min_fields';
+  /** Code for accessing the run */
+  code?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['uuid']['output']>;
+  lengths?: Maybe<Array<Scalars['Int']['output']>>;
+  name?: Maybe<Scalars['String']['output']>;
+};
+
+/** response of any mutation on the table "experiments.run" */
+export type Experiments_Run_Mutation_Response = {
+  __typename?: 'experiments_run_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']['output'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Experiments_Run>;
+};
+
+/** input type for inserting object relation for remote table "experiments.run" */
+export type Experiments_Run_Obj_Rel_Insert_Input = {
+  data: Experiments_Run_Insert_Input;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Experiments_Run_On_Conflict>;
+};
+
+/** on_conflict condition type for table "experiments.run" */
+export type Experiments_Run_On_Conflict = {
+  constraint: Experiments_Run_Constraint;
+  update_columns?: Array<Experiments_Run_Update_Column>;
+  where?: InputMaybe<Experiments_Run_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "experiments.run". */
+export type Experiments_Run_Order_By = {
+  code?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  lengths?: InputMaybe<Order_By>;
+  name?: InputMaybe<Order_By>;
+  run_list_type?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: experiments.run */
+export type Experiments_Run_Pk_Columns_Input = {
+  id: Scalars['uuid']['input'];
+};
+
+/** select columns of table "experiments.run" */
+export enum Experiments_Run_Select_Column {
+  /** column name */
+  Code = 'code',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Lengths = 'lengths',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  RunListType = 'run_list_type'
+}
+
+/** input type for updating data in table "experiments.run" */
+export type Experiments_Run_Set_Input = {
+  /** Code for accessing the run */
+  code?: InputMaybe<Scalars['Int']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  lengths?: InputMaybe<Array<Scalars['Int']['input']>>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  run_list_type?: InputMaybe<Experiments_Run_List_Types_Enum>;
+};
+
+/** aggregate stddev on columns */
+export type Experiments_Run_Stddev_Fields = {
+  __typename?: 'experiments_run_stddev_fields';
+  /** Code for accessing the run */
+  code?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Experiments_Run_Stddev_Pop_Fields = {
+  __typename?: 'experiments_run_stddev_pop_fields';
+  /** Code for accessing the run */
+  code?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Experiments_Run_Stddev_Samp_Fields = {
+  __typename?: 'experiments_run_stddev_samp_fields';
+  /** Code for accessing the run */
+  code?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Streaming cursor of the table "experiments_run" */
+export type Experiments_Run_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Experiments_Run_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Experiments_Run_Stream_Cursor_Value_Input = {
+  /** Code for accessing the run */
+  code?: InputMaybe<Scalars['Int']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  lengths?: InputMaybe<Array<Scalars['Int']['input']>>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  run_list_type?: InputMaybe<Experiments_Run_List_Types_Enum>;
+};
+
+/** aggregate sum on columns */
+export type Experiments_Run_Sum_Fields = {
+  __typename?: 'experiments_run_sum_fields';
+  /** Code for accessing the run */
+  code?: Maybe<Scalars['Int']['output']>;
+};
+
+/** update columns of table "experiments.run" */
+export enum Experiments_Run_Update_Column {
+  /** column name */
+  Code = 'code',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Lengths = 'lengths',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  RunListType = 'run_list_type'
+}
+
+export type Experiments_Run_Updates = {
+  /** increments the numeric columns with given value of the filtered values */
+  _inc?: InputMaybe<Experiments_Run_Inc_Input>;
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Experiments_Run_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Experiments_Run_Bool_Exp;
+};
+
+/** aggregate var_pop on columns */
+export type Experiments_Run_Var_Pop_Fields = {
+  __typename?: 'experiments_run_var_pop_fields';
+  /** Code for accessing the run */
+  code?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate var_samp on columns */
+export type Experiments_Run_Var_Samp_Fields = {
+  __typename?: 'experiments_run_var_samp_fields';
+  /** Code for accessing the run */
+  code?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate variance on columns */
+export type Experiments_Run_Variance_Fields = {
+  __typename?: 'experiments_run_variance_fields';
+  /** Code for accessing the run */
+  code?: Maybe<Scalars['Float']['output']>;
+};
+
 /** columns and relationships of "storage.files" */
 export type Files = {
   __typename?: 'files';
@@ -2973,6 +4143,26 @@ export type Mutation_Root = {
   deleteVirus?: Maybe<Virus>;
   /** delete data from the table: "storage.virus" */
   deleteViruses?: Maybe<Virus_Mutation_Response>;
+  /** delete data from the table: "experiments.experiments" */
+  delete_experiments_experiments?: Maybe<Experiments_Experiments_Mutation_Response>;
+  /** delete single row from the table: "experiments.experiments" */
+  delete_experiments_experiments_by_pk?: Maybe<Experiments_Experiments>;
+  /** delete data from the table: "experiments.recall" */
+  delete_experiments_recall?: Maybe<Experiments_Recall_Mutation_Response>;
+  /** delete single row from the table: "experiments.recall" */
+  delete_experiments_recall_by_pk?: Maybe<Experiments_Recall>;
+  /** delete data from the table: "experiments.recognition" */
+  delete_experiments_recognition?: Maybe<Experiments_Recognition_Mutation_Response>;
+  /** delete single row from the table: "experiments.recognition" */
+  delete_experiments_recognition_by_pk?: Maybe<Experiments_Recognition>;
+  /** delete data from the table: "experiments.run" */
+  delete_experiments_run?: Maybe<Experiments_Run_Mutation_Response>;
+  /** delete single row from the table: "experiments.run" */
+  delete_experiments_run_by_pk?: Maybe<Experiments_Run>;
+  /** delete data from the table: "experiments.run_list_types" */
+  delete_experiments_run_list_types?: Maybe<Experiments_Run_List_Types_Mutation_Response>;
+  /** delete single row from the table: "experiments.run_list_types" */
+  delete_experiments_run_list_types_by_pk?: Maybe<Experiments_Run_List_Types>;
   /** delete data from the table: "genders" */
   delete_genders?: Maybe<Genders_Mutation_Response>;
   /** delete single row from the table: "genders" */
@@ -3049,6 +4239,26 @@ export type Mutation_Root = {
   insertVirus?: Maybe<Virus>;
   /** insert data into the table: "storage.virus" */
   insertViruses?: Maybe<Virus_Mutation_Response>;
+  /** insert data into the table: "experiments.experiments" */
+  insert_experiments_experiments?: Maybe<Experiments_Experiments_Mutation_Response>;
+  /** insert a single row into the table: "experiments.experiments" */
+  insert_experiments_experiments_one?: Maybe<Experiments_Experiments>;
+  /** insert data into the table: "experiments.recall" */
+  insert_experiments_recall?: Maybe<Experiments_Recall_Mutation_Response>;
+  /** insert a single row into the table: "experiments.recall" */
+  insert_experiments_recall_one?: Maybe<Experiments_Recall>;
+  /** insert data into the table: "experiments.recognition" */
+  insert_experiments_recognition?: Maybe<Experiments_Recognition_Mutation_Response>;
+  /** insert a single row into the table: "experiments.recognition" */
+  insert_experiments_recognition_one?: Maybe<Experiments_Recognition>;
+  /** insert data into the table: "experiments.run" */
+  insert_experiments_run?: Maybe<Experiments_Run_Mutation_Response>;
+  /** insert data into the table: "experiments.run_list_types" */
+  insert_experiments_run_list_types?: Maybe<Experiments_Run_List_Types_Mutation_Response>;
+  /** insert a single row into the table: "experiments.run_list_types" */
+  insert_experiments_run_list_types_one?: Maybe<Experiments_Run_List_Types>;
+  /** insert a single row into the table: "experiments.run" */
+  insert_experiments_run_one?: Maybe<Experiments_Run>;
   /** insert data into the table: "genders" */
   insert_genders?: Maybe<Genders_Mutation_Response>;
   /** insert a single row into the table: "genders" */
@@ -3143,6 +4353,36 @@ export type Mutation_Root = {
   update_authUserSecurityKeys_many?: Maybe<Array<Maybe<AuthUserSecurityKeys_Mutation_Response>>>;
   /** update multiples rows of table: "storage.buckets" */
   update_buckets_many?: Maybe<Array<Maybe<Buckets_Mutation_Response>>>;
+  /** update data of the table: "experiments.experiments" */
+  update_experiments_experiments?: Maybe<Experiments_Experiments_Mutation_Response>;
+  /** update single row of the table: "experiments.experiments" */
+  update_experiments_experiments_by_pk?: Maybe<Experiments_Experiments>;
+  /** update multiples rows of table: "experiments.experiments" */
+  update_experiments_experiments_many?: Maybe<Array<Maybe<Experiments_Experiments_Mutation_Response>>>;
+  /** update data of the table: "experiments.recall" */
+  update_experiments_recall?: Maybe<Experiments_Recall_Mutation_Response>;
+  /** update single row of the table: "experiments.recall" */
+  update_experiments_recall_by_pk?: Maybe<Experiments_Recall>;
+  /** update multiples rows of table: "experiments.recall" */
+  update_experiments_recall_many?: Maybe<Array<Maybe<Experiments_Recall_Mutation_Response>>>;
+  /** update data of the table: "experiments.recognition" */
+  update_experiments_recognition?: Maybe<Experiments_Recognition_Mutation_Response>;
+  /** update single row of the table: "experiments.recognition" */
+  update_experiments_recognition_by_pk?: Maybe<Experiments_Recognition>;
+  /** update multiples rows of table: "experiments.recognition" */
+  update_experiments_recognition_many?: Maybe<Array<Maybe<Experiments_Recognition_Mutation_Response>>>;
+  /** update data of the table: "experiments.run" */
+  update_experiments_run?: Maybe<Experiments_Run_Mutation_Response>;
+  /** update single row of the table: "experiments.run" */
+  update_experiments_run_by_pk?: Maybe<Experiments_Run>;
+  /** update data of the table: "experiments.run_list_types" */
+  update_experiments_run_list_types?: Maybe<Experiments_Run_List_Types_Mutation_Response>;
+  /** update single row of the table: "experiments.run_list_types" */
+  update_experiments_run_list_types_by_pk?: Maybe<Experiments_Run_List_Types>;
+  /** update multiples rows of table: "experiments.run_list_types" */
+  update_experiments_run_list_types_many?: Maybe<Array<Maybe<Experiments_Run_List_Types_Mutation_Response>>>;
+  /** update multiples rows of table: "experiments.run" */
+  update_experiments_run_many?: Maybe<Array<Maybe<Experiments_Run_Mutation_Response>>>;
   /** update multiples rows of table: "storage.files" */
   update_files_many?: Maybe<Array<Maybe<Files_Mutation_Response>>>;
   /** update data of the table: "genders" */
@@ -3335,6 +4575,66 @@ export type Mutation_RootDeleteVirusArgs = {
 /** mutation root */
 export type Mutation_RootDeleteVirusesArgs = {
   where: Virus_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Experiments_ExperimentsArgs = {
+  where: Experiments_Experiments_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Experiments_Experiments_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Experiments_RecallArgs = {
+  where: Experiments_Recall_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Experiments_Recall_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Experiments_RecognitionArgs = {
+  where: Experiments_Recognition_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Experiments_Recognition_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Experiments_RunArgs = {
+  where: Experiments_Run_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Experiments_Run_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Experiments_Run_List_TypesArgs = {
+  where: Experiments_Run_List_Types_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Experiments_Run_List_Types_By_PkArgs = {
+  type: Scalars['String']['input'];
 };
 
 
@@ -3588,6 +4888,76 @@ export type Mutation_RootInsertVirusArgs = {
 export type Mutation_RootInsertVirusesArgs = {
   objects: Array<Virus_Insert_Input>;
   on_conflict?: InputMaybe<Virus_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Experiments_ExperimentsArgs = {
+  objects: Array<Experiments_Experiments_Insert_Input>;
+  on_conflict?: InputMaybe<Experiments_Experiments_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Experiments_Experiments_OneArgs = {
+  object: Experiments_Experiments_Insert_Input;
+  on_conflict?: InputMaybe<Experiments_Experiments_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Experiments_RecallArgs = {
+  objects: Array<Experiments_Recall_Insert_Input>;
+  on_conflict?: InputMaybe<Experiments_Recall_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Experiments_Recall_OneArgs = {
+  object: Experiments_Recall_Insert_Input;
+  on_conflict?: InputMaybe<Experiments_Recall_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Experiments_RecognitionArgs = {
+  objects: Array<Experiments_Recognition_Insert_Input>;
+  on_conflict?: InputMaybe<Experiments_Recognition_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Experiments_Recognition_OneArgs = {
+  object: Experiments_Recognition_Insert_Input;
+  on_conflict?: InputMaybe<Experiments_Recognition_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Experiments_RunArgs = {
+  objects: Array<Experiments_Run_Insert_Input>;
+  on_conflict?: InputMaybe<Experiments_Run_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Experiments_Run_List_TypesArgs = {
+  objects: Array<Experiments_Run_List_Types_Insert_Input>;
+  on_conflict?: InputMaybe<Experiments_Run_List_Types_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Experiments_Run_List_Types_OneArgs = {
+  object: Experiments_Run_List_Types_Insert_Input;
+  on_conflict?: InputMaybe<Experiments_Run_List_Types_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Experiments_Run_OneArgs = {
+  object: Experiments_Run_Insert_Input;
+  on_conflict?: InputMaybe<Experiments_Run_On_Conflict>;
 };
 
 
@@ -3968,6 +5338,128 @@ export type Mutation_RootUpdate_Buckets_ManyArgs = {
 
 
 /** mutation root */
+export type Mutation_RootUpdate_Experiments_ExperimentsArgs = {
+  _set?: InputMaybe<Experiments_Experiments_Set_Input>;
+  where: Experiments_Experiments_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Experiments_Experiments_By_PkArgs = {
+  _set?: InputMaybe<Experiments_Experiments_Set_Input>;
+  pk_columns: Experiments_Experiments_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Experiments_Experiments_ManyArgs = {
+  updates: Array<Experiments_Experiments_Updates>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Experiments_RecallArgs = {
+  _append?: InputMaybe<Experiments_Recall_Append_Input>;
+  _delete_at_path?: InputMaybe<Experiments_Recall_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<Experiments_Recall_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<Experiments_Recall_Delete_Key_Input>;
+  _prepend?: InputMaybe<Experiments_Recall_Prepend_Input>;
+  _set?: InputMaybe<Experiments_Recall_Set_Input>;
+  where: Experiments_Recall_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Experiments_Recall_By_PkArgs = {
+  _append?: InputMaybe<Experiments_Recall_Append_Input>;
+  _delete_at_path?: InputMaybe<Experiments_Recall_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<Experiments_Recall_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<Experiments_Recall_Delete_Key_Input>;
+  _prepend?: InputMaybe<Experiments_Recall_Prepend_Input>;
+  _set?: InputMaybe<Experiments_Recall_Set_Input>;
+  pk_columns: Experiments_Recall_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Experiments_Recall_ManyArgs = {
+  updates: Array<Experiments_Recall_Updates>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Experiments_RecognitionArgs = {
+  _append?: InputMaybe<Experiments_Recognition_Append_Input>;
+  _delete_at_path?: InputMaybe<Experiments_Recognition_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<Experiments_Recognition_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<Experiments_Recognition_Delete_Key_Input>;
+  _prepend?: InputMaybe<Experiments_Recognition_Prepend_Input>;
+  _set?: InputMaybe<Experiments_Recognition_Set_Input>;
+  where: Experiments_Recognition_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Experiments_Recognition_By_PkArgs = {
+  _append?: InputMaybe<Experiments_Recognition_Append_Input>;
+  _delete_at_path?: InputMaybe<Experiments_Recognition_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<Experiments_Recognition_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<Experiments_Recognition_Delete_Key_Input>;
+  _prepend?: InputMaybe<Experiments_Recognition_Prepend_Input>;
+  _set?: InputMaybe<Experiments_Recognition_Set_Input>;
+  pk_columns: Experiments_Recognition_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Experiments_Recognition_ManyArgs = {
+  updates: Array<Experiments_Recognition_Updates>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Experiments_RunArgs = {
+  _inc?: InputMaybe<Experiments_Run_Inc_Input>;
+  _set?: InputMaybe<Experiments_Run_Set_Input>;
+  where: Experiments_Run_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Experiments_Run_By_PkArgs = {
+  _inc?: InputMaybe<Experiments_Run_Inc_Input>;
+  _set?: InputMaybe<Experiments_Run_Set_Input>;
+  pk_columns: Experiments_Run_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Experiments_Run_List_TypesArgs = {
+  _set?: InputMaybe<Experiments_Run_List_Types_Set_Input>;
+  where: Experiments_Run_List_Types_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Experiments_Run_List_Types_By_PkArgs = {
+  _set?: InputMaybe<Experiments_Run_List_Types_Set_Input>;
+  pk_columns: Experiments_Run_List_Types_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Experiments_Run_List_Types_ManyArgs = {
+  updates: Array<Experiments_Run_List_Types_Updates>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Experiments_Run_ManyArgs = {
+  updates: Array<Experiments_Run_Updates>;
+};
+
+
+/** mutation root */
 export type Mutation_RootUpdate_Files_ManyArgs = {
   updates: Array<Files_Updates>;
 };
@@ -4215,6 +5707,36 @@ export type Query_Root = {
   buckets: Array<Buckets>;
   /** fetch aggregated fields from the table: "storage.buckets" */
   bucketsAggregate: Buckets_Aggregate;
+  /** fetch data from the table: "experiments.experiments" */
+  experiments_experiments: Array<Experiments_Experiments>;
+  /** fetch aggregated fields from the table: "experiments.experiments" */
+  experiments_experiments_aggregate: Experiments_Experiments_Aggregate;
+  /** fetch data from the table: "experiments.experiments" using primary key columns */
+  experiments_experiments_by_pk?: Maybe<Experiments_Experiments>;
+  /** fetch data from the table: "experiments.recall" */
+  experiments_recall: Array<Experiments_Recall>;
+  /** fetch aggregated fields from the table: "experiments.recall" */
+  experiments_recall_aggregate: Experiments_Recall_Aggregate;
+  /** fetch data from the table: "experiments.recall" using primary key columns */
+  experiments_recall_by_pk?: Maybe<Experiments_Recall>;
+  /** fetch data from the table: "experiments.recognition" */
+  experiments_recognition: Array<Experiments_Recognition>;
+  /** fetch aggregated fields from the table: "experiments.recognition" */
+  experiments_recognition_aggregate: Experiments_Recognition_Aggregate;
+  /** fetch data from the table: "experiments.recognition" using primary key columns */
+  experiments_recognition_by_pk?: Maybe<Experiments_Recognition>;
+  /** fetch data from the table: "experiments.run" */
+  experiments_run: Array<Experiments_Run>;
+  /** fetch aggregated fields from the table: "experiments.run" */
+  experiments_run_aggregate: Experiments_Run_Aggregate;
+  /** fetch data from the table: "experiments.run" using primary key columns */
+  experiments_run_by_pk?: Maybe<Experiments_Run>;
+  /** fetch data from the table: "experiments.run_list_types" */
+  experiments_run_list_types: Array<Experiments_Run_List_Types>;
+  /** fetch aggregated fields from the table: "experiments.run_list_types" */
+  experiments_run_list_types_aggregate: Experiments_Run_List_Types_Aggregate;
+  /** fetch data from the table: "experiments.run_list_types" using primary key columns */
+  experiments_run_list_types_by_pk?: Maybe<Experiments_Run_List_Types>;
   /** fetch data from the table: "storage.files" using primary key columns */
   file?: Maybe<Files>;
   /** An array relationship */
@@ -4263,6 +5785,10 @@ export type Query_Root = {
   words_lists_aggregate: Words_Lists_Aggregate;
   /** fetch data from the table: "words.lists" using primary key columns */
   words_lists_by_pk?: Maybe<Words_Lists>;
+  /** fetch data from the table: "words.lists_categories" */
+  words_lists_categories: Array<Words_Lists_Categories>;
+  /** fetch aggregated fields from the table: "words.lists_categories" */
+  words_lists_categories_aggregate: Words_Lists_Categories_Aggregate;
   /** fetch data from the table: "words.lists_words_view" */
   words_lists_words_view: Array<Words_Lists_Words_View>;
   /** fetch aggregated fields from the table: "words.lists_words_view" */
@@ -4489,6 +6015,121 @@ export type Query_RootBucketsAggregateArgs = {
 };
 
 
+export type Query_RootExperiments_ExperimentsArgs = {
+  distinct_on?: InputMaybe<Array<Experiments_Experiments_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Experiments_Experiments_Order_By>>;
+  where?: InputMaybe<Experiments_Experiments_Bool_Exp>;
+};
+
+
+export type Query_RootExperiments_Experiments_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Experiments_Experiments_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Experiments_Experiments_Order_By>>;
+  where?: InputMaybe<Experiments_Experiments_Bool_Exp>;
+};
+
+
+export type Query_RootExperiments_Experiments_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
+export type Query_RootExperiments_RecallArgs = {
+  distinct_on?: InputMaybe<Array<Experiments_Recall_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Experiments_Recall_Order_By>>;
+  where?: InputMaybe<Experiments_Recall_Bool_Exp>;
+};
+
+
+export type Query_RootExperiments_Recall_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Experiments_Recall_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Experiments_Recall_Order_By>>;
+  where?: InputMaybe<Experiments_Recall_Bool_Exp>;
+};
+
+
+export type Query_RootExperiments_Recall_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
+export type Query_RootExperiments_RecognitionArgs = {
+  distinct_on?: InputMaybe<Array<Experiments_Recognition_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Experiments_Recognition_Order_By>>;
+  where?: InputMaybe<Experiments_Recognition_Bool_Exp>;
+};
+
+
+export type Query_RootExperiments_Recognition_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Experiments_Recognition_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Experiments_Recognition_Order_By>>;
+  where?: InputMaybe<Experiments_Recognition_Bool_Exp>;
+};
+
+
+export type Query_RootExperiments_Recognition_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
+export type Query_RootExperiments_RunArgs = {
+  distinct_on?: InputMaybe<Array<Experiments_Run_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Experiments_Run_Order_By>>;
+  where?: InputMaybe<Experiments_Run_Bool_Exp>;
+};
+
+
+export type Query_RootExperiments_Run_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Experiments_Run_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Experiments_Run_Order_By>>;
+  where?: InputMaybe<Experiments_Run_Bool_Exp>;
+};
+
+
+export type Query_RootExperiments_Run_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
+export type Query_RootExperiments_Run_List_TypesArgs = {
+  distinct_on?: InputMaybe<Array<Experiments_Run_List_Types_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Experiments_Run_List_Types_Order_By>>;
+  where?: InputMaybe<Experiments_Run_List_Types_Bool_Exp>;
+};
+
+
+export type Query_RootExperiments_Run_List_Types_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Experiments_Run_List_Types_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Experiments_Run_List_Types_Order_By>>;
+  where?: InputMaybe<Experiments_Run_List_Types_Bool_Exp>;
+};
+
+
+export type Query_RootExperiments_Run_List_Types_By_PkArgs = {
+  type: Scalars['String']['input'];
+};
+
+
 export type Query_RootFileArgs = {
   id: Scalars['uuid']['input'];
 };
@@ -4673,6 +6314,24 @@ export type Query_RootWords_Lists_By_PkArgs = {
 };
 
 
+export type Query_RootWords_Lists_CategoriesArgs = {
+  distinct_on?: InputMaybe<Array<Words_Lists_Categories_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Words_Lists_Categories_Order_By>>;
+  where?: InputMaybe<Words_Lists_Categories_Bool_Exp>;
+};
+
+
+export type Query_RootWords_Lists_Categories_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Words_Lists_Categories_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Words_Lists_Categories_Order_By>>;
+  where?: InputMaybe<Words_Lists_Categories_Bool_Exp>;
+};
+
+
 export type Query_RootWords_Lists_Words_ViewArgs = {
   distinct_on?: InputMaybe<Array<Words_Lists_Words_View_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -4741,10 +6400,34 @@ export type Query_RootWords_Words_Lists_By_PkArgs = {
 export type Subjects = {
   __typename?: 'subjects';
   age: Scalars['Int']['output'];
+  /** An array relationship */
+  experiments: Array<Experiments_Experiments>;
+  /** An aggregate relationship */
+  experiments_aggregate: Experiments_Experiments_Aggregate;
   gender: Genders_Enum;
   id: Scalars['uuid']['output'];
   /** An object relationship */
   user: Users;
+};
+
+
+/** People taking part in the experiment */
+export type SubjectsExperimentsArgs = {
+  distinct_on?: InputMaybe<Array<Experiments_Experiments_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Experiments_Experiments_Order_By>>;
+  where?: InputMaybe<Experiments_Experiments_Bool_Exp>;
+};
+
+
+/** People taking part in the experiment */
+export type SubjectsExperiments_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Experiments_Experiments_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Experiments_Experiments_Order_By>>;
+  where?: InputMaybe<Experiments_Experiments_Bool_Exp>;
 };
 
 /** aggregated selection of "subjects" */
@@ -4789,6 +6472,8 @@ export type Subjects_Bool_Exp = {
   _not?: InputMaybe<Subjects_Bool_Exp>;
   _or?: InputMaybe<Array<Subjects_Bool_Exp>>;
   age?: InputMaybe<Int_Comparison_Exp>;
+  experiments?: InputMaybe<Experiments_Experiments_Bool_Exp>;
+  experiments_aggregate?: InputMaybe<Experiments_Experiments_Aggregate_Bool_Exp>;
   gender?: InputMaybe<Genders_Enum_Comparison_Exp>;
   id?: InputMaybe<Uuid_Comparison_Exp>;
   user?: InputMaybe<Users_Bool_Exp>;
@@ -4808,6 +6493,7 @@ export type Subjects_Inc_Input = {
 /** input type for inserting data into table "subjects" */
 export type Subjects_Insert_Input = {
   age?: InputMaybe<Scalars['Int']['input']>;
+  experiments?: InputMaybe<Experiments_Experiments_Arr_Rel_Insert_Input>;
   gender?: InputMaybe<Genders_Enum>;
   id?: InputMaybe<Scalars['uuid']['input']>;
   user?: InputMaybe<Users_Obj_Rel_Insert_Input>;
@@ -4836,6 +6522,13 @@ export type Subjects_Mutation_Response = {
   returning: Array<Subjects>;
 };
 
+/** input type for inserting object relation for remote table "subjects" */
+export type Subjects_Obj_Rel_Insert_Input = {
+  data: Subjects_Insert_Input;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Subjects_On_Conflict>;
+};
+
 /** on_conflict condition type for table "subjects" */
 export type Subjects_On_Conflict = {
   constraint: Subjects_Constraint;
@@ -4846,6 +6539,7 @@ export type Subjects_On_Conflict = {
 /** Ordering options when selecting data from "subjects". */
 export type Subjects_Order_By = {
   age?: InputMaybe<Order_By>;
+  experiments_aggregate?: InputMaybe<Experiments_Experiments_Aggregate_Order_By>;
   gender?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
   user?: InputMaybe<Users_Order_By>;
@@ -5023,6 +6717,46 @@ export type Subscription_Root = {
   bucketsAggregate: Buckets_Aggregate;
   /** fetch data from the table in a streaming manner: "storage.buckets" */
   buckets_stream: Array<Buckets>;
+  /** fetch data from the table: "experiments.experiments" */
+  experiments_experiments: Array<Experiments_Experiments>;
+  /** fetch aggregated fields from the table: "experiments.experiments" */
+  experiments_experiments_aggregate: Experiments_Experiments_Aggregate;
+  /** fetch data from the table: "experiments.experiments" using primary key columns */
+  experiments_experiments_by_pk?: Maybe<Experiments_Experiments>;
+  /** fetch data from the table in a streaming manner: "experiments.experiments" */
+  experiments_experiments_stream: Array<Experiments_Experiments>;
+  /** fetch data from the table: "experiments.recall" */
+  experiments_recall: Array<Experiments_Recall>;
+  /** fetch aggregated fields from the table: "experiments.recall" */
+  experiments_recall_aggregate: Experiments_Recall_Aggregate;
+  /** fetch data from the table: "experiments.recall" using primary key columns */
+  experiments_recall_by_pk?: Maybe<Experiments_Recall>;
+  /** fetch data from the table in a streaming manner: "experiments.recall" */
+  experiments_recall_stream: Array<Experiments_Recall>;
+  /** fetch data from the table: "experiments.recognition" */
+  experiments_recognition: Array<Experiments_Recognition>;
+  /** fetch aggregated fields from the table: "experiments.recognition" */
+  experiments_recognition_aggregate: Experiments_Recognition_Aggregate;
+  /** fetch data from the table: "experiments.recognition" using primary key columns */
+  experiments_recognition_by_pk?: Maybe<Experiments_Recognition>;
+  /** fetch data from the table in a streaming manner: "experiments.recognition" */
+  experiments_recognition_stream: Array<Experiments_Recognition>;
+  /** fetch data from the table: "experiments.run" */
+  experiments_run: Array<Experiments_Run>;
+  /** fetch aggregated fields from the table: "experiments.run" */
+  experiments_run_aggregate: Experiments_Run_Aggregate;
+  /** fetch data from the table: "experiments.run" using primary key columns */
+  experiments_run_by_pk?: Maybe<Experiments_Run>;
+  /** fetch data from the table: "experiments.run_list_types" */
+  experiments_run_list_types: Array<Experiments_Run_List_Types>;
+  /** fetch aggregated fields from the table: "experiments.run_list_types" */
+  experiments_run_list_types_aggregate: Experiments_Run_List_Types_Aggregate;
+  /** fetch data from the table: "experiments.run_list_types" using primary key columns */
+  experiments_run_list_types_by_pk?: Maybe<Experiments_Run_List_Types>;
+  /** fetch data from the table in a streaming manner: "experiments.run_list_types" */
+  experiments_run_list_types_stream: Array<Experiments_Run_List_Types>;
+  /** fetch data from the table in a streaming manner: "experiments.run" */
+  experiments_run_stream: Array<Experiments_Run>;
   /** fetch data from the table: "storage.files" using primary key columns */
   file?: Maybe<Files>;
   /** An array relationship */
@@ -5085,6 +6819,12 @@ export type Subscription_Root = {
   words_lists_aggregate: Words_Lists_Aggregate;
   /** fetch data from the table: "words.lists" using primary key columns */
   words_lists_by_pk?: Maybe<Words_Lists>;
+  /** fetch data from the table: "words.lists_categories" */
+  words_lists_categories: Array<Words_Lists_Categories>;
+  /** fetch aggregated fields from the table: "words.lists_categories" */
+  words_lists_categories_aggregate: Words_Lists_Categories_Aggregate;
+  /** fetch data from the table in a streaming manner: "words.lists_categories" */
+  words_lists_categories_stream: Array<Words_Lists_Categories>;
   /** fetch data from the table in a streaming manner: "words.lists" */
   words_lists_stream: Array<Words_Lists>;
   /** fetch data from the table: "words.lists_words_view" */
@@ -5382,6 +7122,156 @@ export type Subscription_RootBuckets_StreamArgs = {
 };
 
 
+export type Subscription_RootExperiments_ExperimentsArgs = {
+  distinct_on?: InputMaybe<Array<Experiments_Experiments_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Experiments_Experiments_Order_By>>;
+  where?: InputMaybe<Experiments_Experiments_Bool_Exp>;
+};
+
+
+export type Subscription_RootExperiments_Experiments_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Experiments_Experiments_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Experiments_Experiments_Order_By>>;
+  where?: InputMaybe<Experiments_Experiments_Bool_Exp>;
+};
+
+
+export type Subscription_RootExperiments_Experiments_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
+export type Subscription_RootExperiments_Experiments_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Experiments_Experiments_Stream_Cursor_Input>>;
+  where?: InputMaybe<Experiments_Experiments_Bool_Exp>;
+};
+
+
+export type Subscription_RootExperiments_RecallArgs = {
+  distinct_on?: InputMaybe<Array<Experiments_Recall_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Experiments_Recall_Order_By>>;
+  where?: InputMaybe<Experiments_Recall_Bool_Exp>;
+};
+
+
+export type Subscription_RootExperiments_Recall_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Experiments_Recall_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Experiments_Recall_Order_By>>;
+  where?: InputMaybe<Experiments_Recall_Bool_Exp>;
+};
+
+
+export type Subscription_RootExperiments_Recall_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
+export type Subscription_RootExperiments_Recall_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Experiments_Recall_Stream_Cursor_Input>>;
+  where?: InputMaybe<Experiments_Recall_Bool_Exp>;
+};
+
+
+export type Subscription_RootExperiments_RecognitionArgs = {
+  distinct_on?: InputMaybe<Array<Experiments_Recognition_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Experiments_Recognition_Order_By>>;
+  where?: InputMaybe<Experiments_Recognition_Bool_Exp>;
+};
+
+
+export type Subscription_RootExperiments_Recognition_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Experiments_Recognition_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Experiments_Recognition_Order_By>>;
+  where?: InputMaybe<Experiments_Recognition_Bool_Exp>;
+};
+
+
+export type Subscription_RootExperiments_Recognition_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
+export type Subscription_RootExperiments_Recognition_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Experiments_Recognition_Stream_Cursor_Input>>;
+  where?: InputMaybe<Experiments_Recognition_Bool_Exp>;
+};
+
+
+export type Subscription_RootExperiments_RunArgs = {
+  distinct_on?: InputMaybe<Array<Experiments_Run_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Experiments_Run_Order_By>>;
+  where?: InputMaybe<Experiments_Run_Bool_Exp>;
+};
+
+
+export type Subscription_RootExperiments_Run_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Experiments_Run_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Experiments_Run_Order_By>>;
+  where?: InputMaybe<Experiments_Run_Bool_Exp>;
+};
+
+
+export type Subscription_RootExperiments_Run_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
+export type Subscription_RootExperiments_Run_List_TypesArgs = {
+  distinct_on?: InputMaybe<Array<Experiments_Run_List_Types_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Experiments_Run_List_Types_Order_By>>;
+  where?: InputMaybe<Experiments_Run_List_Types_Bool_Exp>;
+};
+
+
+export type Subscription_RootExperiments_Run_List_Types_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Experiments_Run_List_Types_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Experiments_Run_List_Types_Order_By>>;
+  where?: InputMaybe<Experiments_Run_List_Types_Bool_Exp>;
+};
+
+
+export type Subscription_RootExperiments_Run_List_Types_By_PkArgs = {
+  type: Scalars['String']['input'];
+};
+
+
+export type Subscription_RootExperiments_Run_List_Types_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Experiments_Run_List_Types_Stream_Cursor_Input>>;
+  where?: InputMaybe<Experiments_Run_List_Types_Bool_Exp>;
+};
+
+
+export type Subscription_RootExperiments_Run_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Experiments_Run_Stream_Cursor_Input>>;
+  where?: InputMaybe<Experiments_Run_Bool_Exp>;
+};
+
+
 export type Subscription_RootFileArgs = {
   id: Scalars['uuid']['input'];
 };
@@ -5612,6 +7502,31 @@ export type Subscription_RootWords_Lists_AggregateArgs = {
 
 export type Subscription_RootWords_Lists_By_PkArgs = {
   id: Scalars['uuid']['input'];
+};
+
+
+export type Subscription_RootWords_Lists_CategoriesArgs = {
+  distinct_on?: InputMaybe<Array<Words_Lists_Categories_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Words_Lists_Categories_Order_By>>;
+  where?: InputMaybe<Words_Lists_Categories_Bool_Exp>;
+};
+
+
+export type Subscription_RootWords_Lists_Categories_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Words_Lists_Categories_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Words_Lists_Categories_Order_By>>;
+  where?: InputMaybe<Words_Lists_Categories_Bool_Exp>;
+};
+
+
+export type Subscription_RootWords_Lists_Categories_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Words_Lists_Categories_Stream_Cursor_Input>>;
+  where?: InputMaybe<Words_Lists_Categories_Bool_Exp>;
 };
 
 
@@ -6938,6 +8853,10 @@ export type Words_List_Types_Updates = {
 /** Lists of words that can be used in an experiment */
 export type Words_Lists = {
   __typename?: 'words_lists';
+  /** An array relationship */
+  categories: Array<Words_Lists_Categories>;
+  /** An aggregate relationship */
+  categories_aggregate: Words_Lists_Categories_Aggregate;
   id: Scalars['uuid']['output'];
   type: Words_List_Types_Enum;
   /** An array relationship */
@@ -6948,6 +8867,26 @@ export type Words_Lists = {
   words_lists: Array<Words_Words_Lists>;
   /** An aggregate relationship */
   words_lists_aggregate: Words_Words_Lists_Aggregate;
+};
+
+
+/** Lists of words that can be used in an experiment */
+export type Words_ListsCategoriesArgs = {
+  distinct_on?: InputMaybe<Array<Words_Lists_Categories_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Words_Lists_Categories_Order_By>>;
+  where?: InputMaybe<Words_Lists_Categories_Bool_Exp>;
+};
+
+
+/** Lists of words that can be used in an experiment */
+export type Words_ListsCategories_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Words_Lists_Categories_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Words_Lists_Categories_Order_By>>;
+  where?: InputMaybe<Words_Lists_Categories_Bool_Exp>;
 };
 
 
@@ -7017,12 +8956,135 @@ export type Words_Lists_Bool_Exp = {
   _and?: InputMaybe<Array<Words_Lists_Bool_Exp>>;
   _not?: InputMaybe<Words_Lists_Bool_Exp>;
   _or?: InputMaybe<Array<Words_Lists_Bool_Exp>>;
+  categories?: InputMaybe<Words_Lists_Categories_Bool_Exp>;
+  categories_aggregate?: InputMaybe<Words_Lists_Categories_Aggregate_Bool_Exp>;
   id?: InputMaybe<Uuid_Comparison_Exp>;
   type?: InputMaybe<Words_List_Types_Enum_Comparison_Exp>;
   words?: InputMaybe<Words_Lists_Words_View_Bool_Exp>;
   words_aggregate?: InputMaybe<Words_Lists_Words_View_Aggregate_Bool_Exp>;
   words_lists?: InputMaybe<Words_Words_Lists_Bool_Exp>;
   words_lists_aggregate?: InputMaybe<Words_Words_Lists_Aggregate_Bool_Exp>;
+};
+
+/** columns and relationships of "words.lists_categories" */
+export type Words_Lists_Categories = {
+  __typename?: 'words_lists_categories';
+  category?: Maybe<Scalars['String']['output']>;
+  list_id?: Maybe<Scalars['uuid']['output']>;
+};
+
+/** aggregated selection of "words.lists_categories" */
+export type Words_Lists_Categories_Aggregate = {
+  __typename?: 'words_lists_categories_aggregate';
+  aggregate?: Maybe<Words_Lists_Categories_Aggregate_Fields>;
+  nodes: Array<Words_Lists_Categories>;
+};
+
+export type Words_Lists_Categories_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Words_Lists_Categories_Aggregate_Bool_Exp_Count>;
+};
+
+export type Words_Lists_Categories_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Words_Lists_Categories_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+  filter?: InputMaybe<Words_Lists_Categories_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
+};
+
+/** aggregate fields of "words.lists_categories" */
+export type Words_Lists_Categories_Aggregate_Fields = {
+  __typename?: 'words_lists_categories_aggregate_fields';
+  count: Scalars['Int']['output'];
+  max?: Maybe<Words_Lists_Categories_Max_Fields>;
+  min?: Maybe<Words_Lists_Categories_Min_Fields>;
+};
+
+
+/** aggregate fields of "words.lists_categories" */
+export type Words_Lists_Categories_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Words_Lists_Categories_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** order by aggregate values of table "words.lists_categories" */
+export type Words_Lists_Categories_Aggregate_Order_By = {
+  count?: InputMaybe<Order_By>;
+  max?: InputMaybe<Words_Lists_Categories_Max_Order_By>;
+  min?: InputMaybe<Words_Lists_Categories_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "words.lists_categories" */
+export type Words_Lists_Categories_Arr_Rel_Insert_Input = {
+  data: Array<Words_Lists_Categories_Insert_Input>;
+};
+
+/** Boolean expression to filter rows from the table "words.lists_categories". All fields are combined with a logical 'AND'. */
+export type Words_Lists_Categories_Bool_Exp = {
+  _and?: InputMaybe<Array<Words_Lists_Categories_Bool_Exp>>;
+  _not?: InputMaybe<Words_Lists_Categories_Bool_Exp>;
+  _or?: InputMaybe<Array<Words_Lists_Categories_Bool_Exp>>;
+  category?: InputMaybe<String_Comparison_Exp>;
+  list_id?: InputMaybe<Uuid_Comparison_Exp>;
+};
+
+/** input type for inserting data into table "words.lists_categories" */
+export type Words_Lists_Categories_Insert_Input = {
+  category?: InputMaybe<Scalars['String']['input']>;
+  list_id?: InputMaybe<Scalars['uuid']['input']>;
+};
+
+/** aggregate max on columns */
+export type Words_Lists_Categories_Max_Fields = {
+  __typename?: 'words_lists_categories_max_fields';
+  category?: Maybe<Scalars['String']['output']>;
+  list_id?: Maybe<Scalars['uuid']['output']>;
+};
+
+/** order by max() on columns of table "words.lists_categories" */
+export type Words_Lists_Categories_Max_Order_By = {
+  category?: InputMaybe<Order_By>;
+  list_id?: InputMaybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Words_Lists_Categories_Min_Fields = {
+  __typename?: 'words_lists_categories_min_fields';
+  category?: Maybe<Scalars['String']['output']>;
+  list_id?: Maybe<Scalars['uuid']['output']>;
+};
+
+/** order by min() on columns of table "words.lists_categories" */
+export type Words_Lists_Categories_Min_Order_By = {
+  category?: InputMaybe<Order_By>;
+  list_id?: InputMaybe<Order_By>;
+};
+
+/** Ordering options when selecting data from "words.lists_categories". */
+export type Words_Lists_Categories_Order_By = {
+  category?: InputMaybe<Order_By>;
+  list_id?: InputMaybe<Order_By>;
+};
+
+/** select columns of table "words.lists_categories" */
+export enum Words_Lists_Categories_Select_Column {
+  /** column name */
+  Category = 'category',
+  /** column name */
+  ListId = 'list_id'
+}
+
+/** Streaming cursor of the table "words_lists_categories" */
+export type Words_Lists_Categories_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Words_Lists_Categories_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Words_Lists_Categories_Stream_Cursor_Value_Input = {
+  category?: InputMaybe<Scalars['String']['input']>;
+  list_id?: InputMaybe<Scalars['uuid']['input']>;
 };
 
 /** unique or primary key constraints on table "words.lists" */
@@ -7033,6 +9095,7 @@ export enum Words_Lists_Constraint {
 
 /** input type for inserting data into table "words.lists" */
 export type Words_Lists_Insert_Input = {
+  categories?: InputMaybe<Words_Lists_Categories_Arr_Rel_Insert_Input>;
   id?: InputMaybe<Scalars['uuid']['input']>;
   type?: InputMaybe<Words_List_Types_Enum>;
   words?: InputMaybe<Words_Lists_Words_View_Arr_Rel_Insert_Input>;
@@ -7076,6 +9139,7 @@ export type Words_Lists_On_Conflict = {
 
 /** Ordering options when selecting data from "words.lists". */
 export type Words_Lists_Order_By = {
+  categories_aggregate?: InputMaybe<Words_Lists_Categories_Aggregate_Order_By>;
   id?: InputMaybe<Order_By>;
   type?: InputMaybe<Order_By>;
   words_aggregate?: InputMaybe<Words_Lists_Words_View_Aggregate_Order_By>;
@@ -7980,6 +10044,37 @@ export type Words_Words_Variance_Fields = {
   syllables?: Maybe<Scalars['Float']['output']>;
 };
 
+export type InsertExperimentMutationVariables = Exact<{
+  runId: Scalars['uuid']['input'];
+  listType: Words_List_Types_Enum;
+  recallListId: Scalars['uuid']['input'];
+  recallWords: Array<Scalars['String']['input']> | Scalars['String']['input'];
+  recognitionListId: Scalars['uuid']['input'];
+  recognitionWords: Array<Scalars['String']['input']> | Scalars['String']['input'];
+  distractorWords: Array<Scalars['String']['input']> | Scalars['String']['input'];
+}>;
+
+
+export type InsertExperimentMutation = { __typename?: 'mutation_root', insert_experiments_experiments_one?: { __typename?: 'experiments_experiments', id: any, recall_id?: any | null } | null };
+
+export type CompleteRecallMutationVariables = Exact<{
+  id: Scalars['uuid']['input'];
+  answers: Scalars['jsonb']['input'];
+  completedAt: Scalars['timestamptz']['input'];
+}>;
+
+
+export type CompleteRecallMutation = { __typename?: 'mutation_root', update_experiments_recall_by_pk?: { __typename?: 'experiments_recall', id: any } | null };
+
+export type CompleteRecognitionMutationVariables = Exact<{
+  id: Scalars['uuid']['input'];
+  answers: Scalars['jsonb']['input'];
+  completedAt: Scalars['timestamptz']['input'];
+}>;
+
+
+export type CompleteRecognitionMutation = { __typename?: 'mutation_root', update_experiments_recognition_by_pk?: { __typename?: 'experiments_recognition', id: any } | null };
+
 export type InsertOrUpdateProfileMutationVariables = Exact<{
   age: Scalars['Int']['input'];
   gender: Genders_Enum;
@@ -7988,19 +10083,76 @@ export type InsertOrUpdateProfileMutationVariables = Exact<{
 
 export type InsertOrUpdateProfileMutation = { __typename?: 'mutation_root', insert_subjects_one?: { __typename?: 'subjects', id: any, age: number, gender: Genders_Enum } | null };
 
+export type GetRecallByIdQueryVariables = Exact<{
+  id: Scalars['uuid']['input'];
+}>;
+
+
+export type GetRecallByIdQuery = { __typename?: 'query_root', experiments_recall_by_pk?: { __typename?: 'experiments_recall', id: any, words: Array<string> } | null };
+
+export type GetRecognitionByIdQueryVariables = Exact<{
+  id: Scalars['uuid']['input'];
+}>;
+
+
+export type GetRecognitionByIdQuery = { __typename?: 'query_root', experiments_recognition_by_pk?: { __typename?: 'experiments_recognition', id: any, words: Array<string>, distractors: Array<string> } | null };
+
+export type GetListsQueryVariables = Exact<{
+  where?: InputMaybe<Words_Lists_Bool_Exp>;
+}>;
+
+
+export type GetListsQuery = { __typename?: 'query_root', words_lists: Array<{ __typename?: 'words_lists', id: any, categories: Array<{ __typename?: 'words_lists_categories', category?: string | null }>, words_aggregate: { __typename?: 'words_lists_words_view_aggregate', aggregate?: { __typename?: 'words_lists_words_view_aggregate_fields', count: number } | null } }> };
+
+export type GetListByIdQueryVariables = Exact<{
+  id: Scalars['uuid']['input'];
+}>;
+
+
+export type GetListByIdQuery = { __typename?: 'query_root', words_lists_by_pk?: { __typename?: 'words_lists', type: Words_List_Types_Enum, words: Array<{ __typename?: 'words_lists_words_view', word?: any | null, category?: string | null, syllables?: number | null, frequency?: any | null }> } | null };
+
+export type GetWordsByCategoryQueryVariables = Exact<{
+  categories: Array<Words_Categories_Enum> | Words_Categories_Enum;
+}>;
+
+
+export type GetWordsByCategoryQuery = { __typename?: 'query_root', words_words: Array<{ __typename?: 'words_words', word: any, category?: Words_Categories_Enum | null, syllables: number, frequency: any }> };
+
+export type GetRandomWordsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetRandomWordsQuery = { __typename?: 'query_root', words_words: Array<{ __typename?: 'words_words', word: any, category?: Words_Categories_Enum | null, syllables: number, frequency: any }> };
+
 export type GetProfileQueryVariables = Exact<{
   id: Scalars['uuid']['input'];
 }>;
 
 
-export type GetProfileQuery = { __typename?: 'query_root', subjects_by_pk?: { __typename?: 'subjects', id: any, age: number, gender: Genders_Enum } | null };
+export type GetProfileQuery = { __typename?: 'query_root', subjects_by_pk?: { __typename?: 'subjects', id: any, age: number, gender: Genders_Enum, experiments: Array<{ __typename?: 'experiments_experiments', id: any, run: { __typename?: 'experiments_run', id: any, name: string, lengths: Array<number>, run_list_type: Experiments_Run_List_Types_Enum }, recall?: { __typename?: 'experiments_recall', id: any, completed_at?: any | null } | null, recognition?: { __typename?: 'experiments_recognition', id: any, completed_at?: any | null } | null }> } | null };
 
-export type WordListsQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type WordListsQuery = { __typename?: 'query_root', words_lists: Array<{ __typename?: 'words_lists', id: any }> };
+export type Get_RunsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
+export type Get_RunsQuery = { __typename?: 'query_root', experiments_run: Array<{ __typename?: 'experiments_run', id: any, name: string, lengths: Array<number>, run_list_type: Experiments_Run_List_Types_Enum }> };
+
+export type Get_Run_By_CodeQueryVariables = Exact<{
+  code: Scalars['Int']['input'];
+}>;
+
+
+export type Get_Run_By_CodeQuery = { __typename?: 'query_root', experiments_run: Array<{ __typename?: 'experiments_run', id: any, name: string, lengths: Array<number>, run_list_type: Experiments_Run_List_Types_Enum }> };
+
+
+export const InsertExperimentDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"InsertExperiment"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"runId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"listType"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"words_list_types_enum"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"recallListId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"recallWords"}},"type":{"kind":"NonNullType","type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"recognitionListId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"recognitionWords"}},"type":{"kind":"NonNullType","type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"distractorWords"}},"type":{"kind":"NonNullType","type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"insert_experiments_experiments_one"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"object"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"run_id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"runId"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"list_type"},"value":{"kind":"Variable","name":{"kind":"Name","value":"listType"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"recall"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"data"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"source_list_id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"recallListId"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"words"},"value":{"kind":"Variable","name":{"kind":"Name","value":"recallWords"}}}]}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"recognition"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"data"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"source_list_id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"recognitionListId"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"words"},"value":{"kind":"Variable","name":{"kind":"Name","value":"recognitionWords"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"distractors"},"value":{"kind":"Variable","name":{"kind":"Name","value":"distractorWords"}}}]}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"recall_id"}}]}}]}}]} as unknown as DocumentNode<InsertExperimentMutation, InsertExperimentMutationVariables>;
+export const CompleteRecallDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CompleteRecall"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"answers"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"jsonb"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"completedAt"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"timestamptz"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"update_experiments_recall_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"pk_columns"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}},{"kind":"Argument","name":{"kind":"Name","value":"_set"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"answers"},"value":{"kind":"Variable","name":{"kind":"Name","value":"answers"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"completed_at"},"value":{"kind":"Variable","name":{"kind":"Name","value":"completedAt"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<CompleteRecallMutation, CompleteRecallMutationVariables>;
+export const CompleteRecognitionDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CompleteRecognition"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"answers"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"jsonb"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"completedAt"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"timestamptz"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"update_experiments_recognition_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"pk_columns"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}},{"kind":"Argument","name":{"kind":"Name","value":"_set"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"answers"},"value":{"kind":"Variable","name":{"kind":"Name","value":"answers"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"completed_at"},"value":{"kind":"Variable","name":{"kind":"Name","value":"completedAt"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<CompleteRecognitionMutation, CompleteRecognitionMutationVariables>;
 export const InsertOrUpdateProfileDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"InsertOrUpdateProfile"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"age"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"gender"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"genders_enum"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"insert_subjects_one"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"object"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"age"},"value":{"kind":"Variable","name":{"kind":"Name","value":"age"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"gender"},"value":{"kind":"Variable","name":{"kind":"Name","value":"gender"}}}]}},{"kind":"Argument","name":{"kind":"Name","value":"on_conflict"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"constraint"},"value":{"kind":"EnumValue","value":"subjects_pkey"}},{"kind":"ObjectField","name":{"kind":"Name","value":"update_columns"},"value":{"kind":"ListValue","values":[{"kind":"EnumValue","value":"age"},{"kind":"EnumValue","value":"gender"}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"age"}},{"kind":"Field","name":{"kind":"Name","value":"gender"}}]}}]}}]} as unknown as DocumentNode<InsertOrUpdateProfileMutation, InsertOrUpdateProfileMutationVariables>;
-export const GetProfileDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetProfile"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"subjects_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"age"}},{"kind":"Field","name":{"kind":"Name","value":"gender"}}]}}]}}]} as unknown as DocumentNode<GetProfileQuery, GetProfileQueryVariables>;
-export const WordListsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"WordLists"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"words_lists"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<WordListsQuery, WordListsQueryVariables>;
+export const GetRecallByIdDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetRecallById"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"experiments_recall_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"words"}}]}}]}}]} as unknown as DocumentNode<GetRecallByIdQuery, GetRecallByIdQueryVariables>;
+export const GetRecognitionByIdDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetRecognitionById"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"experiments_recognition_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"words"}},{"kind":"Field","name":{"kind":"Name","value":"distractors"}}]}}]}}]} as unknown as DocumentNode<GetRecognitionByIdQuery, GetRecognitionByIdQueryVariables>;
+export const GetListsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetLists"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"where"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"words_lists_bool_exp"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"words_lists"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"Variable","name":{"kind":"Name","value":"where"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"categories"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"category"}}]}},{"kind":"Field","name":{"kind":"Name","value":"words_aggregate"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"aggregate"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"count"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetListsQuery, GetListsQueryVariables>;
+export const GetListByIdDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetListById"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"words_lists_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"words"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"word"}},{"kind":"Field","name":{"kind":"Name","value":"category"}},{"kind":"Field","name":{"kind":"Name","value":"syllables"}},{"kind":"Field","name":{"kind":"Name","value":"frequency"}}]}}]}}]}}]} as unknown as DocumentNode<GetListByIdQuery, GetListByIdQueryVariables>;
+export const GetWordsByCategoryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetWordsByCategory"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"categories"}},"type":{"kind":"NonNullType","type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"words_categories_enum"}}}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"words_words"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"category"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_in"},"value":{"kind":"Variable","name":{"kind":"Name","value":"categories"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"word"}},{"kind":"Field","name":{"kind":"Name","value":"category"}},{"kind":"Field","name":{"kind":"Name","value":"syllables"}},{"kind":"Field","name":{"kind":"Name","value":"frequency"}}]}}]}}]} as unknown as DocumentNode<GetWordsByCategoryQuery, GetWordsByCategoryQueryVariables>;
+export const GetRandomWordsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetRandomWords"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"words_words"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"category"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_is_null"},"value":{"kind":"BooleanValue","value":true}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"word"}},{"kind":"Field","name":{"kind":"Name","value":"category"}},{"kind":"Field","name":{"kind":"Name","value":"syllables"}},{"kind":"Field","name":{"kind":"Name","value":"frequency"}}]}}]}}]} as unknown as DocumentNode<GetRandomWordsQuery, GetRandomWordsQueryVariables>;
+export const GetProfileDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetProfile"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"subjects_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"age"}},{"kind":"Field","name":{"kind":"Name","value":"gender"}},{"kind":"Field","name":{"kind":"Name","value":"experiments"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"order_by"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"created_at"},"value":{"kind":"EnumValue","value":"desc"}}]}},{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"1"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"run"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"lengths"}},{"kind":"Field","name":{"kind":"Name","value":"run_list_type"}}]}},{"kind":"Field","name":{"kind":"Name","value":"recall"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"completed_at"}}]}},{"kind":"Field","name":{"kind":"Name","value":"recognition"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"completed_at"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetProfileQuery, GetProfileQueryVariables>;
+export const Get_RunsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GET_RUNS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"experiments_run"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"lengths"}},{"kind":"Field","name":{"kind":"Name","value":"run_list_type"}}]}}]}}]} as unknown as DocumentNode<Get_RunsQuery, Get_RunsQueryVariables>;
+export const Get_Run_By_CodeDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GET_RUN_BY_CODE"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"code"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"experiments_run"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"code"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"code"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"lengths"}},{"kind":"Field","name":{"kind":"Name","value":"run_list_type"}}]}}]}}]} as unknown as DocumentNode<Get_Run_By_CodeQuery, Get_Run_By_CodeQueryVariables>;
