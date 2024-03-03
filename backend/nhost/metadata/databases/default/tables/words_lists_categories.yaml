@@ -1,15 +1,11 @@
 table:
-  name: words
+  name: lists_categories
   schema: words
 select_permissions:
   - role: user
     permission:
       columns:
-        - id
-        - syllables
-        - frequency
         - category
-        - word
+        - list_id
       filter: {}
-      allow_aggregations: true
     comment: ""

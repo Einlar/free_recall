@@ -2,6 +2,15 @@ table:
   name: lists
   schema: words
 array_relationships:
+  - name: categories
+    using:
+      manual_configuration:
+        column_mapping:
+          id: list_id
+        insertion_order: null
+        remote_table:
+          name: lists_categories
+          schema: words
   - name: words
     using:
       manual_configuration:
@@ -25,4 +34,5 @@ select_permissions:
         - type
         - id
       filter: {}
+      allow_aggregations: true
     comment: ""

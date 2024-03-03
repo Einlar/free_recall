@@ -1,3 +1,51 @@
 table:
   name: recognition
   schema: experiments
+object_relationships:
+  - name: experiment
+    using:
+      foreign_key_constraint_on:
+        column: recognition_id
+        table:
+          name: experiments
+          schema: experiments
+  - name: list
+    using:
+      foreign_key_constraint_on: source_list_id
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      columns:
+        - distractors
+        - id
+        - source_list_id
+        - words
+    comment: ""
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - distractors
+        - words
+        - answers
+        - completed_at
+        - id
+        - source_list_id
+      filter: {}
+      query_root_fields:
+        - select_by_pk
+      subscription_root_fields: []
+    comment: ""
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - answers
+        - completed_at
+      filter:
+        experiment:
+          subject_id:
+            _eq: X-Hasura-User-Id
+      check: null
+    comment: ""

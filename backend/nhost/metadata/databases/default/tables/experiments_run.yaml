@@ -1,3 +1,14 @@
 table:
   name: run
   schema: experiments
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - code
+        - id
+        - lengths
+        - name
+        - run_list_type
+      filter: {}
+    comment: ""

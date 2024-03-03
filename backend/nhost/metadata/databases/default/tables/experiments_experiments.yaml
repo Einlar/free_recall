@@ -1,3 +1,53 @@
 table:
   name: experiments
   schema: experiments
+object_relationships:
+  - name: recall
+    using:
+      foreign_key_constraint_on: recall_id
+  - name: recognition
+    using:
+      foreign_key_constraint_on: recognition_id
+  - name: run
+    using:
+      foreign_key_constraint_on: run_id
+  - name: subject
+    using:
+      foreign_key_constraint_on: subject_id
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      set:
+        subject_id: x-hasura-User-Id
+      columns:
+        - id
+        - list_type
+        - run_id
+    comment: ""
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - list_type
+        - created_at
+        - id
+        - recall_id
+        - recognition_id
+        - run_id
+        - subject_id
+      filter:
+        subject_id:
+          _eq: X-Hasura-User-Id
+    comment: ""
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - recall_id
+        - recognition_id
+      filter:
+        subject_id:
+          _eq: X-Hasura-User-Id
+      check: {}
+    comment: ""
