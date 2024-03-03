@@ -24,9 +24,8 @@
 	setContextClient(urql);
 </script>
 
-<div class="flex min-h-screen items-center justify-center bg-gray-100">
-	<div class="rounded-lg bg-white p-8 shadow-lg">
-		<h1 class="mb-4 text-3xl font-bold">Free Recall</h1>
+<div class="flex h-screen w-full items-center justify-center bg-white">
+	<div class="w-full max-w-3xl rounded-lg bg-white p-8">
 		<slot />
 	</div>
 </div>
@@ -36,7 +35,7 @@
 	:global(:root) {
 		--font-family: 'Roboto', sans-serif;
 	}
-	:global(h1, h2, h3, h4, h5, h6, p, label, legend) {
+	:global(h1, h2, h3, h4, h5, h6, p, b, label, legend) {
 		font-family: var(--font-family);
 	}
 </style>
