@@ -27,6 +27,7 @@
 	</p>
 {/if}
 {#if !edit && data.profile}
+	<p>Conferma che le informazioni seguenti siano corrette:</p>
 	<div class="mb-4 rounded bg-white px-8 pb-8 pt-6 shadow-md">
 		<div class="mb-4">
 			<label class="mb-2 block text-sm font-bold text-gray-700" for="currentAge"> E-mail </label>
@@ -62,6 +63,12 @@
 			</button>
 		</div>
 	</div>
+
+	<p>
+		Se tutto è corretto, procedi alla <a href="/" class="text-blue-500 hover:text-blue-700"
+			>Homepage</a
+		>.
+	</p>
 {:else}
 	<form
 		action="?/updateProfile"

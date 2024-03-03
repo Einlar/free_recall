@@ -59,10 +59,8 @@ export const actions = {
 
 		const update = await nhost.graphql.request(INSERT_OR_UPDATE_PROFILE, {
 			age: ageString ? parseInt(ageString) : 0,
-			gender: gender
+			gender: /** @type {import('$gqlTypes').Genders_Enum} */ (gender)
 		});
-
-		console.log({ data: update.data });
 
 		if (update.error) {
 			console.log({ error: update.error });

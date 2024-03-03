@@ -11,7 +11,7 @@ export const actions = {
 
 		console.log({ email });
 
-		const { error } = await nhost.auth.signIn({ email });
+		const { error } = await nhost.auth.signIn({ email }); //TODO Should redirectTo /profile
 
 		if (error) {
 			console.log(error);
