@@ -1,0 +1,1 @@
+DROP INDEX IF EXISTS "experiments"."experiments_created_at_key";
