@@ -29,10 +29,11 @@ httpPoolSize = 100
 version = 18
 
 [auth]
-version = '0.24.1'
+version = '0.26.0'
 
 [auth.redirections]
-clientUrl = 'http://localhost:5173'
+clientUrl = '{{ secrets.PUBLIC_CLIENT_URL }}'
+allowedUrls = ['{{ secrets.PUBLIC_CLIENT_URL }}/profile']
 
 [auth.signUp]
 enabled = true

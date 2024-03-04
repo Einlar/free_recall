@@ -3,7 +3,7 @@ import { fail } from '@sveltejs/kit';
 
 /** @type {import('./$types').Actions} */
 export const actions = {
-	signin: async ({ request, cookies }) => {
+	signin: async ({ request, cookies, url }) => {
 		const formData = await request.formData();
 		const nhost = await getNhost(cookies);
 
@@ -11,7 +11,10 @@ export const actions = {
 
 		console.log({ email });
 
-		const { error } = await nhost.auth.signIn({ email }); //TODO Should redirectTo /profile
+		const { error } = await nhost.auth.signIn({
+			email,
+			options: { redirectTo: `${url.origin}/profile` }
+		});
 
 		if (error) {
 			console.log(error);
