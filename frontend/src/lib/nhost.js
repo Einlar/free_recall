@@ -1,4 +1,4 @@
-import { env } from '$env/dynamic/public';
+import { PUBLIC_NHOST_REGION, PUBLIC_NHOST_SUBDOMAIN } from '$env/static/public';
 import { NhostClient } from '@nhost/nhost-js';
 import { redirect } from '@sveltejs/kit';
 import { waitFor } from 'xstate/lib/waitFor';
@@ -9,8 +9,8 @@ export const NHOST_SESSION_KEY = 'nhostSession';
 export const getNhost = async (cookies) => {
 	/** @type {import('@nhost/nhost-js').NhostClient} */
 	const nhost = new NhostClient({
-		subdomain: env.PUBLIC_NHOST_SUBDOMAIN || 'local',
-		region: env.PUBLIC_NHOST_REGION,
+		subdomain: PUBLIC_NHOST_SUBDOMAIN || 'local',
+		region: PUBLIC_NHOST_REGION,
 		clientStorageType: 'cookie',
 		start: false
 	});
