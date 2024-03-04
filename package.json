@@ -1,6 +1,0 @@
-{
-	"dependencies": {
-		"@urql/exchange-auth": "^2.1.6",
-		"@urql/svelte": "^4.0.4"
-	}
-}
