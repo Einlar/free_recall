@@ -77,6 +77,13 @@
 	let result;
 
 	const submitRecall = () => {
+		// Commit the last word if any
+		if (recalledWords.keys.length) {
+			const now = new Date();
+			recalledWord.end = now.getTime() - recallStart.getTime();
+			recalledWords.push(recalledWord);
+		}
+
 		result = mutationStore({
 			client,
 			query: COMPLETE_RECALL,
