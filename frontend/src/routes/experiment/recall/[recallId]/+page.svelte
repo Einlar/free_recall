@@ -15,14 +15,20 @@
 	 */
 	let experimentState = 'explain';
 
-	// Why does this show a type error!?
-	// Use: test@example.com to test
-
 	/**
 	 * @type {Date}
 	 * Time of start of the recall phase
 	 */
 	let recallStart;
+
+	const startPresenting = () => {
+		experimentState = 'present';
+	};
+
+	const startRecall = () => {
+		experimentState = 'recall';
+		recallStart = new Date();
+	};
 
 	/**
 	 * @typedef {Object} KeyPressed
@@ -65,11 +71,6 @@
 	 */
 	let value = '';
 
-	const startRecall = () => {
-		experimentState = 'recall';
-		recallStart = new Date();
-	};
-
 	const client = getContextClient();
 
 	/** @type {import('./types').Result<COMPLETE_RECALL>} */
@@ -86,8 +87,6 @@
 			}
 		});
 	};
-
-	console.log(data.words);
 </script>
 
 {#if experimentState === 'explain'}
@@ -133,14 +132,14 @@
 		<div class="flex justify-center">
 			<button
 				class="mt-4 rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
-				on:click={() => startRecall()}
+				on:click={() => startPresenting()}
 			>
 				Inizia l'esperimento
 			</button>
 		</div>
 	</div>
 {:else if experimentState === 'present'}
-	<Presenter words={data.words.slice(0, 2)} on:ended={() => startRecall()} />
+	<Presenter words={data.words} on:ended={() => startRecall()} />
 {:else if !$result}
 	<!-- Recall Phase-->
 	<div class="space-y-2 text-justify">
