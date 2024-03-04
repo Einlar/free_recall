@@ -1,1 +1,1 @@
-comment on column "experiments"."run"."code" is E 'Code for accessing the run';
+comment on column "experiments"."run"."code" is 'Code for accessing the run';

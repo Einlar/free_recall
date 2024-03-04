@@ -9,6 +9,6 @@ CREATE TABLE "experiments"."recall" (
     FOREIGN KEY ("source_list_id") REFERENCES "words"."lists"("id") ON UPDATE cascade ON DELETE cascade
 );
 
-COMMENT ON TABLE "experiments"."recall" IS E 'The recall phase of an experiment';
+COMMENT ON TABLE "experiments"."recall" IS 'The recall phase of an experiment';
 
 CREATE EXTENSION IF NOT EXISTS pgcrypto;

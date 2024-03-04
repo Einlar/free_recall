@@ -6,4 +6,4 @@ CREATE TABLE "public"."subjects" (
     FOREIGN KEY ("id") REFERENCES "auth"."users"("id") ON UPDATE cascade ON DELETE cascade
 );
 
-COMMENT ON TABLE "public"."subjects" IS E 'People taking part in the experiment';
+COMMENT ON TABLE "public"."subjects" IS 'People taking part in the experiment';

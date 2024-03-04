@@ -16,6 +16,6 @@ CREATE TABLE "experiments"."experiments" (
     UNIQUE ("recognition_id")
 );
 
-COMMENT ON TABLE "experiments"."experiments" IS E 'A full experiment performed by a subject';
+COMMENT ON TABLE "experiments"."experiments" IS 'A full experiment performed by a subject';
 
 CREATE EXTENSION IF NOT EXISTS pgcrypto;

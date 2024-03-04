@@ -6,6 +6,6 @@ CREATE TABLE "experiments"."run" (
     PRIMARY KEY ("id")
 );
 
-COMMENT ON TABLE "experiments"."run" IS E 'An experiment run';
+COMMENT ON TABLE "experiments"."run" IS 'An experiment run';
 
 CREATE EXTENSION IF NOT EXISTS pgcrypto;
