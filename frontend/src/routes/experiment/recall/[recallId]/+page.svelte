@@ -163,7 +163,7 @@
 			bind:value
 			on:keydown={(e) => {
 				const now = new Date();
-				if ([',', ' '].includes(e.key) && value.trim() !== '') {
+				if ([',', ' ', 'Enter'].includes(e.key) && value.trim() !== '') {
 					e.preventDefault();
 					recalledWord.end = now.getTime() - recallStart.getTime();
 					recalledWords.push(recalledWord);
@@ -188,6 +188,8 @@
 				}
 			}}
 		/>
+		<!-- Prevent implicit submission of the form -->
+		<button type="submit" disabled style="display: none" aria-hidden="true"></button>
 
 		<div class="flex justify-center">
 			<button
