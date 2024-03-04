@@ -34,7 +34,7 @@
 	 * @typedef {Object} KeyPressed
 	 * @property {String} key Pressed key
 	 * @property {Number} time Time of the key press, wrt start of the recall phase (ms)
-	 * @property {String} value The value of the input after the key press
+	 * @property {String} value The value of the input right before the key press
 	 *
 	 * @typedef {Object} WordRecalled
 	 * @property {Number} start Input time of the first letter, wrt start of the recall phase (ms)
@@ -81,6 +81,7 @@
 		if (recalledWords.keys.length) {
 			const now = new Date();
 			recalledWord.end = now.getTime() - recallStart.getTime();
+			recalledWord.word = value;
 			recalledWords.push(recalledWord);
 		}
 
@@ -173,6 +174,7 @@
 				if ([',', ' ', 'Enter'].includes(e.key) && value.trim() !== '') {
 					e.preventDefault();
 					recalledWord.end = now.getTime() - recallStart.getTime();
+					recalledWord.word = value;
 					recalledWords.push(recalledWord);
 					value = '';
 
