@@ -211,13 +211,15 @@
 {:else if $result.fetching}
 	<!-- Recall Phase - Uploading results -->
 	<div class="flex flex-col items-center">
-		<p class="text-justify">Caricamento dei risultati in corso...</p>
+		<p class="text-center text-2xl">Caricamento dei risultati in corso...</p>
 		<Loader />
 	</div>
 {:else if $result.error}
-	<div class="text-red-500">Qualcosa è andato storto. Si prega di riprovare più tardi.</div>
+	<div class="text-center text-2xl text-red-500">
+		Qualcosa è andato storto. Si prega di riprovare più tardi.
+	</div>
 {:else if $result.data}
-	<div class="text-green-500">
+	<div class="text-center text-2xl text-green-500">
 		Esperimento completato con successo! Puoi chiudere questa pagina.
 	</div>
 {/if}
