@@ -55,9 +55,10 @@ export const manageAuthSession = async (event, onError) => {
 
 		event.cookies.set(NHOST_SESSION_KEY, btoa(JSON.stringify(newSession)), { path: '/' });
 
-		// if (refreshToken) {
-		// 	event.url.searchParams.delete('refreshToken');
-		// 	redirect(303, event.url.pathname);
-		// }
+		if (refreshToken) {
+			const newUrl = new URL(event.url);
+			newUrl.searchParams.delete('refreshToken');
+			redirect(303, newUrl.pathname);
+		}
 	}
 };
