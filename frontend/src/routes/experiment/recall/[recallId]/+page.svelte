@@ -222,6 +222,7 @@
 	</div>
 {:else if $result.data}
 	<div class="text-center text-2xl text-green-500">
-		Esperimento completato con successo! Puoi chiudere questa pagina.
+		<p>Esperimento completato con successo!</p>
+		<p>Puoi ora chiudere questa pagina.</p>
 	</div>
 {/if}
