@@ -25,7 +25,7 @@
 </script>
 
 <div class="flex h-screen w-full items-center justify-center bg-white">
-	<div class="w-full max-w-3xl rounded-lg bg-white p-8">
+	<div class="w-full max-w-5xl rounded-lg bg-white p-8">
 		<slot />
 	</div>
 </div>

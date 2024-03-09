@@ -21,14 +21,16 @@
 	$: console.log(form);
 </script>
 
+<h1 class="mb-6 text-3xl font-bold">Profilo</h1>
+
 {#if !data.profile}
-	<p>
+	<p class="mb-6 text-lg">
 		Questa è la prima volta che accedi a questa applicazione. Per favore, inserisci i seguenti dati:
 	</p>
 {/if}
 {#if !edit && data.profile}
-	<p>Conferma che le informazioni seguenti siano corrette:</p>
-	<div class="mb-4 rounded bg-white px-8 pb-8 pt-6 shadow-md">
+	<p class="mb-6 text-lg">Conferma che le informazioni seguenti siano corrette:</p>
+	<div class="mb-6 rounded bg-white px-8 pb-8 pt-6 shadow-md">
 		<div class="mb-4">
 			<label class="mb-2 block text-sm font-bold text-gray-700" for="currentAge"> E-mail </label>
 			<div class="flex items-center">
@@ -53,22 +55,22 @@
 				>
 			</div>
 		</div>
-		<div class="flex items-center justify-center">
+		<div class="flex items-center justify-between">
 			<button
-				class="font-medium text-blue-500 hover:text-blue-700 focus:outline-none"
+				class="focus:shadow-outline rounded bg-red-500 px-4 py-2 font-bold text-white hover:bg-red-700 focus:outline-none"
 				type="button"
 				on:click={() => (edit = true)}
 			>
 				Modifica
 			</button>
+			<a
+				href="/"
+				class="focus:shadow-outline rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700 focus:outline-none"
+			>
+				Conferma
+			</a>
 		</div>
 	</div>
-
-	<p>
-		Se tutto è corretto, procedi alla <a href="/" class="text-blue-500 hover:text-blue-700"
-			>Homepage</a
-		>.
-	</p>
 {:else}
 	<form
 		action="?/updateProfile"

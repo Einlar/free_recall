@@ -9,18 +9,15 @@ export const actions = {
 
 		const email = String(formData.get('email'));
 
-		console.log({ email });
-
 		const { error } = await nhost.auth.signIn({
 			email,
 			options: { redirectTo: `${url.origin}/profile` }
 		});
 
 		if (error) {
-			console.log(error);
+			console.error(error);
 			return fail(500, { success: false, error });
 		} else {
-			console.log('OK');
 			return {
 				success: true,
 				email,
