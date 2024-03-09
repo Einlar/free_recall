@@ -71,6 +71,9 @@
 			</a>
 		</div>
 	</div>
+{:else if form?.error}
+	<h1 class="mb-6 text-3xl font-bold text-red-700">Errore</h1>
+	<p class="text-lg">Qualcosa è andato storto. Riprova più tardi.</p>
 {:else}
 	<form
 		action="?/updateProfile"
