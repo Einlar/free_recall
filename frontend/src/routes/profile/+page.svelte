@@ -23,126 +23,131 @@
 
 <h1 class="mb-6 text-3xl font-bold">Profilo</h1>
 
-{#if !data.profile}
-	<p class="mb-6 text-lg">
-		Questa è la prima volta che accedi a questa applicazione. Per favore, inserisci i seguenti dati:
-	</p>
-{/if}
-{#if !edit && data.profile}
-	<p class="mb-6 text-lg">Conferma che le informazioni seguenti siano corrette:</p>
-	<div class="mb-6 rounded bg-white px-8 pb-8 pt-6 shadow-md">
-		<div class="mb-4">
-			<label class="mb-2 block text-sm font-bold text-gray-700" for="currentAge"> E-mail </label>
-			<div class="flex items-center">
-				<span class="mr-2 font-medium text-gray-700" id="currentEmail"
-					>{email ?? 'non specificato'}</span
-				>
-			</div>
-		</div>
-		<div class="mb-4">
-			<label class="mb-2 block text-sm font-bold text-gray-700" for="currentAge"> Età </label>
-			<div class="flex items-center">
-				<span class="mr-2 font-medium text-gray-700" id="currentAge"
-					>{age ?? 'non specificato'}</span
-				>
-			</div>
-		</div>
-		<div class="mb-4">
-			<label class="mb-2 block text-sm font-bold text-gray-700" for="currentGender"> Genere </label>
-			<div class="flex items-center">
-				<span class="mr-2 font-medium text-gray-700" id="currentGender"
-					>{gender ? GENDER_MAP[gender] : 'non specificato'}</span
-				>
-			</div>
-		</div>
-		<div class="flex items-center justify-between">
-			<button
-				class="focus:shadow-outline rounded bg-red-500 px-4 py-2 font-bold text-white hover:bg-red-700 focus:outline-none"
-				type="button"
-				on:click={() => (edit = true)}
-			>
-				Modifica
-			</button>
-			<a
-				href="/"
-				class="focus:shadow-outline rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700 focus:outline-none"
-			>
-				Conferma
-			</a>
-		</div>
-	</div>
-{:else if form?.error}
+{#if form?.error}
 	<h1 class="mb-6 text-3xl font-bold text-red-700">Errore</h1>
 	<p class="text-lg">Qualcosa è andato storto. Riprova più tardi.</p>
 {:else}
-	<form
-		action="?/updateProfile"
-		method="post"
-		class="mb-4 rounded bg-white px-8 pb-8 pt-6 shadow-md"
-	>
-		<div class="mb-4">
-			<label class="mb-2 block text-sm font-bold text-gray-700" for="age"> Età </label>
-			<input
-				class="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
-				id="age"
-				type="number"
-				name="age"
-				placeholder="Età"
-				value={age}
-			/>
-		</div>
-		<div class="mb-4">
-			<fieldset>
-				<legend class="mb-2 block text-sm font-bold text-gray-700">Genere</legend>
+	{#if !data.profile}
+		<p class="mb-6 text-lg">
+			Questa è la prima volta che accedi a questa applicazione. Per favore, inserisci i seguenti
+			dati:
+		</p>
+	{/if}
+	{#if !edit && data.profile}
+		<p class="mb-6 text-lg">Conferma che le informazioni seguenti siano corrette:</p>
+		<div class="mb-6 rounded bg-white px-8 pb-8 pt-6 shadow-md">
+			<div class="mb-4">
+				<label class="mb-2 block text-sm font-bold text-gray-700" for="currentAge"> E-mail </label>
 				<div class="flex items-center">
-					<input
-						type="radio"
-						class="form-radio"
-						id="male"
-						name="gender"
-						value="male"
-						checked={gender === 'male'}
-					/>
-					<label for="male" class="ml-2">Uomo</label>
+					<span class="mr-2 font-medium text-gray-700" id="currentEmail"
+						>{email ?? 'non specificato'}</span
+					>
 				</div>
+			</div>
+			<div class="mb-4">
+				<label class="mb-2 block text-sm font-bold text-gray-700" for="currentAge"> Età </label>
 				<div class="flex items-center">
-					<input
-						type="radio"
-						class="form-radio"
-						id="female"
-						name="gender"
-						value="female"
-						checked={gender === 'female'}
-					/>
-					<label for="female" class="ml-2">Donna</label>
+					<span class="mr-2 font-medium text-gray-700" id="currentAge"
+						>{age ?? 'non specificato'}</span
+					>
 				</div>
+			</div>
+			<div class="mb-4">
+				<label class="mb-2 block text-sm font-bold text-gray-700" for="currentGender">
+					Genere
+				</label>
 				<div class="flex items-center">
-					<input
-						type="radio"
-						class="form-radio"
-						id="other"
-						name="gender"
-						value="other"
-						checked={gender === 'other'}
-					/>
-					<label for="other" class="ml-2">Altro</label>
+					<span class="mr-2 font-medium text-gray-700" id="currentGender"
+						>{gender ? GENDER_MAP[gender] : 'non specificato'}</span
+					>
 				</div>
-			</fieldset>
+			</div>
+			<div class="flex items-center justify-between">
+				<button
+					class="focus:shadow-outline rounded bg-red-500 px-4 py-2 font-bold text-white hover:bg-red-700 focus:outline-none"
+					type="button"
+					on:click={() => (edit = true)}
+				>
+					Modifica
+				</button>
+				<a
+					href="/"
+					class="focus:shadow-outline rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700 focus:outline-none"
+				>
+					Conferma
+				</a>
+			</div>
 		</div>
-		<div class="flex items-center justify-between">
-			<button
-				class="focus:shadow-outline rounded bg-red-500 px-4 py-2 font-bold text-white hover:bg-red-700 focus:outline-none"
-				type="button"
-				on:click={() => (edit = false)}
-			>
-				Annulla
-			</button>
-			<button
-				class="focus:shadow-outline rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700 focus:outline-none"
-				type="submit"
-			>
-				Conferma
-			</button>
-		</div>
-	</form>
+	{:else}
+		<form
+			action="?/updateProfile"
+			method="post"
+			class="mb-4 rounded bg-white px-8 pb-8 pt-6 shadow-md"
+		>
+			<div class="mb-4">
+				<label class="mb-2 block text-sm font-bold text-gray-700" for="age"> Età </label>
+				<input
+					class="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
+					id="age"
+					type="number"
+					name="age"
+					placeholder="Età"
+					value={age}
+				/>
+			</div>
+			<div class="mb-4">
+				<fieldset>
+					<legend class="mb-2 block text-sm font-bold text-gray-700">Genere</legend>
+					<div class="flex items-center">
+						<input
+							type="radio"
+							class="form-radio"
+							id="male"
+							name="gender"
+							value="male"
+							checked={gender === 'male'}
+						/>
+						<label for="male" class="ml-2">Uomo</label>
+					</div>
+					<div class="flex items-center">
+						<input
+							type="radio"
+							class="form-radio"
+							id="female"
+							name="gender"
+							value="female"
+							checked={gender === 'female'}
+						/>
+						<label for="female" class="ml-2">Donna</label>
+					</div>
+					<div class="flex items-center">
+						<input
+							type="radio"
+							class="form-radio"
+							id="other"
+							name="gender"
+							value="other"
+							checked={gender === 'other'}
+						/>
+						<label for="other" class="ml-2">Altro</label>
+					</div>
+				</fieldset>
+			</div>
+			<div class="flex items-center justify-between">
+				<button
+					class="focus:shadow-outline rounded bg-red-500 px-4 py-2 font-bold text-white hover:bg-red-700 focus:outline-none"
+					type="button"
+					on:click={() => (edit = false)}
+				>
+					Annulla
+				</button>
+				<button
+					class="focus:shadow-outline rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700 focus:outline-none"
+					type="submit"
+				>
+					Conferma
+				</button>
+			</div>
+		</form>
+	{/if}
 {/if}
