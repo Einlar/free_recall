@@ -169,13 +169,29 @@
 			spellcheck="false"
 			class="my-8 w-full border-0 bg-blue-100 py-4 text-center font-mono text-4xl font-normal leading-6 text-gray-700 shadow-md outline-none"
 			bind:value
+			on:input={() => {
+				// Fallback for IME (virtual keyboards), since the e.key will always be "Unidentified" (on some devices), meaning that we can't detecth the space or comma with on:keydown
+				if (value.endsWith(' ') || value.endsWith(',')) {
+					recalledWord.end = new Date().getTime() - recallStart.getTime();
+					recalledWord.word = value.slice(0, -1); // Remove the last character
+					recalledWords = [...recalledWords, recalledWord];
+					value = '';
+
+					recalledWord = {
+						start: 0,
+						end: 0,
+						word: '',
+						keys: []
+					};
+				}
+			}}
 			on:keydown={(e) => {
 				const now = new Date();
 				if ([',', ' ', 'Enter'].includes(e.key) && value.trim() !== '') {
 					e.preventDefault();
 					recalledWord.end = now.getTime() - recallStart.getTime();
 					recalledWord.word = value;
-					recalledWords.push(recalledWord);
+					recalledWords = [...recalledWords, recalledWord];
 					value = '';
 
 					recalledWord = {
